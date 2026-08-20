@@ -1,0 +1,13 @@
+# Arbeitsmaterial, gehört nicht auf die Webseite
+_vorschau/
+CLAUDE.md
+.DS_Store
+
+# Nicht mehr eingebundene Medien (bleiben lokal erhalten)
+assets/werkstatt-bg.mp4
+assets/werkstatt-bg-poster.jpg
+assets/ablauf-clip.mp4
+assets/ablauf-clip-poster.jpg
+assets/lst-aufpolstern.jpg
+assets/lst-holz.jpg
+assets/lst-schaum.jpg
