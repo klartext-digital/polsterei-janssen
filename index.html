@@ -9,7 +9,7 @@
 <meta property="og:description" content="Neubezug, Aufpolsterung und Reparatur aus eigener Werkstatt in Krefeld. Kostenloser Hol- und Bringservice im Umkreis von 100 km.">
 <meta property="og:image" content="assets/hero-a.jpg">
 <meta name="theme-color" content="#FFFEFA">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23E8500A'/%3E%3Ctext x='32' y='45' font-family='Arial' font-size='36' font-weight='500' fill='%23FFFEFA' text-anchor='middle'%3EJ%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="assets/logo-symbol.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://api.fontshare.com">
 <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
 <link href="https://api.fontshare.com/v2/css?f[]=switzer@200,300,400,500&display=swap" rel="stylesheet">
@@ -82,24 +82,34 @@ html.js:not(.reduced) [data-rv]{opacity:0}
 .sdesc{max-width:600px;margin:22px auto 0;font-size:18px;font-weight:300;line-height:1.55;color:rgba(5,5,5,.78)}
 
 /* Norré-Button: Pille + schwarzer Kreis */
+/* CTA Action Button (Framer-Vorlage): beim Hover gleitet die Beschriftung nach links
+   aus dem Knopf, der Kreis dehnt sich auf die volle Breite, der Pfeil waechst. */
 .btnN{
-  display:inline-flex;align-items:center;gap:14px;
+  position:relative;overflow:hidden;
+  display:inline-flex;align-items:center;
   border:1px solid var(--line2);border-radius:999px;
-  padding:7px 7px 7px 24px;
+  min-height:52px;padding:7px 54px 7px 24px;
   font-size:13px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;
   background:var(--card);
   transition:transform .3s cubic-bezier(.22,1,.36,1), background .25s, border-color .25s;
   will-change:transform;
 }
+.btnN-lbl{
+  position:relative;z-index:1;white-space:nowrap;
+  transition:transform .6s cubic-bezier(.34,1.32,.5,1), opacity .3s ease;
+}
+.btnN:hover .btnN-lbl{transform:translateX(-118%);opacity:0}
 .btnN:active{transform:scale(.97)}
 .btnN:hover{border-color:var(--ink)}
 .btnN .circ{
-  width:36px;height:36px;border-radius:999px;background:var(--ink);
-  display:grid;place-items:center;flex:none;
-  transition:transform .35s cubic-bezier(.22,1,.36,1);
+  position:absolute;right:7px;top:7px;bottom:7px;z-index:2;
+  width:38px;border-radius:999px;background:var(--ink);
+  display:grid;place-items:center;
+  transition:width .6s cubic-bezier(.34,1.32,.5,1);
 }
-.btnN:hover .circ{transform:rotate(45deg)}
-.btnN .circ svg{width:15px;height:15px;stroke:var(--bg);transform:rotate(-45deg)}
+.btnN:hover .circ{width:calc(100% - 14px)}
+.btnN .circ svg{width:15px;height:15px;stroke:var(--bg);transition:width .5s ease, height .5s ease}
+.btnN:hover .circ svg{width:18px;height:18px}
 .btnN.acc{background:var(--acc);color:#FFF4EA;border-color:var(--acc)}
 .btnN.acc:hover{background:var(--acc-2);border-color:var(--acc-2)}
 .btnN.acc .circ{background:#FFF4EA}
@@ -123,7 +133,8 @@ html.js:not(.reduced) [data-rv]{opacity:0}
   max-width:calc(var(--maxw) + 2 * var(--pad));margin-inline:auto;padding-inline:var(--pad);
   height:76px;display:flex;align-items:center;gap:30px;
 }
-.brand{font-size:17px;font-weight:500;letter-spacing:.18em;text-transform:uppercase}
+.brand{display:flex;align-items:center;flex:none}
+.brand img{height:44px;width:auto;display:block}
 .nav-links{display:flex;gap:34px;margin:0 auto}
 .nav-links a{
   font-size:13px;font-weight:400;letter-spacing:.14em;text-transform:uppercase;
@@ -135,6 +146,10 @@ html.js:not(.reduced) [data-rv]{opacity:0}
 }
 .nav-links a:hover::after{right:0}
 .burger{display:none}
+/* Kompakte Variante in der Navigation */
+.nav .btnN{min-height:44px;padding:6px 44px 6px 20px;font-size:12px}
+.nav .btnN .circ{right:6px;top:6px;bottom:6px;width:32px}
+.nav .btnN:hover .circ{width:calc(100% - 12px)}
 
 /* Mobile-Menü */
 .menu{
@@ -169,8 +184,10 @@ body.menu-open .menu a{transform:none;opacity:1}
 .hero-o{position:absolute;inset:0;z-index:2;padding:clamp(24px,3.6vw,48px);color:#FFFEFA}
 .hero-tag{
   position:absolute;top:clamp(24px,3.6vw,48px);left:clamp(24px,3.6vw,48px);
-  font-size:clamp(22px,2.4vw,32px);font-weight:200;color:rgba(255,254,250,.92);
+  display:block;
 }
+.hero-tag img{height:clamp(42px,4.4vw,62px);width:auto;display:block;
+  filter:drop-shadow(0 2px 14px rgba(0,0,0,.45))}
 .hero-word{
   position:absolute;left:clamp(24px,3.6vw,48px);bottom:clamp(24px,3.6vw,48px);z-index:2;
   color:#FFFEFA;max-width:68%;
@@ -204,7 +221,15 @@ body.menu-open .menu a{transform:none;opacity:1}
   border-color:var(--acc);z-index:3;
   box-shadow:0 10px 24px rgba(0,0,0,.5);
 }
-.proof-info{display:flex;flex-direction:column;gap:5px}
+.proof-info{display:flex;flex-direction:column;gap:6px}
+/* Google Rating Button (Framer-Vorlage): Logo + Bewertung + Sterne, als Link */
+.grate{display:inline-flex;align-items:center;gap:11px;transition:opacity .25s}
+.grate:hover{opacity:.82}
+.grate-g{width:22px;height:22px;flex:none;display:block}
+.grate-g svg{width:100%;height:100%;display:block}
+.grate-num{font-size:16px;font-weight:600;color:#FFFFFF;letter-spacing:-.01em}
+.grate .stars{--star:#F7D775;width:88px;height:17.6px;background-size:17.6px 17.6px}
+.grate .stars::after{-webkit-mask-size:17.6px 17.6px;mask-size:17.6px 17.6px}
 .stars{
   --fill:90%;   /* 4,5 von 5 Zellen = 5. Stern exakt halb (Anzeige fuer 4,8) */
   position:relative;display:block;width:100px;height:20px;
@@ -213,8 +238,11 @@ body.menu-open .menu a{transform:none;opacity:1}
 }
 .stars::after{
   content:"";position:absolute;inset:0;width:var(--fill);
-  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23E8500A'%3E%3Cpath d='M12 2.6l2.85 6.2 6.75.78-5.02 4.6 1.37 6.66L12 17.5l-5.95 3.34 1.37-6.66-5.02-4.6 6.75-.78z'/%3E%3C/svg%3E") repeat-x;
-  background-size:20px 20px;
+  background:var(--star, var(--acc));
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23fff'%3E%3Cpath d='M12 2.6l2.85 6.2 6.75.78-5.02 4.6 1.37 6.66L12 17.5l-5.95 3.34 1.37-6.66-5.02-4.6 6.75-.78z'/%3E%3C/svg%3E") repeat-x;
+  -webkit-mask-size:20px 20px;
+  mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23fff'%3E%3Cpath d='M12 2.6l2.85 6.2 6.75.78-5.02 4.6 1.37 6.66L12 17.5l-5.95 3.34 1.37-6.66-5.02-4.6 6.75-.78z'/%3E%3C/svg%3E") repeat-x;
+  mask-size:20px 20px;
 }
 .proof-txt{font-size:14.5px;font-weight:400;color:rgba(246,242,235,.9)}
 .proof-txt b{font-weight:600;color:#FFFFFF}
@@ -589,11 +617,10 @@ footer{background:var(--black);color:#F6F2EB;padding:clamp(56px,8vw,100px) 0 30p
 .foot-col a{display:block;font-size:15px;font-weight:300;color:rgba(246,242,235,.72);padding:4px 0;transition:color .25s}
 .foot-col a:hover{color:#F6F2EB}
 .foot-word{
-  font-size:clamp(3.4rem,14vw,12.5rem);line-height:1;text-align:center;
-  font-weight:500;letter-spacing:-.03em;color:#F6F2EB;white-space:nowrap;user-select:none;
+  display:flex;justify-content:center;
   margin-top:clamp(48px,7vw,84px);
 }
-.foot-word i{font-style:normal;color:var(--acc)}
+.foot-word img{width:min(720px,70vw);height:auto;display:block}
 .foot-row{
   display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between;
   border-top:1px solid rgba(246,242,235,.14);margin-top:clamp(28px,4vw,44px);padding-top:26px;
@@ -621,14 +648,16 @@ footer{background:var(--black);color:#F6F2EB;padding:clamp(56px,8vw,100px) 0 30p
   .hero{padding-top:74px}
   .hero-frame{height:auto;min-height:min(82svh,620px)}
   .hero-frame::after{background:linear-gradient(to top, rgba(5,5,5,.72) 0%, rgba(5,5,5,.28) 45%, rgba(5,5,5,.1) 65%, rgba(5,5,5,.24) 100%)}
-  .hero-tag{font-size:19px}
+  .hero-tag img{height:34px}
   .hero-word{max-width:100%;right:clamp(24px,3.6vw,48px);bottom:170px}
   .hero-side{position:absolute;left:clamp(24px,3.6vw,48px);max-width:100%}
   .hero-side p{display:none}
   .proof{gap:12px}
   .proof-faces img{width:38px;height:38px;margin-left:-12px;border-width:1.5px}
-  .stars{width:84px;height:17px;background-size:17px 17px}
-  .stars::after{background-size:17px 17px}
+  .grate .stars{width:76px;height:15.2px;background-size:15.2px 15.2px}
+  .grate .stars::after{-webkit-mask-size:15.2px 15.2px;mask-size:15.2px 15.2px}
+  .grate-g{width:19px;height:19px}
+  .grate-num{font-size:14.5px}
   .proof-txt{font-size:13px}
   .smeta{display:none}
   .stats-grid{grid-template-columns:1fr;gap:0}
@@ -667,14 +696,14 @@ footer{background:var(--black);color:#F6F2EB;padding:clamp(56px,8vw,100px) 0 30p
 <!-- ============ NAVIGATION ============ -->
 <header class="nav" id="nav">
   <div class="nav-in">
-    <a class="brand" href="#top">Janssen</a>
+    <a class="brand" href="#top" aria-label="Polsterei Janssen, zum Seitenanfang"><img src="assets/logo-horizontal.svg" alt="Polsterei Janssen"></a>
     <nav class="nav-links" aria-label="Hauptnavigation">
       <a href="#wandel">Vorher / Nachher</a>
       <a href="#leistungen">Leistungen</a>
       <a href="#werkstatt">Werkstatt</a>
       <a href="#ablauf">Ablauf</a>
     </nav>
-    <a class="btnN acc" href="#kontakt">Angebot anfragen <span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    <a class="btnN acc" href="#kontakt"><span class="btnN-lbl">Angebot anfragen</span><span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
     <button class="burger" id="burger" aria-label="Menü öffnen"><i></i><i></i><i></i></button>
   </div>
 </header>
@@ -694,7 +723,7 @@ footer{background:var(--black);color:#F6F2EB;padding:clamp(56px,8vw,100px) 0 30p
   <section class="hero">
     <div class="hero-frame">
       <img id="heroImg" src="assets/hero-a.jpg" alt="Große Werkhalle der Polsterei Janssen mit Sofas und Sesseln in Produktion" fetchpriority="high">
-      <span class="hero-tag" data-hero>Polsterei Janssen</span>
+      <span class="hero-tag" data-hero><img src="assets/logo-horizontal-negativ.svg" alt="Polsterei Janssen"></span>
       <h1 class="hero-word"><span class="mask"><span class="hline">Wir polstern Ihr</span></span><span class="mask"><span class="hline">Lieblingsst&uuml;ck neu</span></span></h1>
       <div class="hero-side" data-hero>
         <div class="proof">
@@ -705,12 +734,18 @@ footer{background:var(--black);color:#F6F2EB;padding:clamp(56px,8vw,100px) 0 30p
             <img src="assets/kunde-4.jpg" alt="" loading="lazy">
           </div>
           <div class="proof-info">
-            <span class="stars" role="img" aria-label="4,8 von 5 Sternen"></span>
+            <a class="grate" href="https://www.google.com/maps/search/Polsterei+Janssen+Krefeld" target="_blank" rel="noopener" aria-label="4,8 von 5 Sternen bei Google, Bewertungen ansehen">
+              <span class="grate-g" aria-hidden="true">
+                <svg viewBox="0 0 48 48"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24s.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg>
+              </span>
+              <span class="grate-num">4,8</span>
+              <span class="stars" aria-hidden="true"></span>
+            </a>
             <span class="proof-txt"><b>&Uuml;ber 2.000</b> zufriedene Kunden in Deutschland</span>
           </div>
         </div>
         <p>Neubezug, Aufpolsterung und Reparatur aus eigener Werkstatt in Krefeld. Schnell, pr&auml;zise und zum besten Preis der Region.</p>
-        <a class="btnN acc" data-mag href="#kontakt">Angebot anfragen <span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+        <a class="btnN acc" data-mag href="#kontakt"><span class="btnN-lbl">Angebot anfragen</span><span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
       </div>
     </div>
   </section>
@@ -1033,7 +1068,7 @@ footer{background:var(--black);color:#F6F2EB;padding:clamp(56px,8vw,100px) 0 30p
         </div>
         <div class="fnav">
           <span></span>
-          <button class="btnN acc" id="toStep3" type="button">Weiter <span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></button>
+          <button class="btnN acc" id="toStep3" type="button"><span class="btnN-lbl">Weiter</span><span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></button>
         </div>
       </div>
 
@@ -1062,7 +1097,7 @@ footer{background:var(--black);color:#F6F2EB;padding:clamp(56px,8vw,100px) 0 30p
           </div>
           <div class="fnav">
             <span></span>
-            <button class="btnN acc" type="submit">Anfrage senden <span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></button>
+            <button class="btnN acc" type="submit"><span class="btnN-lbl">Anfrage senden</span><span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></button>
           </div>
           <p class="form-note">Ihre Anfrage &ouml;ffnet sich fertig ausgef&uuml;llt in Ihrem E-Mail-Programm.</p>
         </form>
@@ -1097,7 +1132,7 @@ footer{background:var(--black);color:#F6F2EB;padding:clamp(56px,8vw,100px) 0 30p
         </div>
       </div>
     </div>
-    <div class="foot-word" data-rv aria-hidden="true">janssen<i>.</i></div>
+    <div class="foot-word" data-rv><img src="assets/logo-horizontal-negativ.svg" alt="Polsterei Janssen"></div>
     <div class="foot-row">
       <span>&copy; 2026 Polsterei Janssen, Krefeld &amp; Ennigerloh</span>
       <nav aria-label="Rechtliches">
