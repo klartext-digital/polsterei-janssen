@@ -518,11 +518,9 @@ body.menu-open .menu a{transform:none;opacity:1}
   color:rgba(244,238,228,.82);text-shadow:0 2px 14px rgba(0,0,0,.6);
 }
 /* Knopf in der Ablauf-Zeile: gleiche Optik wie alle anderen CTAs.
-   Er reagiert auf das Ueberfahren der GANZEN Zeile, nicht nur auf sich selbst. */
+   Die Aufzieh-Bewegung loest NUR der Knopf selbst aus (nicht die ganze Zeile) —
+   sonst leert sich die Beschriftung, obwohl der Zeiger woanders steht. */
 .proc-txt .btnN{margin-top:20px}
-.proc-row:hover .btnN-lbl{transform:translateX(-118%);opacity:0}
-.proc-row:hover .btnN .circ{width:calc(100% - 14px)}
-.proc-row:hover .btnN .circ svg{width:18px;height:18px}
 
 /* ============ STIMME ============ */
 .tst{padding-block:0 var(--sec-y)}
