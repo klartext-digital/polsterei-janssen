@@ -499,12 +499,12 @@ body.menu-open .menu a{transform:none;opacity:1}
   margin-top:12px;font-size:clamp(16px,1.2vw,18.5px);font-weight:300;line-height:1.55;
   color:rgba(246,242,235,.82);text-shadow:0 2px 14px rgba(0,0,0,.6);
 }
-.proc-cta{
-  display:inline-flex;align-items:center;gap:9px;margin-top:18px;
-  font-size:14px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--acc);
-  transition:gap .3s;
-}
-.proc-row:hover .proc-cta{gap:15px}
+/* Knopf in der Ablauf-Zeile: gleiche Optik wie alle anderen CTAs.
+   Er reagiert auf das Ueberfahren der GANZEN Zeile, nicht nur auf sich selbst. */
+.proc-txt .btnN{margin-top:20px}
+.proc-row:hover .btnN-lbl{transform:translateX(-118%);opacity:0}
+.proc-row:hover .btnN .circ{width:calc(100% - 14px)}
+.proc-row:hover .btnN .circ svg{width:18px;height:18px}
 
 /* ============ STIMME ============ */
 .tst{padding-block:0 var(--sec-y)}
@@ -967,7 +967,7 @@ footer{
           <div class="proc-txt">
             <h3>Formular ausf&uuml;llen</h3>
             <p>In vier kurzen Fragen sagen Sie uns, was neu werden soll. Alternativ erreichen Sie uns per Telefon oder WhatsApp.</p>
-            <span class="proc-cta">Zum Formular <span aria-hidden="true">&rarr;</span></span>
+            <span class="btnN acc"><span class="btnN-lbl">Zum Formular</span><span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span>
           </div>
         </a>
         <article class="proc-row" data-rv>
