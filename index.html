@@ -440,10 +440,14 @@ body.menu-open .menu a{transform:none;opacity:1}
   padding:clamp(30px,3.4vw,52px) clamp(26px,3vw,44px);
   min-height:clamp(210px,23vw,290px);
   border:1px solid rgba(246,242,235,.09);
-  transition:border-color .4s;
+  border-radius:16px;
+  transition:border-color .45s, box-shadow .45s;
   color:inherit;text-decoration:none;
 }
-.proc-row:hover{border-color:rgba(246,242,235,.22)}
+.proc-row:hover{
+  border-color:rgba(232,80,10,.55);
+  box-shadow:0 0 0 1px rgba(232,80,10,.18), 0 18px 44px rgba(0,0,0,.35);
+}
 /* Video ueber die ganze Box */
 .proc-media{position:absolute;inset:0;z-index:0;overflow:hidden}
 .proc-media video{
@@ -465,16 +469,6 @@ body.menu-open .menu a{transform:none;opacity:1}
   .proc-media video{filter:grayscale(0) brightness(.5)}
   .proc-media::after{opacity:.75}
 }
-/* Ecken-Marker (4 Stueck) */
-.cnr{position:absolute;inset:0;pointer-events:none;z-index:3}
-.proc-row::before,.proc-row::after,.cnr::before,.cnr::after{
-  content:"";position:absolute;width:18px;height:18px;z-index:4;
-  border-color:var(--acc);border-style:solid;border-width:0;
-}
-.proc-row::before{top:0;left:0;border-top-width:2px;border-left-width:2px}
-.proc-row::after{bottom:0;right:0;border-bottom-width:2px;border-right-width:2px}
-.cnr::before{top:0;right:0;border-top-width:2px;border-right-width:2px}
-.cnr::after{bottom:0;left:0;border-bottom-width:2px;border-left-width:2px}
 .proc-num{
   position:relative;z-index:2;justify-self:start;
   font-size:clamp(70px,10vw,150px);line-height:.9;font-weight:400;letter-spacing:-.02em;
@@ -950,7 +944,6 @@ footer{
 
       <div class="proc-rows">
         <a class="proc-row" href="#kontakt" data-rv>
-          <span class="cnr" aria-hidden="true"></span>
           <div class="proc-media" aria-hidden="true">
             <video src="assets/proc-01.mp4" poster="assets/proc-01-poster.jpg" muted loop playsinline preload="none"></video>
           </div>
@@ -962,7 +955,6 @@ footer{
           </div>
         </a>
         <article class="proc-row" data-rv>
-          <span class="cnr" aria-hidden="true"></span>
           <div class="proc-media" aria-hidden="true">
             <video src="assets/proc-02.mp4" poster="assets/proc-02-poster.jpg" muted loop playsinline preload="none"></video>
           </div>
@@ -973,7 +965,6 @@ footer{
           </div>
         </article>
         <article class="proc-row" data-rv>
-          <span class="cnr" aria-hidden="true"></span>
           <div class="proc-media" aria-hidden="true">
             <video src="assets/proc-03.mp4" poster="assets/proc-03-poster.jpg" muted loop playsinline preload="none"></video>
           </div>
@@ -984,7 +975,6 @@ footer{
           </div>
         </article>
         <article class="proc-row" data-rv>
-          <span class="cnr" aria-hidden="true"></span>
           <div class="proc-media" aria-hidden="true">
             <video src="assets/proc-04.mp4" poster="assets/proc-04-poster.jpg" muted loop playsinline preload="none"></video>
           </div>
