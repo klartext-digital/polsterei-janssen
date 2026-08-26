@@ -11,3 +11,9 @@ assets/ablauf-clip-poster.jpg
 assets/lst-aufpolstern.jpg
 assets/lst-holz.jpg
 assets/lst-schaum.jpg
+
+# Social-Ads (lokal, nicht auf GitHub)
+social/
+
+# Original-Logodateien des Kunden (nur lokal)
+Logos/
