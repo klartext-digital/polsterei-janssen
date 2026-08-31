@@ -37,7 +37,7 @@
   --err:   #A63C33;  --err-line:#B4423A;  --err-bg:#FCF4F3;
   --line:  rgba(26,26,26,.12);
   --line2: rgba(26,26,26,.18);
-  --maxw:  1360px;
+  --maxw:  1620px;
   --pad:   clamp(20px, 4vw, 56px);
   --sec-y: clamp(96px, 12vw, 170px);
   --r:     24px;
@@ -791,10 +791,10 @@ footer > .wrap{position:relative;z-index:2}
 .pill-b:hover{border-color:var(--orange);color:#FFFFFF;transform:translateY(-2px)}
 
 .foot-word{
-  position:relative;z-index:2;width:100%;
-  margin-top:clamp(26px,3.4vw,46px);opacity:.3;
+  position:relative;z-index:1;width:100%;
+  margin-top:clamp(26px,3.4vw,46px);
 }
-.foot-word-img{width:100%;height:auto;display:block}
+.foot-word-img{width:100%;height:auto;display:block;opacity:.14;filter:grayscale(1)}
 .foot-row{
   display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between;
   border-top:1px solid var(--orange);margin-top:clamp(38px,5vw,66px);padding-top:26px;
@@ -1348,7 +1348,7 @@ footer > .wrap{position:relative;z-index:2}
       <a href="#top" id="toTop">Nach oben</a>
     </div>
   </div>
-  <div class="foot-word" data-rv>
+  <div class="foot-word">
     <img class="foot-word-img" src="assets/wortmarke-janssen.png" alt="Janssen" width="2620" height="365">
   </div>
 </footer>
