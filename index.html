@@ -40,12 +40,13 @@
   --maxw:  1620px;
   --pad:   clamp(20px, 4vw, 56px);
   --sec-y: clamp(96px, 12vw, 170px);
-  --r:     24px;
+  --r:     26px;
+  --rk:    20px;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 body{
   background:var(--bg);
-  background-image:repeating-linear-gradient(45deg,rgba(26,26,26,.028) 0 1px,transparent 1px 8px);
+  background-image:repeating-linear-gradient(45deg,rgba(26,26,26,.02) 0 1px,transparent 1px 5px);
   color:var(--ink);
   font-family:'Switzer',system-ui,sans-serif;
   font-size:17px;
@@ -215,7 +216,7 @@ body.menu-open .menu a{transform:none;opacity:1}
   width:min(23rem,calc(100% - 40px));
   display:flex;flex-direction:column;align-items:flex-start;gap:16px;
   padding:22px 22px 24px;
-  border-radius:20px;
+  border-radius:var(--rk);
   background:rgba(255,255,255,.10);
   border:1px solid rgba(255,255,255,.20);
   backdrop-filter:blur(22px) saturate(160%);
@@ -280,8 +281,6 @@ body.menu-open .menu a{transform:none;opacity:1}
   font-weight:700;line-height:1.18;letter-spacing:-.03em;
   color:rgba(26,26,26,.34);text-wrap:balance;
 }
-.statement strong{color:var(--ink);font-weight:700}
-.statement .acc{color:var(--orange);font-weight:700}
 .stats{padding-block:clamp(56px,6vw,90px) var(--sec-y)}
 /* Strukturlinie mit Kreuz, wie in der Vorlage */
 .linie-oben{position:relative;height:1px;background:var(--line);margin-bottom:clamp(40px,5vw,70px)}
@@ -305,7 +304,8 @@ body.menu-open .menu a{transform:none;opacity:1}
   color:var(--ink);
 }
 .stats-say{--wortfarbe:#1A1A1A}
-html:not(.js) .wort,html.reduced .wort{color:var(--ink)!important}
+.wort{color:var(--ink)}
+b .wort{color:inherit}
 .stats-grid{
   display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(24px,4vw,64px);
   margin-top:clamp(56px,7vw,96px);
@@ -325,13 +325,12 @@ html:not(.js) .wort,html.reduced .wort{color:var(--ink)!important}
 /* ============ VORHER / NACHHER ============ */
 .ba{
   padding-block:var(--sec-y);background:var(--panel);
-  background-image:repeating-linear-gradient(45deg,rgba(26,26,26,.03) 0 1px,transparent 1px 8px);
   border-radius:var(--r);margin-inline:10px;overflow:hidden;
 }
 .ba .ba-card{border-color:rgba(26,26,26,.07);box-shadow:0 2px 10px rgba(26,26,26,.05)}
 .ba-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
 .ba-card{
-  background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+  background:var(--card);border:1px solid var(--line);border-radius:var(--rk);
   padding:12px;
   transition:box-shadow .35s, transform .35s cubic-bezier(.22,1,.36,1);
 }
@@ -473,12 +472,17 @@ html:not(.js) .wort,html.reduced .wort{color:var(--ink)!important}
 
 /* ============ WERKSTATT ============ */
 .werk{padding-block:var(--sec-y)}
-.werk-state{max-width:900px;margin-inline:auto;text-align:center}
+.werk-state{
+  display:grid;grid-template-columns:minmax(0,200px) minmax(0,1fr);
+  gap:clamp(20px,4vw,60px);align-items:start;
+}
+.werk-state .statement{grid-column:2;text-align:right;--wortfarbe:#1A1A1A}
+.werk-state .statement b{font-weight:700;color:var(--orange)}
 .werk-photos{
   display:grid;grid-template-columns:repeat(3,1fr);gap:16px;
   margin-top:clamp(48px,6vw,72px);
 }
-.werk-ph{border-radius:var(--r);overflow:hidden;aspect-ratio:4/5}
+.werk-ph{border-radius:var(--rk);overflow:hidden;aspect-ratio:4/5}
 .werk-ph img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.22,1,.36,1)}
 .werk-ph:hover img{transform:scale(1.045)}
 .werk-chips{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:clamp(36px,5vw,56px)}
@@ -495,8 +499,6 @@ html:not(.js) .wort,html.reduced .wort{color:var(--ink)!important}
 .proc .sdesc{color:rgba(244,244,244,.72)}
 .proc > .wrap{position:relative;z-index:2}
 /* Sektions-Hintergrund: ausgegrautes BILD (kein Video) */
-.proc{background-image:repeating-linear-gradient(45deg,rgba(255,255,255,.025) 0 1px,transparent 1px 8px)}
-.kontakt,footer{background-image:repeating-linear-gradient(45deg,rgba(255,255,255,.022) 0 1px,transparent 1px 8px)}
 .proc-bg{position:absolute;inset:0;z-index:0;overflow:hidden}
 .proc-bg img{
   width:100%;height:100%;object-fit:cover;
@@ -586,7 +588,7 @@ html:not(.js) .wort,html.reduced .wort{color:var(--ink)!important}
   display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
   grid-auto-rows:minmax(clamp(300px,26vw,380px),auto);gap:14px;
 }
-.k{position:relative;overflow:hidden;border-radius:22px;background:var(--card);border:1px solid var(--line)}
+.k{position:relative;overflow:hidden;border-radius:var(--rk);background:var(--card);border:1px solid var(--line)}
 .k-liste{padding:clamp(24px,2.4vw,34px);display:flex;flex-direction:column}
 .k-liste h3{margin-top:auto;padding-top:26px;font-size:clamp(21px,1.9vw,27px);font-weight:600;letter-spacing:-.018em;line-height:1.2}
 .k-liste ul{margin-top:20px;list-style:none;display:flex;flex-direction:column}
@@ -599,6 +601,50 @@ html:not(.js) .wort,html.reduced .wort{color:var(--ink)!important}
   background:var(--orange);
   -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center/15px no-repeat;
   mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center/15px no-repeat;
+}
+/* Handy-Mockup mit Anfrage-Verlauf */
+.k-handy{
+  background:linear-gradient(168deg,#ECECEC 0%,#DEDEDE 58%,#D2D2D2 100%);
+  display:flex;justify-content:center;align-items:flex-end;overflow:hidden;
+  padding-top:34px;
+}
+.handy{
+  width:clamp(184px,16.5vw,224px);margin-bottom:-30px;
+  border-radius:30px;padding:9px;background:#1A1A1A;
+  box-shadow:0 26px 60px rgba(20,20,20,.34), inset 0 0 0 1px rgba(255,255,255,.12);
+}
+.handy-schirm{
+  position:relative;border-radius:23px;overflow:hidden;background:#F1F0EC;
+  height:clamp(316px,28vw,378px);display:flex;flex-direction:column;
+}
+.chat-kopf{
+  display:flex;align-items:center;gap:9px;padding:11px 12px;
+  background:#F7F7F5;border-bottom:1px solid rgba(26,26,26,.09);
+}
+.chat-bild{width:26px;height:26px;border-radius:999px;background:#1A1A1A;display:grid;place-items:center;flex:none}
+.chat-bild img{width:17px;height:17px}
+.chat-kopf b{display:block;font-size:11.5px;font-weight:600;letter-spacing:-.01em;color:#1A1A1A;line-height:1.2}
+.chat-kopf small{display:block;font-size:8.5px;font-weight:300;color:rgba(26,26,26,.5);line-height:1.3}
+.chat{flex:1;display:flex;flex-direction:column;gap:6px;padding:11px 10px;overflow:hidden}
+.blase{
+  max-width:82%;padding:7px 10px;border-radius:12px;
+  font-size:10.5px;font-weight:400;line-height:1.42;letter-spacing:0;
+}
+.blase.ein{align-self:flex-start;background:#FFFFFF;color:#1A1A1A;border-bottom-left-radius:4px;
+  box-shadow:0 1px 2px rgba(26,26,26,.08)}
+.blase.aus{align-self:flex-end;background:#DCF3D4;color:#1A1A1A;border-bottom-right-radius:4px}
+.blase.kurz{max-width:60%}
+.blase.foto{padding:4px;max-width:62%}
+.blase.foto img{width:100%;height:70px;object-fit:cover;border-radius:9px;display:block}
+/* Glas-Blasen ueber dem Mockup */
+.k-handy .chip{
+  background:rgba(255,255,255,.58);border:1px solid rgba(255,255,255,.7);
+  backdrop-filter:blur(20px) saturate(170%);-webkit-backdrop-filter:blur(20px) saturate(170%);
+  box-shadow:0 10px 26px rgba(20,20,20,.14);
+}
+.k-fuss.dunkel{color:var(--ink);font-weight:600}
+@media (prefers-reduced-transparency: reduce){
+  .k-handy .chip{background:rgba(250,250,250,.96);backdrop-filter:none}
 }
 .k-bild img,.k-dunkel img{
   position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
@@ -620,14 +666,24 @@ html:not(.js) .wort,html.reduced .wort{color:var(--ink)!important}
 }
 .chip b{font-size:15px;font-weight:600;letter-spacing:-.01em;color:var(--ink)}
 .chip small{font-size:12px;font-weight:300;color:rgba(26,26,26,.6)}
-.chip-a{left:20px;top:20px}
-.chip-b{right:20px;top:96px}
+.chip-a{left:18px;top:26px}
+.chip-b{right:18px;top:120px}
 .k-orange{
   background:var(--orange);border-color:var(--orange);color:#FFFFFF;
   padding:clamp(24px,2.4vw,34px);display:flex;flex-direction:column;
 }
 .mlabel.hell{color:#FFFFFF}
 .mlabel.hell::before{background:#FFFFFF}
+.wwa .k-orange .mlabel::before,.wwa .k-orange .mlabel::after{color:#FFFFFF;background:none}
+/* In den Kacheln: Klammern statt Quadrat */
+.wwa .k .mlabel{gap:6px}
+.wwa .k .mlabel::before{
+  content:"[";background:none;width:auto;height:auto;
+  font-size:15px;font-weight:600;line-height:1;color:var(--orange);
+}
+.wwa .k .mlabel::after{
+  content:"]";font-size:15px;font-weight:600;line-height:1;color:var(--orange);
+}
 .k-orange b{
   margin-top:auto;display:block;font-size:clamp(70px,7.4vw,116px);font-weight:700;
   line-height:.92;letter-spacing:-.05em;
@@ -666,7 +722,7 @@ html:not(.js) .wort,html.reduced .wort{color:var(--ink)!important}
 .tst-track.zieht *{pointer-events:none}
 .tst-k{
   flex:0 0 clamp(300px,24vw,378px);scroll-snap-align:start;min-height:clamp(430px,36vw,540px);
-  background:var(--card);border:1px solid var(--line);border-radius:20px;
+  background:var(--card);border:1px solid var(--line);border-radius:var(--rk);
   padding:clamp(24px,2.2vw,32px);display:flex;flex-direction:column;
   transition:background .4s, color .4s, border-color .4s, transform .4s cubic-bezier(.22,1,.36,1), box-shadow .4s;
   transition:transform .4s cubic-bezier(.22,1,.36,1), box-shadow .4s;
@@ -776,7 +832,7 @@ html:not(.js) .wort,html.reduced .wort{color:var(--ink)!important}
 .kt-card{
   grid-column:2;grid-row:1;position:relative;
   background:var(--card);color:var(--ink);
-  border-radius:28px;padding:clamp(24px,2.9vw,42px);
+  border-radius:var(--rk);padding:clamp(24px,2.9vw,42px);
   box-shadow:0 46px 100px rgba(4,9,18,.5), 0 4px 14px rgba(4,9,18,.26);
 }
 .kt-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}
@@ -1259,8 +1315,8 @@ footer > .wrap{position:relative;z-index:2}
   <section class="werk" id="werkstatt">
     <div class="wrap">
     <div class="werk-state">
-      <span class="slabel" data-rv>Die Werkstatt</span>
-      <p class="statement" data-rv><strong>Eigene Werkstatt, keine Subunternehmer.</strong> Darum liefern wir Handwerksqualit&auml;t <span class="acc">zum besten Preis der Region.</span></p>
+      <span class="mlabel" data-rv>Die Werkstatt</span>
+      <p class="statement" data-worte><b>Eigene Werkstatt, keine Subunternehmer.</b> Darum liefern wir Handwerksqualit&auml;t zum besten Preis der Region.</p>
     </div>
     <div class="werk-photos">
       <figure class="werk-ph" data-rv><img src="assets/hero-b.jpg" alt="Werkhalle mit Sesseln und Sofas in Aufarbeitung" loading="lazy"></figure>
@@ -1296,12 +1352,24 @@ footer > .wrap{position:relative;z-index:2}
           </ul>
         </div>
 
-        <div class="k k-bild" data-rv>
-          <img src="assets/werkstatt.jpg" alt="Blick in die Werkstatt der Polsterei Janssen" loading="lazy">
+        <div class="k k-handy" data-rv>
+          <div class="handy" aria-hidden="true">
+            <div class="handy-schirm">
+              <div class="chat-kopf">
+                <span class="chat-bild"><img src="assets/logo-marke.png" alt=""></span>
+                <span><b>Polsterei Janssen</b><small>antwortet meist am selben Tag</small></span>
+              </div>
+              <div class="chat">
+                <div class="blase ein">Hallo, unser 3-Sitzer ist komplett durchgesessen. K&ouml;nnen Sie den neu beziehen?</div>
+                <div class="blase ein foto"><img src="assets/vorher.jpg" alt="" loading="lazy"></div>
+                <div class="blase aus">Klar. Wir holen ihn kostenlos ab und bringen Stoffmuster mit. Passt Donnerstag?</div>
+                <div class="blase ein kurz">Perfekt, dann Donnerstag.</div>
+              </div>
+            </div>
+          </div>
           <!-- PLATZHALTER: beide Werte erfunden, mit dem Kunden abstimmen -->
           <span class="chip chip-a" data-platzhalter="ja"><b>Antwort in 24 h</b><small>auf jede Anfrage</small></span>
           <span class="chip chip-b" data-platzhalter="ja"><b>&Uuml;ber 2.000</b><small>Kunden bundesweit</small></span>
-          <span class="k-fuss">In der eigenen Werkstatt</span>
         </div>
 
         <!-- PLATZHALTER: Jahreszahl erfunden -->
