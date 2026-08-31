@@ -5,15 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Impressum | Polsterei Janssen</title>
 <meta name="robots" content="noindex">
-<meta name="theme-color" content="#F4EEE4">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2317233C'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='36' fill='%23B8934F' text-anchor='middle'%3EJ%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#F4F4F4">
+<link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="preconnect" href="https://api.fontshare.com">
 <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
 <link href="https://api.fontshare.com/v2/css?f[]=switzer@200,300,400,500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#F4EEE4; --bg2:#FFFFFF; --line:rgba(23,35,60,.12);
-  --ink:#17233C; --ink2:#6B7386; --acc:#8A6A34;
+  --bg:#F4F4F4; --bg2:#FFFFFF; --line:rgba(26,26,26,.12);
+  --ink:#1A1A1A; --ink2:#5C5C5C; --acc:#565656;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:var(--bg);color:var(--ink);font-family:'Switzer',system-ui,sans-serif;font-weight:300;font-size:16.5px;line-height:1.65;-webkit-font-smoothing:antialiased}
@@ -21,9 +21,7 @@ a{color:inherit;text-decoration:none}
 .wrap{max-width:820px;margin-inline:auto;padding:0 clamp(20px,4vw,56px)}
 header{padding:26px 0;border-bottom:1px solid var(--line)}
 header .wrap{display:flex;align-items:center;justify-content:space-between}
-.lock{display:flex;flex-direction:column;align-items:center;line-height:1;color:var(--ink)}
-.lock small{font-size:9px;font-weight:500;letter-spacing:.44em;text-transform:uppercase;margin-left:.44em}
-.lock b{font-size:22px;font-weight:500;letter-spacing:.1em;margin-top:4px}
+.brand-logo{height:40px;width:auto}
 .brand small{font-size:.58rem;font-weight:600;color:var(--ink2)}
 .brand b{font-size:1.06rem;font-weight:800;font-variation-settings:'wdth' 118}
 .back{font-weight:600;color:var(--ink2);border:1px solid var(--line);border-radius:999px;padding:10px 20px;font-size:.9rem;transition:.25s}
@@ -44,7 +42,7 @@ footer a:hover{color:var(--acc)}
 <body>
 <header>
   <div class="wrap">
-    <a class="brand" href="index.html"><span class="lock"><small>Polsterei</small><b>JANSSEN</b></span></a>
+    <a class="brand" href="index.html"><img class="brand-logo" src="assets/logo-quer.png" alt="Polsterei Janssen Raumdesign" width="974" height="184"></a>
     <a class="back" href="index.html">Zur Startseite</a>
   </div>
 </header>
