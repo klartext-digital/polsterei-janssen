@@ -31,7 +31,6 @@
   --orange:#E8500A;   /* Akzent, sehr sparsam */
   --orange-d:#C4400A;  /* kleine Schrift auf Weiss */
   --orange-h:#FF6A2A;  /* kleine Schrift auf Graphit */
-  --chrom: linear-gradient(140deg,#FFFFFF 0%,#BDBDBD 17%,#FAFAFA 37%,#9E9E9E 57%,#E8E8E8 78%,#ADADAD 100%);
   --chrom-line: linear-gradient(90deg,rgba(200,200,200,0) 0%,#C6C6C6 14%,#FFFFFF 50%,#C6C6C6 86%,rgba(200,200,200,0) 100%);
   --muted: #5C5C5C;   /* kleine Grautexte, WCAG-fest */
   --err:   #A63C33;  --err-line:#B4423A;  --err-bg:#FCF4F3;
@@ -41,7 +40,7 @@
   --pad:   clamp(20px, 4vw, 56px);
   --sec-y: clamp(96px, 12vw, 170px);
   --sec-halb: calc(var(--sec-y) / 2);
-  --r:     26px;
+  --r:     clamp(26px, 2.6vw, 40px);   /* grosse Flaechen: Hero, Panel, Ablauf, Kontakt */
   --rk:    20px;
 }
 *{margin:0;padding:0;box-sizing:border-box}
@@ -191,7 +190,7 @@ section[id]{scroll-margin-top:clamp(86px,9vw,104px)}
 .nav-links a:hover::after{right:0}
 .burger{display:none}
 /* Kompakte Variante in der Navigation */
-.nav .btnN{--h:46px;--pf:14px;padding:7px 24px 7px 7px;gap:13px;font-size:11.5px;letter-spacing:.12em;flex:none}
+.nav .btnN{flex:none}   /* gleiche Groesse wie jeder andere Knopf */
 
 /* Mobile-Menü */
 .menu{
@@ -218,18 +217,33 @@ body.menu-open .menu a{transform:none;opacity:1}
   position:relative;border-radius:var(--r);overflow:hidden;
   height:min(calc(100svh - 96px), 900px);min-height:540px;
 }
-.hero-frame img{width:100%;height:100%;object-fit:cover}
+.hero-frame > img{width:100%;height:100%;object-fit:cover}
 .hero-frame::after{
   content:"";position:absolute;inset:0;
   background:linear-gradient(to top, rgba(26,26,26,.62) 0%, rgba(26,26,26,.18) 38%, rgba(26,26,26,.05) 60%, rgba(26,26,26,.18) 100%);
 }
 .hero-o{position:absolute;inset:0;z-index:2;padding:clamp(24px,3.6vw,48px);color:#F4F4F4}
-.hero-word{
+.hero-text{
   position:absolute;left:clamp(24px,3.6vw,48px);bottom:clamp(24px,3.6vw,48px);z-index:2;
-  color:#F4F4F4;max-width:68%;
-  font-size:clamp(40px, 6.4vw, 92px);
-  line-height:1.08;font-weight:500;letter-spacing:0;
+  max-width:68%;
 }
+.hero-word{
+  color:#F4F4F4;
+  font-size:clamp(40px, 6.4vw, 92px);
+  line-height:1.02;font-weight:700;letter-spacing:-.045em;
+}
+/* Leistungen als Punkte, gleiche Klammer-Form wie alle Marken der Seite */
+.hero-liste{
+  list-style:none;display:flex;flex-direction:column;align-items:flex-start;
+  gap:9px;margin-top:clamp(20px,2.2vw,32px);
+}
+.hero-liste li{
+  display:inline-flex;align-items:center;gap:7px;
+  font-size:13px;font-weight:500;letter-spacing:.02em;line-height:1.4;color:#F4F4F4;
+  text-shadow:0 1px 12px rgba(0,0,0,.5);
+}
+.hero-liste li::before{content:"[";font-size:15px;font-weight:600;line-height:1;color:var(--orange)}
+.hero-liste li::after{content:"]";font-size:15px;font-weight:600;line-height:1;color:var(--orange)}
 .mask{display:block;overflow:hidden}
 .mask > span{display:block;will-change:transform}
 /* Kompakte Milchglas-Karte unten rechts */
@@ -253,7 +267,7 @@ body.menu-open .menu a{transform:none;opacity:1}
 
 /* Kundenstimmen-Beleg im Header */
 .proof{display:flex;align-items:center;gap:13px;flex-wrap:wrap}
-.proof-faces{display:flex;align-items:center}
+.proof-faces{display:flex;align-items:center;flex:none}
 .proof-faces img{
   width:40px;height:40px;border-radius:999px;object-fit:cover;position:relative;
   border:2px solid rgba(244,244,244,.92);
@@ -270,7 +284,7 @@ body.menu-open .menu a{transform:none;opacity:1}
   border-color:var(--acc);z-index:3;
   box-shadow:0 10px 24px rgba(0,0,0,.5);
 }
-.proof-info{display:flex;flex-direction:column;gap:5px}
+.proof-info{display:flex;flex-direction:column;gap:5px;min-width:0;flex:1}
 /* Google Rating Button (Framer-Vorlage): Logo + Bewertung + Sterne, als Link */
 .grate{display:inline-flex;align-items:center;gap:11px;transition:opacity .25s}
 .grate:hover{opacity:.82}
@@ -473,7 +487,7 @@ b .wort{color:inherit}
 .svc-item.is-open .svc-vert{transition:opacity .14s linear}
 .svc-title{
   display:flex;align-items:center;gap:14px;
-  font-size:clamp(34px,3.6vw,58px);font-weight:600;letter-spacing:-.03em;line-height:1.08;
+  font-size:clamp(34px,3.6vw,58px);font-weight:700;letter-spacing:-.03em;line-height:1.08;
   color:#F4F4F4;white-space:nowrap;
 }
 .svc-title::before{content:"";width:13px;height:13px;border-radius:99px;background:var(--orange);flex:none}
@@ -569,7 +583,7 @@ b .wort{color:inherit}
 }
 .proc-num{
   position:relative;z-index:2;justify-self:start;
-  font-size:clamp(70px,10vw,150px);line-height:.9;font-weight:400;letter-spacing:-.02em;
+  font-size:clamp(70px,10vw,150px);line-height:.9;font-weight:700;letter-spacing:-.045em;
   color:rgba(244,244,244,.28);
   transition:color .45s;
   text-shadow:0 4px 30px rgba(0,0,0,.5);
@@ -710,7 +724,7 @@ b .wort{color:inherit}
   line-height:.92;letter-spacing:-.05em;
 }
 .k-orange b em{font-style:normal;opacity:.72}
-.k-orange p{margin-top:14px;font-size:clamp(17px,1.5vw,22px);font-weight:500;line-height:1.28}
+.k-orange p{margin-top:14px;font-size:clamp(17px,1.4vw,21px);font-weight:600;letter-spacing:-.01em;line-height:1.28}
 .k-dunkel{background:var(--black);color:#F4F4F4;border-color:transparent}
 .k-dunkel img{opacity:.3;filter:grayscale(1)}
 .k-dunkel .k-inhalt{position:relative;z-index:2;height:100%;padding:clamp(24px,2.4vw,34px);display:flex;flex-direction:column}
@@ -804,7 +818,7 @@ b .wort{color:inherit}
 .kt-side{grid-column:1;grid-row:1;display:flex;flex-direction:column;align-items:flex-start}
 .kt-big{
   font-size:clamp(32px,3.4vw,50px);line-height:1.06;letter-spacing:-.03em;
-  font-weight:400;color:#F4F4F4;text-wrap:balance;
+  font-weight:700;color:#F4F4F4;text-wrap:balance;
 }
 .kt-lead{
   margin-top:clamp(18px,2.1vw,28px);max-width:33ch;
@@ -840,7 +854,7 @@ b .wort{color:inherit}
 
 .kt-person{
   display:inline-flex;align-items:center;gap:16px;margin-top:clamp(24px,2.8vw,38px);
-  padding:11px 14px 11px 11px;border-radius:999px;
+  padding:11px 22px 11px 11px;border-radius:999px;
   background:rgba(244,244,244,.055);border:1px solid rgba(244,244,244,.14);color:#F4F4F4;
   transition:background .3s, border-color .3s, transform .4s cubic-bezier(.22,1,.36,1);
 }
@@ -848,12 +862,6 @@ b .wort{color:inherit}
 .kt-person img{width:54px;height:54px;border-radius:50%;object-fit:cover;flex:none}
 .kt-person small{display:block;font-size:11.5px;letter-spacing:.24em;text-transform:uppercase;color:rgba(244,244,244,.62);margin-bottom:4px}
 .kt-person b{font-size:17px;font-weight:400;letter-spacing:.01em;white-space:nowrap}
-.kt-person .arr{
-  margin-left:10px;width:38px;height:38px;border-radius:50%;background:var(--chrom);
-  display:grid;place-items:center;flex:none;transition:transform .45s cubic-bezier(.34,1.32,.5,1);
-}
-.kt-person .arr svg{width:17px;height:17px;stroke:#1A1A1A;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
-.kt-person:hover .arr{transform:translateX(4px)}
 
 /* ---- linke Spalte: die Karte ---- */
 .kt-card{
@@ -891,7 +899,7 @@ b .wort{color:inherit}
 html:not(.js) .fsteps{height:auto!important}
 html:not(.js) .fstep{position:relative;opacity:1;transform:none;pointer-events:auto;margin-bottom:34px}
 html:not(.js) .fstep[data-step="5"],html:not(.js) .fback,html:not(.js) .prog{display:none}
-.fstep h3{font-size:clamp(25px,2.6vw,35px);font-weight:400;letter-spacing:-.016em;margin-bottom:8px}
+.fstep h3{font-size:clamp(25px,2.6vw,35px);font-weight:600;letter-spacing:-.018em;margin-bottom:8px}
 .fstep .fh{font-size:15.5px;font-weight:300;color:rgba(26,26,26,.66);margin-bottom:22px;text-wrap:pretty}
 
 .opts{display:grid;grid-template-columns:1fr 1fr;gap:11px}
@@ -1038,7 +1046,7 @@ footer > .wrap{position:relative;z-index:2}
 .foot-nav a:hover::after{transform:scaleX(1);transform-origin:left}
 
 .foot-chat{display:flex;flex-direction:column}
-.foot-chat h2{font-size:clamp(28px,2.9vw,42px);font-weight:400;letter-spacing:-.026em;color:#F4F4F4}
+.foot-chat h2{font-size:clamp(28px,2.9vw,42px);font-weight:700;letter-spacing:-.03em;color:#F4F4F4}
 .foot-chat p{margin-top:10px;font-size:15.5px;font-weight:300;color:rgba(244,244,244,.62)}
 .foot-pills{display:flex;flex-direction:column;gap:12px;margin-top:clamp(20px,2.4vw,30px);align-items:stretch}
 .foot-pills a{
@@ -1096,15 +1104,26 @@ footer > .wrap{position:relative;z-index:2}
   .nav-in{height:70px}
   .brand img{height:42px}
   .nav-links{display:none}
+  /* Auf dem Handy waere der volle Knopf so breit, dass er das Logo erdrueckt.
+     Der Weg zur Anfrage steht im Menue und im Kopfbild. */
+  .nav .btnN{display:none}
   .burger{display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;margin-left:auto;width:44px;height:44px;flex:none}
   .burger i{display:block;width:22px;height:1.5px;background:var(--ink)}
   .hero{padding-top:74px}
-  .hero-frame{height:auto;min-height:min(82svh,620px)}
-  .hero-frame::after{background:linear-gradient(to top, rgba(26,26,26,.72) 0%, rgba(26,26,26,.28) 45%, rgba(26,26,26,.1) 65%, rgba(26,26,26,.24) 100%)}
-  .hero-word{max-width:100%;right:clamp(24px,3.6vw,48px);bottom:170px}
+  /* Titel, Punkte und Karte stehen untereinander am unteren Rand,
+     das Foto liegt als Flaeche darunter. */
+  .hero-frame{
+    height:min(88svh,700px);
+    display:flex;flex-direction:column;justify-content:flex-end;gap:16px;
+    padding:clamp(16px,4vw,24px);
+  }
+  .hero-frame > img{position:absolute;inset:0}
+  .hero-frame::after{background:linear-gradient(to top, rgba(26,26,26,.78) 0%, rgba(26,26,26,.34) 45%, rgba(26,26,26,.12) 65%, rgba(26,26,26,.26) 100%)}
+  .hero-text{position:relative;left:auto;bottom:auto;max-width:100%;z-index:2}
+  .hero-liste{gap:7px;margin-top:16px}
   .hero-side{
-    left:clamp(16px,4vw,24px);right:clamp(16px,4vw,24px);bottom:clamp(16px,4vw,24px);
-    width:auto;padding:16px 16px 18px;gap:13px;border-radius:18px;
+    position:relative;left:auto;right:auto;bottom:auto;width:100%;z-index:2;
+    padding:16px 16px 18px;gap:13px;border-radius:18px;
   }
   .hero-side p{display:none}
   .proof{gap:12px}
@@ -1135,6 +1154,9 @@ footer > .wrap{position:relative;z-index:2}
   .svc-item img{filter:grayscale(0) brightness(.68)}
   .svc-title{white-space:normal;font-size:clamp(27px,7.2vw,38px);align-items:flex-start}
   .svc-title::before{margin-top:.42em}
+  /* Auf schmalen Geraeten duerfen die Schlagworte umbrechen, sonst schieben
+     lange wie "Wohnmobil & Sonderanfertigung" die Seite auf. */
+  .svc-tag{white-space:normal;font-size:14px;padding:8px 15px}
   .opts{grid-template-columns:1fr}
   .form-grid{grid-template-columns:1fr}
   .kt-grid{grid-template-columns:minmax(0,1fr);gap:0}
@@ -1204,7 +1226,15 @@ footer > .wrap{position:relative;z-index:2}
   <section class="hero">
     <div class="hero-frame">
       <img id="heroImg" src="assets/hero-a.jpg" alt="Große Werkhalle der Polsterei Janssen mit Sofas und Sesseln in Produktion" fetchpriority="high">
-      <h1 class="hero-word"><span class="mask"><span class="hline">Wir polstern Ihr</span></span><span class="mask"><span class="hline">Lieblingsst&uuml;ck neu</span></span></h1>
+      <div class="hero-text">
+        <h1 class="hero-word"><span class="mask"><span class="hline">Wir polstern Ihr</span></span><span class="mask"><span class="hline">Lieblingsst&uuml;ck neu</span></span></h1>
+        <ul class="hero-liste" data-hero>
+          <li>Polster-Neubezug</li>
+          <li>Aufpolsterung &amp; Federkern</li>
+          <li>Holz &amp; Antik</li>
+          <li>Wohnmobil &amp; Sonderanfertigung</li>
+        </ul>
+      </div>
       <div class="hero-side" data-hero>
         <div class="proof">
           <div class="proof-faces">
@@ -1626,7 +1656,6 @@ footer > .wrap{position:relative;z-index:2}
             <small>Direkte Leitung</small>
             <b>+49 177 200 65 94</b>
           </span>
-          <span class="arr"><svg viewBox="0 0 24 24"><path d="M5 12h13M12 5l7 7-7 7"/></svg></span>
         </a>
       </div>
 
