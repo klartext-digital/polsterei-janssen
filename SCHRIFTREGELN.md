@@ -60,3 +60,26 @@ der Pfeilkasten `--h` minus 14 px. Beschriftung 13 px / 600 / Versalien / 0.13em
    darauf 5.1:1 Kontrast haben.
 
 Zeit 0.62 s, `cubic-bezier(.22,1,.36,1)`. Alles reines CSS, kein JS, keine Breitenmessung.
+
+## Abstände zwischen den Sektionen
+
+Zwischen zwei Inhalten liegt **immer genau `--sec-y`** (bis 170 px). Damit das
+aufgeht, gibt es zwei Fälle:
+
+- **Zwei helle Sektionen** teilen sich den Abstand: jede bringt `--sec-halb` mit
+  (`--sec-y / 2`). Zusammen ergibt das wieder eine volle Einheit.
+- **Ein farbiger Block** (Vorher/Nachher, Ablauf, Kontakt) trägt seinen vollen
+  Innenabstand selbst. Weil seine Kante wie Inhalt wirkt, legt der Nachbar
+  ebenfalls die volle `--sec-y` an — nicht die Hälfte.
+
+Reihenfolge und Werte: hero 86/0 · stats 170/170 · ba 170/170 · svc 170/85 ·
+werk 85/85 · wwa 85/170 · proc 170/170 · tst 170/170 · kontakt 112/74 (geht in
+den Footer über). Keine Sektion darf ohne oberen Abstand auf der vorherigen kleben.
+
+## Bewegung auf grossen Flächen
+
+Grosse Karten (Kundenstimmen) werden beim Hover **nicht verschoben**. Ein
+animiertes `transform` legt das Element auf eine eigene Ebene, die zwischen zwei
+Pixeln neu gezeichnet wird — davon werden die runden Ecken während der Bewegung
+unsauber. Das Anheben übernimmt der Schatten. Der Rand wechselt von hell zu
+dunkel (nie zu transparent), damit an der Kante kein heller Saum aufblitzt.
