@@ -109,56 +109,57 @@ section[id]{scroll-margin-top:clamp(86px,9vw,104px)}
   font-size:16px;font-weight:300;line-height:1.6;color:rgba(26,26,26,.62);
 }
 
-/* Norré-Button: Pille + schwarzer Kreis */
-/* CTA Action Button (Framer-Vorlage): beim Hover gleitet die Beschriftung nach links
-   aus dem Knopf, der Kreis dehnt sich auf die volle Breite, der Pfeil waechst. */
+/* ============ CTA-KNOPF (1:1 nach der Framer-Vorlage) ============
+   Ruhe : helle Pille, orangefarbener Kreis links, Pfeil darin.
+   Hover: der Kreis WAECHST nach rechts zur vollen Pille - die Vorderkante
+          bleibt dabei rund (kein gerader Balken), die Beschriftung rutscht
+          nach oben und kommt weiss wieder, der Pfeil wandert nach rechts
+          hinaus und ein zweiter kommt von links nach.
+   Der Knopf sieht auf hellem wie auf dunklem Grund exakt gleich aus. */
 .btnN{
+  --h:58px; --pf:16px;
   position:relative;overflow:hidden;isolation:isolate;
   display:inline-flex;align-items:center;gap:16px;
+  height:var(--h);padding:7px 30px 7px 7px;
   border:1px solid var(--line2);border-radius:999px;
-  min-height:58px;padding:8px 66px 8px 66px;
   font-size:13px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;
   background:var(--card);color:var(--ink);cursor:pointer;
-  transition:border-color .3s, color .35s;
+  transition:border-color .45s;
 }
-.btnN::before{
-  content:"";position:absolute;inset:0;z-index:-1;background:var(--orange-d);
-  transform:scaleX(0);transform-origin:left center;
-  transition:transform .6s cubic-bezier(.22,1,.36,1);
+.btnN-fill{
+  position:absolute;left:5px;top:5px;z-index:0;
+  width:calc(var(--h) - 10px);height:calc(var(--h) - 10px);
+  border-radius:999px;background:var(--orange);
+  transition:width .62s cubic-bezier(.22,1,.36,1), background .45s;
 }
-.btnN:hover::before,.btnN:focus-visible::before{transform:scaleX(1)}
-.btnN:hover,.btnN:focus-visible{color:#FFFFFF;border-color:var(--orange)}
+.btnN:hover .btnN-fill,.btnN:focus-visible .btnN-fill{
+  width:calc(100% - 10px);background:var(--orange-d);
+}
+.btnN-icon{
+  position:relative;z-index:2;flex:none;display:grid;place-items:center;
+  width:calc(var(--h) - 14px);height:calc(var(--h) - 14px);
+}
+.btnN-pfeile{position:relative;width:var(--pf);height:var(--pf);overflow:hidden}
+.btnN-pfeile svg{
+  position:absolute;inset:0;width:var(--pf);height:var(--pf);
+  fill:none;stroke:#FFFFFF;stroke-width:2;
+  transition:transform .62s cubic-bezier(.22,1,.36,1);
+}
+.btnN-pfeile svg + svg{transform:translateX(-30px)}
+.btnN:hover .btnN-pfeile svg,.btnN:focus-visible .btnN-pfeile svg{transform:translateX(30px)}
+.btnN:hover .btnN-pfeile svg + svg,.btnN:focus-visible .btnN-pfeile svg + svg{transform:translateX(0)}
+.btnN-lbl{
+  position:relative;z-index:2;display:block;overflow:hidden;
+  height:16px;line-height:16px;white-space:nowrap;
+}
+.btnN-lbl span{display:block;transition:transform .62s cubic-bezier(.22,1,.36,1)}
+.btnN-lbl span:first-child{margin-bottom:6px}
+.btnN-lbl span + span{color:#FFFFFF}
+.btnN:hover .btnN-lbl span,.btnN:focus-visible .btnN-lbl span{transform:translateY(-22px)}
 .btnN:active{transform:scale(.985)}
-.btnN-lbl{position:relative;z-index:2;white-space:nowrap}
-.btnN .circ{
-  position:absolute;left:8px;top:8px;z-index:2;
-  width:42px;height:42px;border-radius:999px;background:var(--orange);
-  display:grid;place-items:center;
-  transition:transform .6s cubic-bezier(.22,1,.36,1), background .35s;
-}
-.btnN .circ svg{width:16px;height:16px;stroke:#FFFFFF;transition:stroke .35s}
-.btnN:hover .circ,.btnN:focus-visible .circ{
-  transform:translateX(var(--reise,0px));background:#FFFFFF;
-}
-.btnN:hover .circ svg,.btnN:focus-visible .circ svg{stroke:var(--orange)}
-/* Auf dunklem Grund: Glasflaeche, Kreis bleibt orange */
-.hero .btnN,.proc-row .btnN,footer .btnN,.kontakt .kt-side .btnN{
-  background:rgba(255,255,255,.10);color:#F5F5F5;border-color:rgba(255,255,255,.30);
-  backdrop-filter:blur(16px) saturate(150%);-webkit-backdrop-filter:blur(16px) saturate(150%);
-}
-@media (prefers-reduced-transparency: reduce){
-  .hero .btnN,.proc-row .btnN,footer .btnN{background:rgba(30,30,32,.92);backdrop-filter:none}
-}
 @media (prefers-reduced-motion: reduce){
-  .btnN::before,.btnN .circ{transition:none}
+  .btnN-fill,.btnN-pfeile svg,.btnN-lbl span{transition:none}
 }
-.btnN.dark{background:var(--ink);color:var(--bg);border-color:var(--ink)}
-.btnN.dark .circ{background:var(--bg)}
-.btnN.dark .circ svg{stroke:var(--ink)}
-.btnN.ghost{background:transparent;border-color:rgba(244,244,244,.5);color:#F4F4F4}
-.btnN.ghost:hover{border-color:#fff}
-.btnN.ghost .circ{background:#F4F4F4}
-.btnN.ghost .circ svg{stroke:var(--ink)}
 
 /* ============ NAV ============ */
 .nav{
@@ -189,9 +190,7 @@ section[id]{scroll-margin-top:clamp(86px,9vw,104px)}
 .nav-links a:hover::after{right:0}
 .burger{display:none}
 /* Kompakte Variante in der Navigation */
-.nav .btnN{min-height:46px;padding:5px 54px 5px 54px;font-size:11.5px;letter-spacing:.12em;flex:none}
-.nav .btnN .circ{left:5px;top:5px;right:auto;bottom:auto;width:36px;height:36px}
-.nav .btnN .circ svg{width:14px;height:14px}
+.nav .btnN{--h:46px;--pf:14px;padding:7px 24px 7px 7px;gap:13px;font-size:11.5px;letter-spacing:.12em;flex:none}
 
 /* Mobile-Menü */
 .menu{
@@ -1156,7 +1155,7 @@ footer > .wrap{position:relative;z-index:2}
       <a href="#ablauf">Ablauf</a>
     </nav>
     <div class="nav-rechts">
-      <a class="btnN nav-cta" href="#kontakt"><span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><span class="btnN-lbl">Angebot anfragen</span></a>
+      <a class="btnN nav-cta" href="#kontakt"><span class="btnN-fill"></span><span class="btnN-icon"><span class="btnN-pfeile"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span><span class="btnN-lbl"><span>Angebot anfragen</span><span aria-hidden="true">Angebot anfragen</span></span></a>
       <button class="burger" id="burger" aria-label="Menü öffnen"><i></i><i></i><i></i></button>
     </div>
   </div>
@@ -1198,7 +1197,7 @@ footer > .wrap{position:relative;z-index:2}
           </div>
         </div>
         <p>Neubezug, Aufpolsterung und Reparatur aus eigener Werkstatt in Krefeld. Schnell, pr&auml;zise und zum besten Preis der Region.</p>
-        <a class="btnN acc" href="#kontakt"><span class="btnN-lbl">Angebot anfragen</span><span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+        <a class="btnN" href="#kontakt"><span class="btnN-fill"></span><span class="btnN-icon"><span class="btnN-pfeile"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span><span class="btnN-lbl"><span>Angebot anfragen</span><span aria-hidden="true">Angebot anfragen</span></span></a>
       </div>
     </div>
   </section>
@@ -1290,7 +1289,7 @@ footer > .wrap{position:relative;z-index:2}
       <p class="ba-say-t" data-worte>Polsterung, Schaumstoff und Federkern erneuern, Holzgestelle aufarbeiten, mit <b>Stoff oder Leder nach Ma&szlig;</b> neu beziehen &ndash; in der eigenen <b>Polsterei in Krefeld</b>, auch f&uuml;r Antikm&ouml;bel und Wohnmobil-Polster.</p>
     </div>
     <div class="ba-cta" data-rv>
-      <a class="btnN acc" href="#kontakt"><span class="btnN-lbl">Angebot anfragen</span><span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a class="btnN" href="#kontakt"><span class="btnN-fill"></span><span class="btnN-icon"><span class="btnN-pfeile"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span><span class="btnN-lbl"><span>Angebot anfragen</span><span aria-hidden="true">Angebot anfragen</span></span></a>
     </div>
     </div>
   </section>
@@ -1470,7 +1469,7 @@ footer > .wrap{position:relative;z-index:2}
           <div class="proc-txt">
             <h3>Formular ausf&uuml;llen</h3>
             <p>In vier kurzen Fragen sagen Sie uns, was neu werden soll. Alternativ erreichen Sie uns per Telefon oder WhatsApp.</p>
-            <span class="btnN acc"><span class="btnN-lbl">Zum Formular</span><span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span>
+            <span class="btnN"><span class="btnN-fill"></span><span class="btnN-icon"><span class="btnN-pfeile"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span><span class="btnN-lbl"><span>Zum Formular</span><span aria-hidden="true">Zum Formular</span></span></span>
           </div>
         </a>
         <article class="proc-row" data-rv>
@@ -1644,7 +1643,7 @@ footer > .wrap{position:relative;z-index:2}
         <button class="opt" type="button" data-val="Weiß ich noch nicht"><span>Noch unklar</span><span class="tick"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></button>
             </div>
             <div class="fnav">
-              <button class="btnN acc" id="toStep3" type="button"><span class="btnN-lbl">Weiter</span><span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></button>
+              <button class="btnN" id="toStep3" type="button"><span class="btnN-fill"></span><span class="btnN-icon"><span class="btnN-pfeile"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span><span class="btnN-lbl"><span>Weiter</span><span aria-hidden="true">Weiter</span></span></button>
             </div>
           </div>
 
@@ -1672,7 +1671,7 @@ footer > .wrap{position:relative;z-index:2}
                 <div class="field full"><label for="fMsg">M&ouml;chten Sie uns noch etwas mitgeben?</label><textarea id="fMsg" name="nachricht" rows="3" placeholder="z.&nbsp;B. Ma&szlig;e, Zustand, Wunschfarbe (optional)"></textarea></div>
               </div>
               <div class="fnav">
-                <button class="btnN acc" type="submit"><span class="btnN-lbl">Anfrage senden</span><span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></button>
+                <button class="btnN" type="submit"><span class="btnN-fill"></span><span class="btnN-icon"><span class="btnN-pfeile"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span><span class="btnN-lbl"><span>Anfrage senden</span><span aria-hidden="true">Anfrage senden</span></span></button>
               </div>
               <p class="form-note">Ihre Anfrage &ouml;ffnet sich fertig ausgef&uuml;llt in Ihrem E-Mail-Programm.</p>
             </form>
@@ -2025,19 +2024,6 @@ if (footVid && !reduced && 'IntersectionObserver' in window){
     else footVid.pause();
   }), {threshold:.04}).observe(document.querySelector('footer'));
 }
-
-/* Knopf: Reiseweg des Pfeils = Breite minus Kreis und Raender */
-function knopfMasse(){
-  document.querySelectorAll('.btnN').forEach(b => {
-    const kreis = b.classList.contains('nav-cta') ? 36 : 42;
-    const rand  = b.classList.contains('nav-cta') ? 10 : 16;
-    const weg = b.offsetWidth - kreis - rand;
-    if (weg > 0) b.style.setProperty('--reise', weg + 'px');
-  });
-}
-knopfMasse();
-addEventListener('resize', knopfMasse);
-if (document.fonts && document.fonts.ready) document.fonts.ready.then(knopfMasse);
 
 /* Grosse Aussagesaetze bauen sich beim Scrollen Wort fuer Wort auf */
 function worteAufbauen(){
