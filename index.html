@@ -58,7 +58,7 @@ img{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 :focus-visible{outline:2px solid var(--orange);outline-offset:3px;border-radius:4px}
-.wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:var(--pad)}
+.wrap{max-width:calc(var(--maxw) + 2 * var(--pad));margin-inline:auto;padding-inline:var(--pad)}
 /* Auf dunklen Flaechen dreht die Betonung ins Helle (Silber statt Schwarz) */
 .hero,.proc,.kontakt,footer,.svc-item{
   --acc:#E9E9E9; --acc-2:#FFFFFF; --acc-on:#141414;
@@ -145,7 +145,7 @@ section[id]{scroll-margin-top:clamp(86px,9vw,104px)}
 .nav.is-scrolled{box-shadow:0 1px 0 var(--line)}
 .nav.is-hidden{transform:translateY(-100%)}
 .nav-in{
-  max-width:calc(var(--maxw) + 2 * var(--pad));margin-inline:auto;padding-inline:var(--pad);
+  max-width:calc(var(--maxw) + 2 * var(--pad) + 20px);margin-inline:auto;padding-inline:calc(var(--pad) + 10px);
   height:88px;display:flex;align-items:center;gap:30px;
 }
 .brand{display:flex;align-items:center;flex:none}
@@ -740,7 +740,7 @@ footer{
 }
 footer::before{
   content:"";position:absolute;left:var(--pad);right:var(--pad);top:0;height:1px;z-index:3;
-  max-width:var(--maxw);margin-inline:auto;background:var(--chrom-line);opacity:.42;
+  max-width:calc(var(--maxw) + 2 * var(--pad));margin-inline:auto;background:var(--chrom-line);opacity:.42;
 }
 footer > .wrap{position:relative;z-index:2}
 .foot-bg{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none}
