@@ -83,3 +83,34 @@ animiertes `transform` legt das Element auf eine eigene Ebene, die zwischen zwei
 Pixeln neu gezeichnet wird — davon werden die runden Ecken während der Bewegung
 unsauber. Das Anheben übernimmt der Schatten. Der Rand wechselt von hell zu
 dunkel (nie zu transparent), damit an der Kante kein heller Saum aufblitzt.
+
+## Schriftschnitte – Stand 31.08.2026 geprüft
+
+Eine einzige Schrift auf der ganzen Seite: **Switzer**. Kein zweiter Font, nirgends.
+Die Schnitte sind nach Rolle vergeben, quer über alle Sektionen gleich:
+
+| Rolle | Grösse | Schnitt | Laufweite | Beispiel |
+|---|---|---|---|---|
+| Titel | clamp 40–116 | **700** | −.045em | „Leistungen", „Wir polstern Ihr Lieblingsstück neu" |
+| Aussage | clamp 27–58 | **700** | −.03em | „Eigene Werkstatt…", „Sprechen wir darüber.", „Sprechen wir.", Leistungs-Titel |
+| Zahl | clamp 54–150 | **700** | −.045em | 2.500+, 98 %, die 01–04 im Ablauf |
+| Zwischentitel | clamp 17–35 | **600** | −.018em | „Formular ausfüllen", „Was dürfen wir polstern?", Zahlen-Beschriftungen |
+| Fliesstext | 16 | 300 | normal | alle Absätze |
+| Label | 13 | 500 | .02em | `[ Was wir können ]`, auch die Punkte im Kopfbild |
+
+Eigene, bewusst leichtere Rollen: **Zitat** (22 / 400) in den Kundenstimmen,
+**Navigation** (24 / 400 im Footer, 13 / 400 in Versalien oben) und der
+**Vorspann** auf den Leistungsbildern (20 / 400).
+
+## Radien
+
+Grosse Flächen `--r` = `clamp(26px, 2.6vw, 40px)` — Kopfbild, graue Fläche,
+Ablauf, Kontakt. Auf grossen Blöcken muss der Radius mitwachsen, sonst wirkt
+die Ecke eckig. Karten und Kacheln bleiben bei `--rk` = 20 px.
+
+## Knopf-Grösse
+
+Es gibt **eine** Knopfgrösse: 58 px hoch, Beschriftung 13 px. Auch in der
+Navigation. Auf dem Handy (≤ 860 px) verschwindet der Knopf aus der Kopfzeile,
+weil er dort das Logo erdrücken würde — der Weg zur Anfrage steht im Menü
+und im Kopfbild.
