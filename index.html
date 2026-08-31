@@ -12,7 +12,7 @@
 <link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="preconnect" href="https://api.fontshare.com">
 <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
-<link href="https://api.fontshare.com/v2/css?f[]=switzer@200,300,400,500&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=switzer@200,300,400,500,600,700,800&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="assets/hero-a.jpg">
 <style>
 /* ============ NORRÉ-SYSTEM ============ */
@@ -45,6 +45,7 @@
 *{margin:0;padding:0;box-sizing:border-box}
 body{
   background:var(--bg);
+  background-image:repeating-linear-gradient(45deg,rgba(26,26,26,.028) 0 1px,transparent 1px 8px);
   color:var(--ink);
   font-family:'Switzer',system-ui,sans-serif;
   font-size:17px;
@@ -89,46 +90,45 @@ section[id]{scroll-margin-top:clamp(86px,9vw,104px)}
 /* CTA Action Button (Framer-Vorlage): beim Hover gleitet die Beschriftung nach links
    aus dem Knopf, der Kreis dehnt sich auf die volle Breite, der Pfeil waechst. */
 .btnN{
-  position:relative;overflow:hidden;
-  display:inline-flex;align-items:center;
+  position:relative;overflow:hidden;isolation:isolate;
+  display:inline-flex;align-items:center;gap:16px;
   border:1px solid var(--line2);border-radius:999px;
-  min-height:52px;padding:7px 54px 7px 24px;
-  font-size:13px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;
-  background:var(--card);
-  transition:transform .3s cubic-bezier(.22,1,.36,1), background .25s, border-color .25s;
-  will-change:transform;
+  min-height:58px;padding:8px 30px 8px 66px;
+  font-size:13px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;
+  background:var(--card);color:var(--ink);cursor:pointer;
+  transition:border-color .3s, color .35s;
 }
-.btnN-lbl{
-  position:relative;z-index:1;white-space:nowrap;
-  transition:transform .6s cubic-bezier(.34,1.32,.5,1), opacity .3s ease;
+.btnN::before{
+  content:"";position:absolute;inset:0;z-index:-1;background:var(--orange-d);
+  transform:scaleX(0);transform-origin:left center;
+  transition:transform .6s cubic-bezier(.22,1,.36,1);
 }
-.btnN:hover .btnN-lbl{transform:translateX(-118%);opacity:0}
-.btnN:active{transform:scale(.97)}
-.btnN:hover{border-color:var(--ink)}
+.btnN:hover::before,.btnN:focus-visible::before{transform:scaleX(1)}
+.btnN:hover,.btnN:focus-visible{color:#FFFFFF;border-color:var(--orange)}
+.btnN:active{transform:scale(.985)}
+.btnN-lbl{position:relative;z-index:2;white-space:nowrap}
 .btnN .circ{
-  position:absolute;right:7px;top:7px;bottom:7px;z-index:2;
-  width:38px;border-radius:999px;background:var(--ink);
+  position:absolute;left:8px;top:8px;z-index:2;
+  width:42px;height:42px;border-radius:999px;background:var(--orange);
   display:grid;place-items:center;
-  transition:width .6s cubic-bezier(.34,1.32,.5,1);
+  transition:transform .6s cubic-bezier(.22,1,.36,1), background .35s;
 }
-.btnN:hover .circ{width:calc(100% - 14px)}
-.btnN .circ svg{width:15px;height:15px;stroke:var(--bg);transition:width .5s ease, height .5s ease}
-.btnN:hover .circ svg{width:18px;height:18px}
-.btnN.acc{background:var(--ink);color:#F5F5F5;border-color:var(--ink)}
-.btnN.acc .btnN-lbl{position:relative;z-index:2}
-/* Ueber Bild und auf dunklem Grund: Glas statt Flaeche */
-.hero .btnN.acc,.proc-row .btnN.acc,.kontakt .kt-side .btnN.acc,footer .btnN.acc{
-  background:rgba(255,255,255,.12);color:#F5F5F5;border-color:rgba(255,255,255,.32);
+.btnN .circ svg{width:16px;height:16px;stroke:#FFFFFF;transition:stroke .35s}
+.btnN:hover .circ,.btnN:focus-visible .circ{
+  transform:translateX(var(--reise,0px));background:#FFFFFF;
+}
+.btnN:hover .circ svg,.btnN:focus-visible .circ svg{stroke:var(--orange)}
+/* Auf dunklem Grund: Glasflaeche, Kreis bleibt orange */
+.hero .btnN,.proc-row .btnN,footer .btnN,.kontakt .kt-side .btnN{
+  background:rgba(255,255,255,.10);color:#F5F5F5;border-color:rgba(255,255,255,.30);
   backdrop-filter:blur(16px) saturate(150%);-webkit-backdrop-filter:blur(16px) saturate(150%);
 }
-.hero .btnN.acc .circ,.proc-row .btnN.acc .circ,footer .btnN.acc .circ{background:#F5F5F5}
-.hero .btnN.acc .circ svg,.proc-row .btnN.acc .circ svg,footer .btnN.acc .circ svg{stroke:#1A1A1A}
 @media (prefers-reduced-transparency: reduce){
-  .hero .btnN.acc,.proc-row .btnN.acc,footer .btnN.acc{background:rgba(30,30,32,.9);backdrop-filter:none}
+  .hero .btnN,.proc-row .btnN,footer .btnN{background:rgba(30,30,32,.92);backdrop-filter:none}
 }
-.btnN.acc:hover{border-color:var(--orange)}
-.btnN.acc .circ{background:#F5F5F5}
-.btnN.acc .circ svg{stroke:#1A1A1A}
+@media (prefers-reduced-motion: reduce){
+  .btnN::before,.btnN .circ{transition:none}
+}
 .btnN.dark{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 .btnN.dark .circ{background:var(--bg)}
 .btnN.dark .circ svg{stroke:var(--ink)}
@@ -272,27 +272,58 @@ body.menu-open .menu a{transform:none;opacity:1}
 .proof-txt b{font-weight:600;color:#FFFFFF}
 
 /* ============ ZAHLEN ============ */
-.stats{padding-block:var(--sec-y)}
-.stats-head{max-width:760px;margin-inline:auto;text-align:center}
+/* Grosser Aussagesatz (Werkstatt-Sektion) */
 .statement{
-  font-size:clamp(24px, 3.6vw, 51px);
-  font-weight:200;line-height:1.3;color:rgba(26,26,26,.55);
+  font-size:clamp(26px,3.2vw,50px);
+  font-weight:700;line-height:1.18;letter-spacing:-.03em;
+  color:rgba(26,26,26,.34);text-wrap:balance;
 }
-.statement strong{color:var(--ink);font-weight:300}
-.statement .acc{color:var(--orange);font-weight:400}
-.stat b em{font-style:normal;color:var(--orange)}
+.statement strong{color:var(--ink);font-weight:700}
+.statement .acc{color:var(--orange);font-weight:700}
+.stats{padding-block:clamp(56px,6vw,90px) var(--sec-y)}
+/* Strukturlinie mit Kreuz, wie in der Vorlage */
+.linie-oben{position:relative;height:1px;background:var(--line);margin-bottom:clamp(40px,5vw,70px)}
+.linie-oben i{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  font-style:normal;font-size:15px;line-height:1;color:rgba(26,26,26,.4);
+  background:var(--bg);padding:0 9px;
+}
+.mlabel{
+  display:inline-flex;align-items:center;gap:11px;
+  font-size:13px;font-weight:500;letter-spacing:.02em;color:var(--ink);white-space:nowrap;
+}
+.mlabel::before{content:"";width:11px;height:11px;background:var(--orange);flex:none}
+.stats-top{
+  display:grid;grid-template-columns:minmax(0,200px) minmax(0,1fr);
+  gap:clamp(20px,4vw,60px);align-items:start;
+}
+.stats-say{
+  grid-column:2;text-align:right;text-wrap:balance;
+  font-size:clamp(27px,3.3vw,52px);font-weight:700;line-height:1.16;letter-spacing:-.032em;
+  color:var(--ink);
+}
+.stats-say{--wortfarbe:#1A1A1A}
+html:not(.js) .wort,html.reduced .wort{color:var(--ink)!important}
 .stats-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,4vw,60px);
-  margin-top:clamp(52px,7vw,84px);border-top:1px solid var(--line);
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(24px,4vw,64px);
+  margin-top:clamp(56px,7vw,96px);
 }
-/* HINWEIS: 2.500+ und 48h sind PLATZHALTER, mit dem Kunden zu bestätigen */
-.stat{padding-top:30px}
-.stat b{display:block;font-size:clamp(41px,4.2vw,60px);font-weight:500;line-height:1.1}
-.stat > span{display:block;margin-top:10px;font-size:16px;font-weight:300;color:rgba(26,26,26,.62);max-width:16rem}
+/* HINWEIS: 2.500+ und 48 h sind PLATZHALTER, mit dem Kunden zu bestaetigen */
+.stat b{
+  display:block;font-size:clamp(54px,6.2vw,96px);font-weight:700;line-height:1;
+  letter-spacing:-.045em;color:var(--ink);
+}
+.stat b em{font-style:normal;color:var(--orange)}
+.stat h3{
+  margin-top:clamp(20px,2.2vw,30px);padding-top:18px;border-top:1px solid var(--line2);
+  font-size:clamp(17px,1.4vw,21px);font-weight:600;letter-spacing:-.01em;color:var(--ink);
+}
+.stat p{margin-top:8px;font-size:15.5px;font-weight:300;line-height:1.55;color:rgba(26,26,26,.62);max-width:22rem}
 
 /* ============ VORHER / NACHHER ============ */
 .ba{
   padding-block:var(--sec-y);background:var(--panel);
+  background-image:repeating-linear-gradient(45deg,rgba(26,26,26,.03) 0 1px,transparent 1px 8px);
   border-radius:var(--r);margin-inline:10px;overflow:hidden;
 }
 .ba .ba-card{border-color:rgba(26,26,26,.07);box-shadow:0 2px 10px rgba(26,26,26,.05)}
@@ -457,6 +488,8 @@ body.menu-open .menu a{transform:none;opacity:1}
 .proc .sdesc{color:rgba(244,244,244,.72)}
 .proc > .wrap{position:relative;z-index:2}
 /* Sektions-Hintergrund: ausgegrautes BILD (kein Video) */
+.proc{background-image:repeating-linear-gradient(45deg,rgba(255,255,255,.025) 0 1px,transparent 1px 8px)}
+.kontakt,footer{background-image:repeating-linear-gradient(45deg,rgba(255,255,255,.022) 0 1px,transparent 1px 8px)}
 .proc-bg{position:absolute;inset:0;z-index:0;overflow:hidden}
 .proc-bg img{
   width:100%;height:100%;object-fit:cover;
@@ -943,23 +976,29 @@ footer > .wrap{position:relative;z-index:2}
   </section>
 
   <!-- ============ ZAHLEN ============ -->
-  <section class="stats wrap" id="zahlen">
-    <div class="stats-head">
-      <span class="slabel" data-rv>Unsere Zahlen</span>
-      <p class="statement" data-rv><strong>Als Handwerksbetrieb mit eigener Werkstatt</strong> lassen wir die Zahlen f&uuml;r uns sprechen.</p>
-    </div>
-    <div class="stats-grid">
-      <div class="stat" data-rv>
-        <b><span data-count="2500">0</span><em>+</em></b>
-        <span>Polsterst&uuml;cke pro Jahr aus eigener Fertigung, vom Stuhl bis zur Wohnlandschaft</span>
+  <section class="stats" id="zahlen">
+    <div class="wrap">
+      <div class="linie-oben" aria-hidden="true"><i>+</i></div>
+      <div class="stats-top">
+        <span class="mlabel" data-rv>Unsere Zahlen</span>
+        <h2 class="stats-say" id="statsSay" data-worte>Als Handwerksbetrieb mit eigener Werkstatt in Krefeld lassen wir die Zahlen f&uuml;r uns sprechen.</h2>
       </div>
-      <div class="stat" data-rv>
-        <b><span data-count="100">0</span><em> km</em></b>
-        <span>kostenloser Hol- und Bringservice rund um Krefeld, inklusive Lieferung und Montage</span>
-      </div>
-      <div class="stat" data-rv>
-        <b><span data-count="48">0</span><em> h</em></b>
-        <span>bis zu Ihrem individuellen Angebot, unkompliziert per Telefon oder Formular</span>
+      <div class="stats-grid">
+        <div class="stat" data-rv>
+          <b><span data-count="2500">0</span><em>+</em></b>
+          <h3>Polsterst&uuml;cke pro Jahr</h3>
+          <p>Aus eigener Fertigung, vom K&uuml;chenstuhl bis zur Wohnlandschaft.</p>
+        </div>
+        <div class="stat" data-rv>
+          <b><span data-count="100">0</span><em>&nbsp;km</em></b>
+          <h3>Hol- und Bringservice</h3>
+          <p>Kostenlos rund um Krefeld, inklusive Lieferung und Montage.</p>
+        </div>
+        <div class="stat" data-rv>
+          <b><span data-count="48">0</span><em>&nbsp;h</em></b>
+          <h3>Bis zu Ihrem Angebot</h3>
+          <p>Unkompliziert per Telefon, WhatsApp oder Formular.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -1110,8 +1149,8 @@ footer > .wrap{position:relative;z-index:2}
     </div>
     <div class="wrap">
       <div class="shead">
-        <span class="slabel" data-rv>So l&auml;uft es</span>
-        <h2 class="stitle" data-rv>Wie wir arbeiten</h2>
+        <span class="slabel" data-rv>In vier Schritten</span>
+        <h2 class="stitle" data-rv>Ablauf</h2>
         <p class="sdesc" data-rv>Sie m&uuml;ssen nichts schleppen und nichts organisieren. Wir k&uuml;mmern uns um den kompletten Weg, von der Abholung bis zur Montage.</p>
       </div>
 
@@ -1636,6 +1675,29 @@ if (footVid && !reduced && 'IntersectionObserver' in window){
   }), {threshold:.04}).observe(document.querySelector('footer'));
 }
 
+/* Knopf: Reiseweg des Pfeils = Breite minus Kreis und Raender */
+function knopfMasse(){
+  document.querySelectorAll('.btnN').forEach(b => {
+    const weg = b.offsetWidth - 42 - 16;
+    if (weg > 0) b.style.setProperty('--reise', weg + 'px');
+  });
+}
+knopfMasse();
+addEventListener('resize', knopfMasse);
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(knopfMasse);
+
+/* Grosse Aussagesaetze bauen sich beim Scrollen Wort fuer Wort auf */
+function worteAufbauen(){
+  document.querySelectorAll('[data-worte]').forEach(el => {
+    if (el.dataset.fertig) return;
+    el.dataset.fertig = '1';
+    const teile = el.innerHTML.split(/(<[^>]+>)/g);
+    el.innerHTML = teile.map(t => t.startsWith('<') ? t
+      : t.split(/(\s+)/).map(x => /\S/.test(x) ? '<span class="wort">' + x + '</span>' : x).join('')).join('');
+  });
+}
+worteAufbauen();
+
 /* ============ Motion ============ */
 /* Videos: Zeilen-Clips laufen nur beim Darueberfahren (Sektionshintergrund ist ein Bild) */
 const bgVideo = null;
@@ -1742,6 +1804,17 @@ if (reduced) {
   gsap.to('#heroImg', {
     yPercent: 7, ease: 'none',
     scrollTrigger: { trigger: '.hero-frame', start: 'top top', end: 'bottom top', scrub: true }
+  });
+
+  /* Worte fuellen sich beim Scrollen */
+  gsap.utils.toArray('[data-worte]').forEach(el => {
+    const worte = el.querySelectorAll('.wort');
+    if (!worte.length) return;
+    gsap.fromTo(worte, { color: 'rgba(26,26,26,.22)' }, {
+      color: getComputedStyle(el).getPropertyValue('--wortfarbe') || '#1A1A1A',
+      stagger: .12, ease: 'none',
+      scrollTrigger: { trigger: el, start: 'top 82%', end: 'bottom 58%', scrub: .5 }
+    });
   });
 
   /* Werkstatt-Fotos: sanfter Versatz */
