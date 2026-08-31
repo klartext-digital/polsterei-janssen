@@ -39,3 +39,24 @@ Sektionen **26 px** (Token `--r`), Karten und Kacheln **20 px** (Token `--rk`). 
 Orange (`#E8500A`) nur als Signal: Klammern, Einheiten hinter Zahlen, hervorgehobene
 Begriffe, Auswahl und Fortschritt im Formular, Fokus, Hover. Nie flächig, nie als Textfarbe
 für ganze Absätze. Für kleine Schrift auf Weiß `--orange-d`, auf Graphit `--orange-h`.
+
+## Knopf (CTA)
+
+**Ein einziges Knopfbild auf der ganzen Seite** — auf hellem Grund und auf Fotos exakt
+gleich: weisse Pille, hauchduenner Rand, orangefarbener Kreis links, weisser Pfeil darin.
+Keine Glas-/Transparenzvariante mehr, kein dunkler Zwilling.
+
+Groessen ueber `--h`: Seite 58 px, Navigation 46 px. Der Kreis ist immer `--h` minus 10 px,
+der Pfeilkasten `--h` minus 14 px. Beschriftung 13 px / 600 / Versalien / 0.13em.
+
+**Hover (1:1 nach der Framer-Vorlage Viper):**
+1. Der orange Kreis **waechst nach rechts zur vollen Pille** — Radius bleibt 999 px,
+   die Vorderkante ist also rund. Nie ein Balken mit gerader Kante.
+2. Die Fuellung ringsum 5 px innerhalb des Knopfes, der helle Rand bleibt als Ring sichtbar.
+3. Die Beschriftung faehrt nach oben aus dem Fenster, eine zweite, weisse Kopie
+   kommt von unten nach — deshalb steht der Text doppelt im HTML (zweite Kopie `aria-hidden`).
+4. Der Pfeil wandert nach rechts hinaus, ein zweiter kommt von links nach.
+5. Farbe der Fuellung wechselt von `--orange` auf `--orange-d`, damit weisse Versalien
+   darauf 5.1:1 Kontrast haben.
+
+Zeit 0.62 s, `cubic-bezier(.22,1,.36,1)`. Alles reines CSS, kein JS, keine Breitenmessung.
