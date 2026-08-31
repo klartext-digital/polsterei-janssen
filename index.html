@@ -735,7 +735,7 @@ html:not(.js) .fstep[data-step="5"],html:not(.js) .fback,html:not(.js) .prog{dis
 
 /* ============ FOOTER (Norré) ============ */
 footer{
-  background:var(--black);color:#F4F4F4;padding:clamp(46px,5vw,74px) 0 30px;
+  background:var(--black);color:#F4F4F4;padding:clamp(46px,5vw,74px) 0 0;
   overflow:hidden;position:relative;
 }
 footer::before{
@@ -790,24 +790,14 @@ footer > .wrap{position:relative;z-index:2}
 .pill-b svg{stroke:#F4F4F4}
 .pill-b:hover{border-color:var(--orange);color:#FFFFFF;transform:translateY(-2px)}
 
-.foot-linie{margin-top:clamp(40px,5.5vw,72px);line-height:0}
-.foot-linie svg{width:100%;height:clamp(22px,2.4vw,34px);display:block;overflow:visible}
-.foot-linie path{fill:none;stroke:var(--orange);stroke-width:1.6;vector-effect:non-scaling-stroke}
-
 .foot-word{
-  display:flex;flex-direction:column;align-items:center;
-  margin-top:clamp(30px,3.6vw,52px);
+  position:relative;z-index:2;width:100%;
+  margin-top:clamp(26px,3.4vw,46px);opacity:.3;
 }
 .foot-word-img{width:100%;height:auto;display:block}
-.foot-sub{
-  margin-top:clamp(10px,1.2vw,18px);
-  font-size:clamp(10px,.92vw,13px);font-weight:400;
-  letter-spacing:.42em;text-transform:uppercase;color:rgba(244,244,244,.5);
-  text-align:center;text-indent:.42em;
-}
 .foot-row{
   display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between;
-  border-top:1px solid rgba(244,244,244,.14);margin-top:clamp(28px,4vw,44px);padding-top:26px;
+  border-top:1px solid var(--orange);margin-top:clamp(38px,5vw,66px);padding-top:26px;
   font-size:13px;font-weight:300;color:rgba(244,244,244,.45);
 }
 .foot-row nav{display:flex;gap:26px}
@@ -888,7 +878,6 @@ footer > .wrap{position:relative;z-index:2}
   .kt-row{grid-template-columns:minmax(0,1fr);gap:2px}
   .kt-person b{font-size:16.5px}
   .foot-top{grid-template-columns:1fr;gap:38px}
-  .fs-mehr{display:none}
   .werk-photos{grid-template-columns:1fr;gap:12px}
   .werk-ph{aspect-ratio:3/2}
 }
@@ -948,7 +937,7 @@ footer > .wrap{position:relative;z-index:2}
           </div>
         </div>
         <p>Neubezug, Aufpolsterung und Reparatur aus eigener Werkstatt in Krefeld. Schnell, pr&auml;zise und zum besten Preis der Region.</p>
-        <a class="btnN acc" data-mag href="#kontakt"><span class="btnN-lbl">Angebot anfragen</span><span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+        <a class="btnN acc" href="#kontakt"><span class="btnN-lbl">Angebot anfragen</span><span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
       </div>
     </div>
   </section>
@@ -1350,14 +1339,6 @@ footer > .wrap{position:relative;z-index:2}
       </div>
     </div>
 
-    <div class="foot-linie" aria-hidden="true">
-      <svg viewBox="0 0 1200 40" preserveAspectRatio="none"><path d="M0 26 C 150 6, 320 6, 470 20 S 800 40, 960 24 S 1120 10, 1200 16"/></svg>
-    </div>
-
-    <div class="foot-word" data-rv>
-      <img class="foot-word-img" src="assets/wortmarke-janssen.png" alt="Janssen" width="2620" height="365">
-      <span class="foot-sub">Polsterei &middot; Raumdesign<span class="fs-mehr"> &middot; Krefeld &amp; Ennigerloh</span></span>
-    </div>
     <div class="foot-row">
       <span>&copy; 2026 Polsterei Janssen &middot; Buschstra&szlig;e 244, 47800 Krefeld &middot; Ewaldstra&szlig;e 3, 59320 Ennigerloh</span>
       <nav aria-label="Rechtliches">
@@ -1366,6 +1347,9 @@ footer > .wrap{position:relative;z-index:2}
       </nav>
       <a href="#top" id="toTop">Nach oben</a>
     </div>
+  </div>
+  <div class="foot-word" data-rv>
+    <img class="foot-word-img" src="assets/wortmarke-janssen.png" alt="Janssen" width="2620" height="365">
   </div>
 </footer>
 
@@ -1377,7 +1361,6 @@ document.documentElement.classList.add('js');
 /* ?static=1 erzwingt die animationsfreie Ansicht (Test & Barrierefreiheit) */
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches
   || new URLSearchParams(location.search).has('static');
-const finePtr = matchMedia('(pointer: fine)').matches;
 
 /* ============ Funktion (läuft immer) ============ */
 const burger = document.getElementById('burger');
@@ -1769,19 +1752,6 @@ if (reduced) {
     });
   });
 
-  /* Magnetische Buttons */
-  if (finePtr) {
-    document.querySelectorAll('[data-mag]').forEach(btn => {
-      const bx = gsap.quickTo(btn, 'x', { duration: .4, ease: 'power3' });
-      const by = gsap.quickTo(btn, 'y', { duration: .4, ease: 'power3' });
-      btn.addEventListener('mousemove', e => {
-        const r = btn.getBoundingClientRect();
-        bx((e.clientX - r.left - r.width / 2) * .25);
-        by((e.clientY - r.top - r.height / 2) * .35);
-      });
-      btn.addEventListener('mouseleave', () => { bx(0); by(0); });
-    });
-  }
 }
 </script>
 </body>
