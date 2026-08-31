@@ -37,3 +37,14 @@ Arbeitsfotos nötig.
 Die alte Wix-Seite widerspricht sich: Buschstraße 244 / 47800 Krefeld gegen
 Bruchstraße 14 / 47829, sowie Ewaldstraße gegen Elwaldstraße in Ennigerloh.
 Aktuell steht die erste Variante auf der Seite.
+
+## Fotos im Anfrageformular
+
+Seit 31.08.2026 kann der Kunde in Schritt 4 bis zu acht Bilder ablegen (ziehen
+oder klicken). Die Bilder bleiben vorerst **im Browser** — das Formular verschickt
+sich per `mailto:`, und eine E-Mail aus dem Mailprogramm kann keine Dateien aus
+der Seite mitnehmen. Deshalb steht unter der Ablage ein Hinweis, und nach dem
+Absenden bekommt der Kunde den WhatsApp-Weg angeboten.
+
+**Offen:** ein kleines Backend (Formspree, Netlify Forms, eigener Endpunkt),
+das Felder und Bilder zusammen entgegennimmt. Danach beide Hinweistexte entfernen.
