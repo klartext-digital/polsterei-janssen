@@ -73,19 +73,41 @@ html.js:not(.reduced) [data-rv]{opacity:0}
 section[id]{scroll-margin-top:clamp(86px,9vw,104px)}
 
 /* Sektionskopf (Norré-Muster) */
-.shead{position:relative;text-align:center;margin-bottom:clamp(44px,6vw,72px)}
-.slabel{
-  display:inline-flex;align-items:center;gap:12px;
-  font-size:12px;font-weight:400;letter-spacing:.4em;text-transform:uppercase;
-  line-height:2.1;color:var(--ink);
+/* ============ SCHRIFT- UND AUSRICHTUNGS-REGELN ============
+   Label   [ Text ]   13px/500, orange Klammern, IMMER LINKS
+   Titel              clamp(42,7vw,116) / 700 / -.045em, IMMER RECHTS
+   Aussage            clamp(26,3.2vw,52) / 700 / -.03em, IMMER RECHTS
+   Zwischentitel      clamp(17,1.9vw,27) / 600 / -.018em, LINKS
+   Fliesstext         16px / 300 / 1.6, LINKS
+   Zahl               clamp(54,6.2vw,96) / 700 / -.045em
+   Nichts auf der Seite ist zentriert.
+   ========================================================= */
+.shead{
+  position:relative;margin-bottom:clamp(44px,6vw,72px);
+  display:grid;grid-template-columns:minmax(0,200px) minmax(0,1fr);
+  gap:clamp(16px,3vw,44px);align-items:start;
 }
-.slabel::before{content:"";width:7px;height:7px;border-radius:99px;background:var(--orange)}
+.slabel,.mlabel{
+  display:inline-flex;align-items:center;gap:7px;
+  font-size:13px;font-weight:500;letter-spacing:.02em;text-transform:none;
+  line-height:1.4;color:var(--ink);white-space:nowrap;
+}
+.slabel::before,.mlabel::before{
+  content:"[";background:none;width:auto;height:auto;border-radius:0;
+  font-size:15px;font-weight:600;line-height:1;color:var(--orange);
+}
+.slabel::after,.mlabel::after{
+  content:"]";font-size:15px;font-weight:600;line-height:1;color:var(--orange);
+}
 .stitle{
-  font-size:clamp(46px, 9.7vw, 140px);
-  font-weight:400;line-height:1.1;letter-spacing:0;
-  margin-top:6px;
+  grid-column:2;text-align:right;text-wrap:balance;
+  font-size:clamp(42px,7vw,116px);
+  font-weight:700;line-height:.98;letter-spacing:-.045em;
 }
-.sdesc{max-width:600px;margin:22px auto 0;font-size:18px;font-weight:300;line-height:1.55;color:rgba(26,26,26,.78)}
+.sdesc{
+  grid-column:2;max-width:56ch;margin:clamp(14px,1.6vw,22px) 0 0 auto;text-align:right;
+  font-size:16px;font-weight:300;line-height:1.6;color:rgba(26,26,26,.62);
+}
 
 /* Norré-Button: Pille + schwarzer Kreis */
 /* CTA Action Button (Framer-Vorlage): beim Hover gleitet die Beschriftung nach links
@@ -289,11 +311,6 @@ body.menu-open .menu a{transform:none;opacity:1}
   font-style:normal;font-size:15px;line-height:1;color:rgba(26,26,26,.4);
   background:var(--bg);padding:0 9px;
 }
-.mlabel{
-  display:inline-flex;align-items:center;gap:11px;
-  font-size:13px;font-weight:500;letter-spacing:.02em;color:var(--ink);white-space:nowrap;
-}
-.mlabel::before{content:"";width:11px;height:11px;background:var(--orange);flex:none}
 .stats-top{
   display:grid;grid-template-columns:minmax(0,200px) minmax(0,1fr);
   gap:clamp(20px,4vw,60px);align-items:start;
@@ -320,7 +337,7 @@ b .wort{color:inherit}
   margin-top:clamp(20px,2.2vw,30px);padding-top:18px;border-top:1px solid var(--line2);
   font-size:clamp(17px,1.4vw,21px);font-weight:600;letter-spacing:-.01em;color:var(--ink);
 }
-.stat p{margin-top:8px;font-size:15.5px;font-weight:300;line-height:1.55;color:rgba(26,26,26,.62);max-width:22rem}
+.stat p{margin-top:8px;font-size:16px;font-weight:300;line-height:1.55;color:rgba(26,26,26,.62);max-width:22rem}
 
 /* ============ VORHER / NACHHER ============ */
 .ba{
@@ -374,7 +391,7 @@ b .wort{color:inherit}
 }
 .ba-tag.nach{left:14px;background:var(--orange-d);color:#FFF}
 .ba-tag.vor{right:14px}
-.ba-hint{margin-top:18px;text-align:center;font-size:13.5px;color:rgba(26,26,26,.5)}
+.ba-hint{margin-top:18px;text-align:left;font-size:13.5px;color:rgba(26,26,26,.5)}
 .ba-say{
   display:grid;grid-template-columns:minmax(0,200px) minmax(0,1fr);
   gap:clamp(20px,4vw,60px);align-items:start;
@@ -385,7 +402,7 @@ b .wort{color:inherit}
   font-size:clamp(22px,2.5vw,38px);font-weight:700;line-height:1.24;letter-spacing:-.026em;
 }
 .ba-say-t b{font-weight:700;color:var(--orange)}
-.ba-cta{margin-top:clamp(26px,3vw,38px);display:flex;justify-content:center}
+.ba-cta{margin-top:clamp(26px,3vw,38px);display:flex;justify-content:flex-end}
 
 /* ============ LEISTUNGEN (Fluid Card Stack: horizontale Ziehharmonika) ============ */
 .svc{padding-block:0 var(--sec-y)}
@@ -468,7 +485,7 @@ b .wort{color:inherit}
   transition:background .25s,color .25s,border-color .25s;
 }
 .svc-tag:hover{background:var(--orange);color:#FFF;border-color:var(--orange)}
-.svc-hint{margin-top:20px;text-align:center;font-size:14px;color:var(--grey)}
+.svc-hint{margin-top:20px;text-align:left;font-size:14px;color:var(--grey)}
 
 /* ============ WERKSTATT ============ */
 .werk{padding-block:var(--sec-y)}
@@ -576,13 +593,18 @@ b .wort{color:inherit}
 /* ---- Wie wir arbeiten: Kachelraster ---- */
 .wwa{padding-block:clamp(56px,6vw,90px) var(--sec-y)}
 .wwa-head{
-  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);
-  gap:clamp(20px,4vw,60px);align-items:end;margin-bottom:clamp(30px,4vw,52px);
+  display:grid;grid-template-columns:minmax(0,200px) minmax(0,1fr);
+  gap:clamp(16px,3vw,44px) clamp(16px,3vw,44px);align-items:start;
+  margin-bottom:clamp(30px,4vw,52px);
 }
-.wwa-intro{font-size:16.5px;font-weight:300;line-height:1.6;color:rgba(26,26,26,.62);max-width:30rem}
 .wwa-titel{
+  grid-column:2;text-align:right;
   font-size:clamp(42px,7vw,116px);font-weight:700;line-height:.98;letter-spacing:-.045em;
-  text-align:right;--wortfarbe:#1A1A1A;
+  --wortfarbe:#1A1A1A;
+}
+.wwa-intro{
+  grid-column:2;max-width:56ch;margin-left:auto;text-align:right;
+  font-size:16px;font-weight:300;line-height:1.6;color:rgba(26,26,26,.62);
 }
 .wwa-grid{
   display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
@@ -673,10 +695,9 @@ b .wort{color:inherit}
   padding:clamp(24px,2.4vw,34px);display:flex;flex-direction:column;
 }
 .mlabel.hell{color:#FFFFFF}
-.mlabel.hell::before{background:#FFFFFF}
+.mlabel.hell::before,.mlabel.hell::after{color:#FFFFFF}
 .wwa .k-orange .mlabel::before,.wwa .k-orange .mlabel::after{color:#FFFFFF;background:none}
 /* In den Kacheln: Klammern statt Quadrat */
-.wwa .k .mlabel{gap:6px}
 .wwa .k .mlabel::before{
   content:"[";background:none;width:auto;height:auto;
   font-size:15px;font-weight:600;line-height:1;color:var(--orange);
@@ -722,14 +743,17 @@ b .wort{color:inherit}
 .tst-track.zieht *{pointer-events:none}
 .tst-k{
   flex:0 0 clamp(300px,24vw,378px);scroll-snap-align:start;min-height:clamp(430px,36vw,540px);
-  background:var(--card);border:1px solid var(--line);border-radius:var(--rk);
+  background:var(--card);border:0;border-radius:var(--rk);
+  box-shadow:inset 0 0 0 1px var(--line);
   padding:clamp(24px,2.2vw,32px);display:flex;flex-direction:column;
-  transition:background .4s, color .4s, border-color .4s, transform .4s cubic-bezier(.22,1,.36,1), box-shadow .4s;
+  transition:background .55s cubic-bezier(.33,1,.68,1), color .45s ease,
+             box-shadow .55s cubic-bezier(.33,1,.68,1), transform .55s cubic-bezier(.33,1,.68,1);
   transition:transform .4s cubic-bezier(.22,1,.36,1), box-shadow .4s;
 }
 .tst-k:hover{
-  transform:translateY(-5px);box-shadow:0 22px 50px rgba(26,26,26,.13);
-  background:var(--black);border-color:transparent;color:#F4F4F4;
+  transform:translateY(-4px);
+  box-shadow:inset 0 0 0 1px rgba(26,26,26,0), 0 20px 46px rgba(26,26,26,.14);
+  background:var(--black);color:#F4F4F4;
 }
 .tst-k:hover .tst-chip{background:rgba(244,244,244,.12);color:#F4F4F4}
 .tst-k:hover .tst-q{fill:rgba(244,244,244,.4)}
@@ -737,10 +761,11 @@ b .wort{color:inherit}
 .tst-chip{
   display:inline-flex;align-items:center;gap:10px;align-self:flex-start;
   background:var(--bg);border-radius:999px;padding:6px 16px 6px 6px;
+  transition:background .5s ease, color .45s ease;
   font-size:12.5px;font-weight:500;letter-spacing:.04em;
 }
 .tst-chip img{width:30px;height:30px;border-radius:999px;object-fit:cover;flex:none}
-.tst-q{width:28px;height:28px;margin-top:26px;fill:rgba(26,26,26,.26);transition:fill .4s}
+.tst-q{width:28px;height:28px;margin-top:26px;fill:rgba(26,26,26,.26);transition:fill .5s ease}
 .tst-k blockquote{
   margin-top:18px;font-size:clamp(18px,1.5vw,22px);font-weight:400;line-height:1.45;letter-spacing:-.014em;
   color:inherit;flex:1;
@@ -749,7 +774,7 @@ b .wort{color:inherit}
   margin-top:26px;padding-left:14px;border-left:2px solid var(--orange);
 }
 .tst-k figcaption b{display:block;font-size:12.5px;font-weight:600;letter-spacing:.13em;text-transform:uppercase}
-.tst-k figcaption span{display:block;margin-top:4px;font-size:13.5px;font-weight:300;color:rgba(26,26,26,.55)}
+.tst-k figcaption span{display:block;margin-top:4px;font-size:13.5px;font-weight:300;color:rgba(26,26,26,.55);transition:color .45s ease}
 
 /* ============ KONTAKT + FORMULAR ============ */
 /* ============ KONTAKT — dunkle Buehne, schwebende Anfrage-Karte ============ */
@@ -923,16 +948,16 @@ html:not(.js) .fstep[data-step="5"],html:not(.js) .fback,html:not(.js) .prog{dis
 .form-note{margin-top:13px;font-size:12.5px;font-weight:300;color:var(--muted);text-wrap:pretty}
 
 /* Erfolgs-Zustand */
-.fdone{text-align:center;padding:6px 0 2px}
+.fdone{text-align:left;padding:6px 0 2px}
 .fdone .ok{
   width:72px;height:72px;border-radius:50%;background:var(--acc-soft);border:1px solid var(--acc);
-  display:grid;place-items:center;margin:0 auto 20px;
+  display:grid;place-items:center;margin:0 0 20px;
 }
 .fdone .ok svg{width:30px;height:30px;fill:none;stroke:var(--acc-deep);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;
   stroke-dasharray:32;stroke-dashoffset:32;transition:stroke-dashoffset .65s cubic-bezier(.22,1,.36,1) .2s}
 .fdone.on .ok svg{stroke-dashoffset:0}
 .fdone h3{margin-bottom:8px}
-.fdone p{font-size:15px;font-weight:300;color:rgba(26,26,26,.62);max-width:38ch;margin-inline:auto;line-height:1.55}
+.fdone p{font-size:15px;font-weight:300;color:rgba(26,26,26,.62);max-width:38ch;line-height:1.55}
 .fdone .again{margin-top:22px;font-size:12.5px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);cursor:pointer;transition:color .25s}
 .fdone .again:hover{color:var(--acc-deep)}
 
@@ -990,12 +1015,20 @@ footer > .wrap{position:relative;z-index:2}
   transition:transform .4s cubic-bezier(.22,1,.36,1), background .3s, border-color .3s, color .3s;
 }
 .foot-pills svg{width:19px;height:19px;flex:none}
+.foot-pills a{position:relative;overflow:hidden;isolation:isolate}
+.foot-pills a::before{
+  content:"";position:absolute;inset:0;z-index:-1;background:var(--orange-d);
+  transform:scaleX(0);transform-origin:left center;
+  transition:transform .6s cubic-bezier(.22,1,.36,1);
+}
+.foot-pills a:hover::before,.foot-pills a:focus-visible::before{transform:scaleX(1)}
 .pill-a{background:#F4F4F4;color:#1A1A1A}
-.pill-a svg{stroke:#1A1A1A}
-.pill-a:hover{background:#FFFFFF;transform:translateY(-2px)}
+.pill-a svg{stroke:#1A1A1A;transition:stroke .35s}
+.pill-a:hover{color:#FFFFFF}
+.pill-a:hover svg{stroke:#FFFFFF}
 .pill-b{background:transparent;color:#F4F4F4;border:1px solid rgba(244,244,244,.34)}
-.pill-b svg{stroke:#F4F4F4}
-.pill-b:hover{border-color:var(--orange);color:#FFFFFF;transform:translateY(-2px)}
+.pill-b svg{stroke:#F4F4F4;transition:stroke .35s}
+.pill-b:hover{border-color:var(--orange-d);color:#FFFFFF}
 
 .foot-word{
   position:relative;z-index:1;width:100%;
@@ -1090,6 +1123,13 @@ footer > .wrap{position:relative;z-index:2}
   .ba-say-t{grid-column:1;text-align:left}
   .werk-state{grid-template-columns:1fr;gap:14px}
   .werk-state .statement{grid-column:1;text-align:left}
+  .shead{grid-template-columns:1fr;gap:12px}
+  .stitle,.sdesc{grid-column:1;text-align:left}
+  .sdesc{margin-left:0;margin-right:auto}
+  .wwa-head{grid-template-columns:1fr;gap:12px}
+  .wwa-titel,.wwa-intro{grid-column:1;text-align:left}
+  .wwa-intro{margin-left:0}
+  .ba-cta{justify-content:flex-start}
   .wwa-grid{grid-template-columns:1fr}
   .wwa-head{grid-template-columns:1fr;gap:18px}
   .wwa-titel{text-align:left}
@@ -1338,8 +1378,9 @@ footer > .wrap{position:relative;z-index:2}
     <div class="wrap">
       <div class="linie-oben" aria-hidden="true"><i>+</i></div>
       <div class="wwa-head">
-        <p class="wwa-intro" data-rv>Ein Blick auf das Handwerk, die Erfahrung und die Abl&auml;ufe, die hinter jedem St&uuml;ck stehen.</p>
+        <span class="mlabel" data-rv>Wer wir sind</span>
         <h2 class="wwa-titel" data-worte>Wie wir arbeiten</h2>
+        <p class="wwa-intro" data-rv>Ein Blick auf das Handwerk, die Erfahrung und die Abl&auml;ufe, die hinter jedem St&uuml;ck stehen.</p>
       </div>
 
       <div class="wwa-grid">

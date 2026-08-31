@@ -1,0 +1,41 @@
+# Schrift- und Ausrichtungsregeln
+
+Eine Schrift: **Switzer**. Kein zweiter Schriftschnitt, keine zweite Familie.
+Maßgeblich ist die Zahlen-Sektion — alles andere folgt ihr.
+
+## Die sechs Rollen
+
+| Rolle | Größe | Schnitt | Laufweite | Ausrichtung | Farbe |
+|---|---|---|---|---|---|
+| **Label** `[ Text ]` | 13 px | 500 | +.02em | **links** | Ink, Klammern orange |
+| **Sektionstitel** | clamp 42 → 116 px | **700** | −.045em | **rechts** | Ink |
+| **Aussage** (große Zeile) | clamp 26 → 52 px | **700** | −.03em | **rechts** | Ink, Aufbau Wort für Wort |
+| **Zwischentitel** (Karten, Kacheln) | clamp 17 → 27 px | 600 | −.018em | **links** | Ink |
+| **Fließtext** | 16 px | 300 | 0 | **links** | Ink 62 % |
+| **Zahl** | clamp 54 → 96 px | **700** | −.045em | links | Ink, Einheit orange |
+
+Dazu: **Knopf** 13 px / 600 / +.13em / Versalien.
+
+## Ausrichtung
+
+- **Nichts auf der Seite ist zentriert.** Ausgenommen sind nur Beschriftungen *innerhalb* von Knöpfen.
+- **Label immer links**, in derselben Zeile wie der Titel.
+- **Titel, Aussage und Sektionsbeschreibung immer rechtsbündig** — sie bilden zusammen einen rechten Block.
+- **Fließtext in Karten und Kacheln immer linksbündig.**
+- Titel und Fließtext stehen **nie** auf gleicher Höhe links gegen rechts. Der Titel steht oben rechts, der Text darunter — ebenfalls rechts.
+
+## Labels
+
+Alle Unterüberschriften tragen dieselbe Form: `[ Unsere Zahlen ]`, `[ Vorher / Nachher ]`,
+`[ Die Werkstatt ]`, `[ Was wir können ]`, `[ Wer wir sind ]`, `[ Kundenstimmen ]`, `[ Verlässlich ]`.
+Klammern in Orange, Text in Ink. Keine Punkte, keine Quadrate, keine Versalien mehr.
+
+## Radien
+
+Sektionen **26 px** (Token `--r`), Karten und Kacheln **20 px** (Token `--rk`). Sonst nichts.
+
+## Farbe
+
+Orange (`#E8500A`) nur als Signal: Klammern, Einheiten hinter Zahlen, hervorgehobene
+Begriffe, Auswahl und Fortschritt im Formular, Fokus, Hover. Nie flächig, nie als Textfarbe
+für ganze Absätze. Für kleine Schrift auf Weiß `--orange-d`, auf Graphit `--orange-h`.
