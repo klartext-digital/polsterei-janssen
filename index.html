@@ -2292,6 +2292,19 @@ if (reduced) {
   });
 }
 
+/* Kopfzeile: ab 40 Pixeln wird aus der Leiste die schwebende Pille.
+   Das ist ein Zustandswechsel, keine Animation - deshalb steht der Zuhoerer
+   ausserhalb der Bewegungs-Weiche und laeuft auch bei "Bewegung reduzieren"
+   (dort nur ohne die weiche Kurve). */
+const kopfzeile = document.getElementById('nav');
+function kopfZustand(){
+  const y = window.scrollY || document.documentElement.scrollTop || 0;
+  kopfzeile.classList.toggle('is-scrolled', y > 40);
+}
+addEventListener('scroll', kopfZustand, { passive: true });
+addEventListener('resize', kopfZustand);
+kopfZustand();
+
 if (reduced) {
   document.documentElement.classList.add('reduced');
   document.querySelectorAll('[data-count]').forEach(el => {
@@ -2315,14 +2328,6 @@ if (reduced) {
         lenis.scrollTo(id, { offset: id === '#top' ? 0 : -(navH + 18), duration: 1.1 });
       }
     });
-  });
-
-  /* Kopfzeile: ab 40 Pixeln wird aus der Leiste die schwebende Pille.
-     Sie blendet sich nicht mehr weg - sonst saehe man den Uebergang nie. */
-  const nav = document.getElementById('nav');
-  ScrollTrigger.create({
-    start: 0, end: 'max',
-    onUpdate(self){ nav.classList.toggle('is-scrolled', self.scroll() > 40); }
   });
 
   /* Hero-Intro */
