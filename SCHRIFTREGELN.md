@@ -114,3 +114,15 @@ Es gibt **eine** Knopfgrösse: 58 px hoch, Beschriftung 13 px. Auch in der
 Navigation. Auf dem Handy (≤ 860 px) verschwindet der Knopf aus der Kopfzeile,
 weil er dort das Logo erdrücken würde — der Weg zur Anfrage steht im Menü
 und im Kopfbild.
+
+## Kopfzeile beim Scrollen
+
+Oben liegt die Leiste über die volle Breite auf dem Seitengrund. Ab 40 px Scroll
+zieht sie sich in **einer Bewegung** (0,6 s, weiches Ausrollen) zu einer
+schwebenden Pille zusammen: Breite auf max. 1180 px, Höhe 88 → 74 px, Radius auf
+999 px, Grund milchig (`rgba(244,244,244,.78)` plus 20 px Weichzeichner), feiner
+Rand und weicher Schatten. Das Logo geht von 48 auf 39 px mit.
+
+Die Kopfzeile blendet sich beim Runterscrollen **nicht** mehr weg — sonst
+bekäme man den Übergang nie zu sehen und der Weg zur Anfrage wäre weg.
+Bei `prefers-reduced-motion` bleibt die Leiste unverwandelt stehen.
