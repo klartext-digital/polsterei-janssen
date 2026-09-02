@@ -34,11 +34,32 @@ Klammern in Orange, Text in Ink. Keine Punkte, keine Quadrate, keine Versalien m
 
 Sektionen **26 px** (Token `--r`), Karten und Kacheln **20 px** (Token `--rk`). Sonst nichts.
 
-## Farbe
+## Farbe – Beige und Gold (Stand 02.09.2026)
 
-Orange (`#E8500A`) nur als Signal: Klammern, Einheiten hinter Zahlen, hervorgehobene
-Begriffe, Auswahl und Fortschritt im Formular, Fokus, Hover. Nie flächig, nie als Textfarbe
-für ganze Absätze. Für kleine Schrift auf Weiß `--orange-d`, auf Graphit `--orange-h`.
+| Rolle | Wert | Einsatz |
+|---|---|---|
+| `--bg` | `#F4EFE7` | Seitengrund, warmes Creme |
+| `--card` | `#FFFDF9` | Karten, fast weiss aber warm |
+| `--panel` | `#E9E0D2` | Beigeflächen für ganze Sektionen |
+| `--ink` | `#221E19` | Schrift, warmes Dunkelbraun |
+| `--black` | `#221F1B` | dunkle Sektionen, warmes Espresso |
+| `--gold` | `#B08948` | Akzent auf Flächen: Kreis im Knopf, Füllung, Linien, Ränder |
+| `--gold-d` | `#7E6029` | **kleine Schrift auf Hell** (5,1:1 auf Creme) |
+| `--gold-h` | `#D9B877` | **kleine Schrift auf Dunkel** (8,7:1) |
+
+Das Gold ist kein geratener Ton: es ist der gemessene Verlauf aus der Original-Logodatei
+`Logos/original/teil-zeichen-gold.png`.
+
+**Die wichtigste Regel:** Weisse Schrift auf Gold trägt nur **3,2:1** und ist damit unter
+der Norm. Auf goldenen Flächen steht deshalb **immer die dunkle Schrift** (`--ink`, 5,1:1) —
+Knopf im Hover, Gold-Kachel, Chips, Pillen. Gold als Schrift auf Creme trägt nur 2,8:1,
+dort gilt `--gold-d`.
+
+Gold bleibt Signal: Klammern, Einheiten hinter Zahlen, hervorgehobene Begriffe, Auswahl
+und Fortschritt im Formular, Fokus, Hover. Nie flächig über ganze Absätze.
+
+Das Logo-Zeichen ist von Silber auf Gold umgestellt (`logo-quer-gold.png`,
+`logo-marke-gold.png`, Favicon). Die Wortmarke bleibt unverändert dunkel.
 
 ## Knopf (CTA)
 
@@ -126,3 +147,38 @@ Rand und weicher Schatten. Das Logo geht von 48 auf 39 px mit.
 Die Kopfzeile blendet sich beim Runterscrollen **nicht** mehr weg — sonst
 bekäme man den Übergang nie zu sehen und der Weg zur Anfrage wäre weg.
 Bei `prefers-reduced-motion` bleibt die Leiste unverwandelt stehen.
+
+## Flächen-Rhythmus (Stand 02.09.2026)
+
+Die Sektionen wechseln bewusst den Grundton, damit keine zwei ähnlichen
+Flächen aneinanderstossen:
+
+| Sektion | Grund |
+|---|---|
+| Seite allgemein | `--bg` `#F4EFE7` Creme |
+| Vorher / Nachher | `--panel` `#E9E0D2` Beige |
+| Kundenstimmen | `#FFFCF6` fast Weiss, Karten dafür in `#F6F1E8` |
+| Fragen und Antworten | `--panel` `#E9E0D2` Beige, Linien in Gold `rgba(193,160,51,.55)` |
+| Ablauf, Kontakt | `--black` `#221F1B` Espresso |
+
+Die Trennlinien in der FAQ sind golden, nicht grau — sie sind dort das einzige
+Strukturmerkmal und tragen die Sektion.
+
+## Hintergründe
+
+**Keine Kachelmuster.** Wiederholende Muster — Schraffur, Gewebe, Rautensteppung,
+Motiv-Tapete — sind alle verworfen worden: sie wirken entweder wie Gekritzel oder
+wie Millimeterpapier, und man sieht ihnen die Wiederholung an.
+
+Stattdessen liegt hinter den beiden Beigeflächen je ein **gestaltetes
+Hintergrundbild**: weiche Stofffalten in Creme, mit dem Bildmodell erzeugt, gross
+skaliert und weit heruntergeregelt.
+
+| Sektion | Bild | Deckkraft | Besonderheit |
+|---|---|---|---|
+| Fragen und Antworten | `hg-faq.jpg` | 55 % | von links nach rechts eingeblendet, damit der Titel auf ruhiger Fläche steht |
+| Werkstatt | `hg-werk.jpg` | 40 % | gleichmässig, sehr weich |
+
+Nachgemessen mit ausgeblendetem Text: der Kontrast der Schrift liegt in der FAQ bei
+**10,3:1** im Mittel und **8,6:1** an der dunkelsten Stelle, in der Werkstatt bei
+9,2:1 und 7,6:1. Die Bilder kosten zusammen 341 KB.
