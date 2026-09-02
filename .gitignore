@@ -15,3 +15,9 @@ social/
 
 # Original-Logodateien des Kunden (nur lokal)
 Logos/
+
+# Rohmaterial der Kopfbild-Clips (nur lokal)
+hero-clips/
+
+# Rohmaterial Video-Storyboard (nur lokal)
+video_skript/

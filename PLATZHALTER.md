@@ -32,6 +32,13 @@ Sämtliche Fotos sind KI-erzeugt (Werkstatt, Möbel, Vorher/Nachher, Porträts i
 Kopfbereich und in den Kundenstimmen). Für Vorher/Nachher-Werbung sind echte
 Arbeitsfotos nötig.
 
+Am 02.09.2026 komplett neu erzeugt, bewusst als **nüchterne Dokumentarfotos**
+statt der vorherigen kinoartigen Bilder: flaches Tageslicht, alles scharf, kein
+Bokeh, keine Farbkorrektur, schiefe Schnappschuss-Ausschnitte, sichtbare Unordnung.
+Die drei Vorher/Nachher-Paare zeigen jeweils **dasselbe Möbelstück** — das Nachher
+wurde aus dem Vorher-Bild als Vorlage erzeugt, nicht getrennt beschrieben.
+Die Werkstatt-Bilder zeigen auf Kundenwunsch eine grosse Halle mit Masse und Menge.
+
 ## Adressen
 
 Die alte Wix-Seite widerspricht sich: Buschstraße 244 / 47800 Krefeld gegen
@@ -48,3 +55,29 @@ Absenden bekommt der Kunde den WhatsApp-Weg angeboten.
 
 **Offen:** ein kleines Backend (Formspree, Netlify Forms, eigener Endpunkt),
 das Felder und Bilder zusammen entgegennimmt. Danach beide Hinweistexte entfernen.
+
+## Kundenstimmen: Sterne und Google-Beleg
+
+Seit 02.09.2026 trägt jede Karte **fünf Sterne**, und über dem Karussell steht ein
+Google-Beleg mit **4,8**. Die 4,8 stammt aus dem Kopfbereich und war dort schon
+Platzhalter. Die fünf Sterne sind gesetzt, nicht belegt — sie gehören zu den
+erfundenen Stimmen und müssen mit den echten Bewertungen ersetzt werden.
+Bewusst **keine** Anzahl der Bewertungen angegeben, um keine weitere Zahl zu erfinden.
+
+## Fragen und Antworten
+
+Die sechs FAQ-Antworten wiederholen Angaben, die schon auf der Seite stehen:
+zwei bis drei Wochen Bearbeitungszeit, 100 km kostenloser Hol- und Bringservice,
+Antwort binnen 24 Stunden, Stoffmuster nach Hause. Diese Zahlen sind oben in
+diesem Dokument als Platzhalter vermerkt — mit der Änderung dort müssen auch
+die Antworten mitgeändert werden.
+
+## Hauptstimme „Frank B."
+
+Die grosse Stimme oben in den Kundenstimmen ist **erfunden**: Name Frank B.,
+Privatkunde aus Krefeld-Uerdingen, Zitat über eine Eckbank. Vor einer
+Veröffentlichung durch eine echte Rezension ersetzen.
+
+Das Porträt daneben (`assets/kunde-frank.jpg`) ist ebenfalls KI-erzeugt.
+Der Kunde hat ein eigenes Foto geschickt, das nicht als Datei ankam — sobald es
+unter `assets/kunde-frank.jpg` liegt, ist es ohne weitere Änderung im Einsatz.
