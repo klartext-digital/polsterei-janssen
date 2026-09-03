@@ -1062,7 +1062,10 @@ html.js:not(.reduced) .stat.an h3::before{transform:scaleX(1)}
 /* WhatsApp traegt ueberall die Farbe der Fremdmarke statt der Hausfarbe -
    der Weg soll auf den ersten Blick als WhatsApp erkennbar sein. */
 .faq-hilfe a[href*="wa.me"]{background:#25D366;border-color:#17944A;color:#fff}
-.faq-hilfe a[href*="wa.me"] svg{stroke:#fff}
+.faq-hilfe a[href*="wa.me"] svg:not(.wa-glyph){stroke:#fff}
+.faq-hilfe a svg.wa-glyph,
+.faq-hilfe a:hover svg.wa-glyph,
+.faq-hilfe a[href*="wa.me"] svg.wa-glyph{fill:currentColor;stroke:none}
 .faq-hilfe a[href*="wa.me"]:hover{background:#1DA851;border-color:#1DA851;color:#fff}
 .foot-nav a[href*="wa.me"]{color:#25D366}
 .foot-nav a[href*="wa.me"]:hover{color:#5BE894}
