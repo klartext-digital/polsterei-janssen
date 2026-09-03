@@ -495,12 +495,14 @@ html.js:not(.reduced) .stat.an .stat-sym circle{stroke-dashoffset:0}
 /* "NRW" steht an der Stelle einer Zahl. Die Ziffern laufen mit -.045em sehr eng;
    bei Versalien wirkt das gedraengt, deshalb hier normaler Abstand. */
 .stat-wort{letter-spacing:.005em}
-/* Kleine Goldzeile unter dem grossen Wort. Der tiefere Goldton, nicht das
-   helle: kleine Schrift braucht auf Creme 4,9:1 statt 2,2:1. */
-.stat-zusatz{
-  display:block;position:relative;z-index:1;margin-top:6px;
-  font-size:clamp(15px,1.15vw,18px);font-weight:600;letter-spacing:.01em;
-  color:var(--gold-d);
+/* "gratis" sitzt als Zusatz in derselben Zeile wie das grosse Wort - genau wie
+   das "+" bei 2.500 und das "h" bei 48. Als eigene Zeile darunter waere die
+   Karte hoeher geworden und die Trennlinie stuende nicht mehr auf der Hoehe
+   der Nachbarkarten. Der tiefere Goldton, weil kleine Schrift auf Creme
+   4,9:1 braucht statt 3,1:1. */
+.stat b em.stat-frei{
+  font-size:.3em;font-weight:600;letter-spacing:.02em;
+  margin-left:.42em;vertical-align:.62em;color:var(--gold-d);
 }
 /* Die Linie waechst beim Hereinscrollen von links auf. */
 .stat h3{
@@ -1694,8 +1696,7 @@ body.wa-weg .wa{opacity:0;transform:translateY(14px) scale(.9);pointer-events:no
         <div class="stat" data-rv>
           <svg class="stat-geist" viewBox="0 0 32 32" aria-hidden="true"><path d="M3 21.5V9.5h14.2v12"/><path d="M17.2 12.8h5.4l4.4 4.6v4.1"/><circle cx="10.2" cy="23.4" r="2.5"/><circle cx="23" cy="23.4" r="2.5"/><path d="M3 21.5h4.7M12.7 21.5h7.8M25.5 21.5H29"/></svg>
           <span class="stat-ring"><svg class="stat-sym" viewBox="0 0 32 32" aria-hidden="true"><path pathLength="1" d="M3 21.5V9.5h14.2v12"/><path pathLength="1" d="M17.2 12.8h5.4l4.4 4.6v4.1"/><circle pathLength="1" cx="10.2" cy="23.4" r="2.5"/><circle pathLength="1" cx="23" cy="23.4" r="2.5"/><path pathLength="1" d="M3 21.5h4.7M12.7 21.5h7.8M25.5 21.5H29"/></svg></span>
-          <b class="stat-wort">NRW</b>
-          <span class="stat-zusatz">gratis</span>
+          <b class="stat-wort">NRW<em class="stat-frei">gratis</em></b>
           <h3>Hol- und Bringservice</h3>
           <p>Kostenlos in ganz Nordrhein-Westfalen, inklusive Lieferung und Montage.</p>
         </div>
