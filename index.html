@@ -686,7 +686,9 @@ html.js:not(.reduced) .stat.an h3::before{transform:scaleX(1)}
    in der FAQ, damit nicht zwei gleiche Flaechen entstehen. */
 .werk::before{
   content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
-  background:url("assets/hg-werk.jpg") center/cover no-repeat;
+  /* Das Standbild aus dem Kopfvideo - dieselbe Szene, dieselbe Hand,
+     dadurch haengen Kopf und Werkstatt sichtbar zusammen. */
+  background:url("assets/hero-poster.jpg") center/cover no-repeat;
   opacity:.4;
 }
 .werk > .wrap{position:relative;z-index:1}
@@ -1049,6 +1051,13 @@ html.js:not(.reduced) .stat.an h3::before{transform:scaleX(1)}
 }
 .faq-hilfe a svg{width:16px;height:16px;stroke:var(--gold-d);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;transition:stroke .25s}
 .faq-hilfe a:hover{background:var(--gold);border-color:var(--gold);color:var(--ink)}
+/* WhatsApp traegt ueberall die Farbe der Fremdmarke statt der Hausfarbe -
+   der Weg soll auf den ersten Blick als WhatsApp erkennbar sein. */
+.faq-hilfe a[href*="wa.me"]{background:#25D366;border-color:#17944A;color:#fff}
+.faq-hilfe a[href*="wa.me"] svg{stroke:#fff}
+.faq-hilfe a[href*="wa.me"]:hover{background:#1DA851;border-color:#1DA851;color:#fff}
+.foot-nav a[href*="wa.me"]{color:#25D366}
+.foot-nav a[href*="wa.me"]:hover{color:#5BE894}
 .faq-hilfe a:hover svg{stroke:var(--ink)}
 .faq-liste{border-top:1px solid rgba(193,160,51,.55)}
 @media (max-width:1024px){
