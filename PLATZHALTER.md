@@ -81,3 +81,44 @@ Veröffentlichung durch eine echte Rezension ersetzen.
 Das Porträt daneben (`assets/kunde-frank.jpg`) ist ebenfalls KI-erzeugt.
 Der Kunde hat ein eigenes Foto geschickt, das nicht als Datei ankam — sobald es
 unter `assets/kunde-frank.jpg` liegt, ist es ohne weitere Änderung im Einsatz.
+
+## Neue Angaben vom Kunden (03.09.2026, WhatsApp über Dusan)
+
+Diese Punkte kommen direkt von Gigi Janssen und sind **nicht von uns erfunden**,
+aber auch **nicht gegengeprüft**:
+
+- **Einzugsgebiet „ganz NRW"** ersetzt die bisherigen „100 km um Krefeld".
+  Steht jetzt in: Meta-Beschreibung, Kopfbild, Zahlen-Kachel, Antwort im
+  Fragen-Bereich und Kontaktbereich. Die alte 100-km-Angabe war ebenfalls
+  Platzhalter — beide nie belegt.
+- **„Über 10.000 Stoffe zur Auswahl"** (neue Leistung „Stoff- & Lederauswahl").
+  Zahl stammt vom Kunden, kein Nachweis.
+- **Drei neue Leistungen**: Stoff- & Lederauswahl, Gardinen & Sonnenschutz,
+  Bodenverlegung (Vinyl, Laminat, Teppichboden). Der Kunde betont, dass die
+  **Polsterei der Hauptfokus bleibt** — deshalb stehen sie als 05 bis 07 hinter
+  den vier Polster-Leistungen, und die Leiste unter dem Kopfbild zeigt weiterhin
+  nur die vier Polster-Kernleistungen.
+
+## Stoffpartner — Schriftzüge, keine echten Logos
+
+Die Leiste „Stoffpartner" nennt sechs Häuser, die der Kunde genannt hat:
+ADO Goldkante, Saum & Viebahn, Sonnhaus, Zellner Textil, Heco, JAB Anstoetz.
+
+**Aktuell sind das gesetzte Schriftzüge in der Seitenschrift, keine Logodateien.**
+Fremde Markenlogos habe ich bewusst nicht nachgebaut oder aus dem Netz gezogen.
+Vor einer Veröffentlichung zu klären:
+1. Offizielle Logodateien bei den Häusern anfragen (meist im Presse-/Händlerbereich).
+2. Ob der Kunde die Häuser überhaupt so nennen darf — „Stoffpartner" ist eine
+   Aussage über eine Geschäftsbeziehung. Manche Hersteller verlangen dafür eine
+   Händlerfreigabe.
+Der Austausch ist vorbereitet: je `<span class="marke">` wird zu einem `<img>`
+mit 26px Höhe, das Ruhe-Aussehen steuert die Deckkraft in `.marke`.
+
+## Neue Bilder (03.09.2026)
+
+- `assets/werk-halle.jpg` — ersetzt das vom Kunden bemängelte Hallenbild.
+  Kein neues Fremdmaterial, sondern ein **Standbild aus dem Kopfbild-Filmmaterial**
+  (hero-clips/s21-halle-eu.mp4, Bild bei 1,8 s), damit Foto und Film zusammenpassen.
+- `assets/lst-auswahl.jpg`, `lst-gardinen.jpg`, `lst-boden.jpg` — KI-erzeugt im
+  festgelegten Dokumentarstil (flaches Tageslicht, alles scharf, kein Bokeh).
+  Platzhalter bis echte Fotos vom Betrieb kommen.
