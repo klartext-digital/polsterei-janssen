@@ -948,7 +948,7 @@ html.js:not(.reduced) .stat.an h3::before{transform:scaleX(1)}
 .tst-foto img{width:100%;height:100%;object-fit:cover;display:block}
 @media (max-width:900px){
   .tst-haupt{grid-template-columns:minmax(0,1fr);gap:clamp(22px,4vw,32px)}
-  .tst-foto{order:-1;aspect-ratio:3/2;max-width:100%;max-height:300px;margin-inline:0}
+  .tst-foto{order:-1;aspect-ratio:auto;width:100%;max-width:100%;height:clamp(200px,52vw,300px);margin-inline:0}
 }
 .tst-google{
   display:inline-flex;align-items:center;gap:14px;
@@ -964,6 +964,8 @@ html.js:not(.reduced) .stat.an h3::before{transform:scaleX(1)}
 .tst-k .stars{--zelle:16px;--fill:100%;--star:var(--gold);margin-top:18px}
 .tst-k:hover .stars{--star:var(--gold-h)}
 .tst-nav{display:flex;gap:10px}
+.tst-steuer{display:flex;justify-content:flex-start;margin-top:clamp(18px,2.2vw,28px)}
+@media (max-width:640px){ .tst-steuer{justify-content:center} }
 .tnav{
   width:46px;height:46px;border-radius:999px;border:1px solid var(--line2);background:var(--card);
   display:grid;place-items:center;cursor:pointer;
@@ -1396,6 +1398,10 @@ footer > .wrap{position:relative;z-index:2;max-width:calc(var(--maxw-weit) + 2 *
 .pill-b{background:transparent;color:#F4EFE7;border:1px solid rgba(246,241,233,.34)}
 .pill-b svg{stroke:#F4EFE7;transition:stroke .3s}
 .pill-b:hover,.pill-b:focus-visible{background:var(--gold);border-color:var(--gold);color:var(--ink)}
+
+.pill-wa{background:#25D366;color:#fff;border:1px solid #17944A}
+.pill-wa svg.wa-glyph{fill:currentColor;stroke:none;width:22px;height:22px}
+.pill-wa:hover,.pill-wa:focus-visible{background:#1DA851;border-color:#1DA851;color:#fff}
 
 .foot-row{
   display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between;
@@ -1997,10 +2003,6 @@ body.wa-weg .wa{opacity:0;transform:translateY(14px) scale(.9);pointer-events:no
           <small>Bewertungen bei&nbsp;Google</small>
         </a>
         </div>
-        <div class="tst-nav">
-          <button class="tnav" type="button" data-richtung="-1" aria-label="Vorherige Stimme"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
-          <button class="tnav" type="button" data-richtung="1" aria-label="N&auml;chste Stimme"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
-        </div>
       </div>
       <div class="tst-haupt">
         <div class="tst-zitat">
@@ -2031,7 +2033,7 @@ body.wa-weg .wa{opacity:0;transform:translateY(14px) scale(.9);pointer-events:no
         </figure>
         <!-- PLATZHALTER: erfundene Kundenstimme, vor der Veroeffentlichung ersetzen -->
         <figure class="tst-k" data-platzhalter="ja">
-          <div class="tst-chip"><img src="assets/kunde-2.jpg" alt="" loading="lazy"><span>Krefeld</span></div>
+          <div class="tst-chip"><img src="assets/kunde-5.jpg" alt="" loading="lazy"><span>Krefeld</span></div>
           <svg class="tst-q" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 6.5C7 8 5.5 10.4 5.5 13.2c0 2.5 1.5 4.3 3.6 4.3 1.9 0 3.3-1.4 3.3-3.2 0-1.8-1.3-3.1-3-3.1-.3 0-.7 0-1 .2.4-1.6 1.6-3 3.2-4.1zM19 6.5c-2.5 1.5-4 3.9-4 6.7 0 2.5 1.5 4.3 3.6 4.3 1.9 0 3.3-1.4 3.3-3.2 0-1.8-1.3-3.1-3-3.1-.3 0-.7 0-1 .2.4-1.6 1.6-3 3.2-4.1z"/></svg>
           <span class="stars hell" aria-label="5 von 5 Sternen"></span>
           <blockquote>&bdquo;Unser Sofa sah aus wie neu gekauft. Abholung am Montag, R&uuml;ckgabe zwei Wochen sp&auml;ter &ndash; alles genau wie besprochen.&ldquo;</blockquote>
@@ -2055,7 +2057,7 @@ body.wa-weg .wa{opacity:0;transform:translateY(14px) scale(.9);pointer-events:no
         </figure>
         <!-- PLATZHALTER: erfundene Kundenstimme, vor der Veroeffentlichung ersetzen -->
         <figure class="tst-k" data-platzhalter="ja">
-          <div class="tst-chip"><img src="assets/kunde-1.jpg" alt="" loading="lazy"><span>Niederrhein</span></div>
+          <div class="tst-chip"><img src="assets/kunde-6.jpg" alt="" loading="lazy"><span>Niederrhein</span></div>
           <svg class="tst-q" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 6.5C7 8 5.5 10.4 5.5 13.2c0 2.5 1.5 4.3 3.6 4.3 1.9 0 3.3-1.4 3.3-3.2 0-1.8-1.3-3.1-3-3.1-.3 0-.7 0-1 .2.4-1.6 1.6-3 3.2-4.1zM19 6.5c-2.5 1.5-4 3.9-4 6.7 0 2.5 1.5 4.3 3.6 4.3 1.9 0 3.3-1.4 3.3-3.2 0-1.8-1.3-3.1-3-3.1-.3 0-.7 0-1 .2.4-1.6 1.6-3 3.2-4.1z"/></svg>
           <span class="stars hell" aria-label="5 von 5 Sternen"></span>
           <blockquote>&bdquo;Die Polster im Wohnmobil sind ma&szlig;gefertigt und passen millimetergenau. Sogar die Keder sitzen sauber.&ldquo;</blockquote>
@@ -2063,12 +2065,18 @@ body.wa-weg .wa{opacity:0;transform:translateY(14px) scale(.9);pointer-events:no
         </figure>
         <!-- PLATZHALTER: erfundene Kundenstimme, vor der Veroeffentlichung ersetzen -->
         <figure class="tst-k" data-platzhalter="ja">
-          <div class="tst-chip"><img src="assets/kunde-2.jpg" alt="" loading="lazy"><span>Krefeld</span></div>
+          <div class="tst-chip"><img src="assets/kunde-7.jpg" alt="" loading="lazy"><span>Krefeld</span></div>
           <svg class="tst-q" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 6.5C7 8 5.5 10.4 5.5 13.2c0 2.5 1.5 4.3 3.6 4.3 1.9 0 3.3-1.4 3.3-3.2 0-1.8-1.3-3.1-3-3.1-.3 0-.7 0-1 .2.4-1.6 1.6-3 3.2-4.1zM19 6.5c-2.5 1.5-4 3.9-4 6.7 0 2.5 1.5 4.3 3.6 4.3 1.9 0 3.3-1.4 3.3-3.2 0-1.8-1.3-3.1-3-3.1-.3 0-.7 0-1 .2.4-1.6 1.6-3 3.2-4.1z"/></svg>
           <span class="stars hell" aria-label="5 von 5 Sternen"></span>
           <blockquote>&bdquo;Die Stoffmuster kamen zu uns nach Hause. Das hat die Entscheidung enorm erleichtert.&ldquo;</blockquote>
           <figcaption><b>S. Wilms</b><span>Kundin, Krefeld</span></figcaption>
         </figure>
+      </div>
+      <div class="tst-steuer">
+        <div class="tst-nav">
+          <button class="tnav" type="button" data-richtung="-1" aria-label="Vorherige Stimme"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+          <button class="tnav" type="button" data-richtung="1" aria-label="N&auml;chste Stimme"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+        </div>
       </div>
     </div>
   </section>
@@ -2321,6 +2329,9 @@ body.wa-weg .wa{opacity:0;transform:translateY(14px) scale(.9);pointer-events:no
           <a class="pill-b" href="mailto:polstereijanssen@gmail.com">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 6.5h17v11h-17z"/><path d="M3.5 7l8.5 6 8.5-6"/></svg>
             E-Mail schreiben</a>
+          <a class="pill-wa" href="https://wa.me/491772006594" target="_blank" rel="noopener">
+            <svg class="wa-glyph" viewBox="0 0 32 32"><path d="M16.04 3.2c-7.1 0-12.87 5.77-12.87 12.87 0 2.27.6 4.49 1.73 6.44L3.2 28.8l6.45-1.68a12.8 12.8 0 0 0 6.39 1.71h.01c7.09 0 12.86-5.77 12.86-12.87 0-3.44-1.34-6.67-3.77-9.1a12.78 12.78 0 0 0-9.1-3.76zm0 23.2h-.01c-1.9 0-3.77-.51-5.4-1.48l-.39-.23-4.02 1.05 1.07-3.92-.25-.4a10.66 10.66 0 0 1-1.64-5.7c0-5.9 4.8-10.7 10.7-10.7 2.86 0 5.55 1.12 7.57 3.14a10.63 10.63 0 0 1 3.13 7.57c0 5.9-4.8 10.67-10.76 10.67zm5.87-7.99c-.32-.16-1.9-.94-2.2-1.05-.29-.1-.5-.16-.72.17-.21.32-.82 1.04-1.01 1.25-.19.21-.37.24-.69.08-.32-.16-1.36-.5-2.59-1.6-.96-.85-1.6-1.91-1.79-2.23-.19-.32-.02-.5.14-.66.15-.14.32-.37.48-.56.16-.19.21-.32.32-.53.11-.21.05-.4-.03-.56-.08-.16-.72-1.74-.99-2.38-.26-.62-.52-.54-.72-.55l-.61-.01c-.21 0-.56.08-.85.4-.29.32-1.11 1.09-1.11 2.65s1.14 3.08 1.3 3.29c.16.21 2.24 3.42 5.43 4.8.76.32 1.35.52 1.81.67.76.24 1.45.21 2 .13.61-.09 1.9-.78 2.17-1.53.27-.75.27-1.39.19-1.53-.08-.13-.29-.21-.61-.37z"/></svg>
+            WhatsApp</a>
         </div>
       </div>
     </div>
