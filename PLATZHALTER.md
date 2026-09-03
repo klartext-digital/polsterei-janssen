@@ -99,7 +99,28 @@ aber auch **nicht gegengeprüft**:
   den vier Polster-Leistungen, und die Leiste unter dem Kopfbild zeigt weiterhin
   nur die vier Polster-Kernleistungen.
 
-## Stoffpartner — Schriftzüge, keine echten Logos
+## Stoffpartner — vier Logos eingebaut, zwei offen (Stand 03.09.2026)
+
+**Eingebaut** (Dateien von den Websites der Häuser bzw. Wikimedia):
+ADO Goldkante, Saum & Viebahn, Sonnhaus, JAB Anstoetz. Sie liegen in
+`assets/marken/`, werden als dunkle Silhouette mit 42 % Deckkraft gezeigt und
+im Hover farbig. Die Höhen sind einzeln gesetzt, weil gleiche Pixelhöhe
+optisch ungleich wirkt (bei 28 px war ADO 83 px breit, das SV-Signet nur 28).
+
+**Noch offen — zwei Häuser, und beide werfen eine inhaltliche Frage auf:**
+1. **Zellner Textil** tritt am Markt als Marke **AURELIO HAUS®** auf
+   (M. Zellner GmbH, Michelau). Auf der Website steht nur das Aurelio-Logo.
+   Zu klären: soll in der Leiste "Zellner Textil" oder "Aurelio Haus" stehen?
+2. **HECO** ist keine eigene Firma, sondern eine **Marke von Saum & Viebahn**
+   (gleiche Adresse in Kulmbach). Beide zusammen in der Leiste nennt faktisch
+   zweimal dasselbe Haus.
+
+**Rechtlich weiterhin offen (unverändert):** ob Janssen die Häuser als
+"Stoffpartner" nennen darf. Manche Hersteller verlangen dafür eine
+Händlerfreigabe. Die Logos sind urheberrechtlich geschützt; JAB weist im
+Pressebereich ausdrücklich darauf hin.
+
+## Frühere Notiz (überholt)
 
 Die Leiste „Stoffpartner" nennt sechs Häuser, die der Kunde genannt hat:
 ADO Goldkante, Saum & Viebahn, Sonnhaus, Zellner Textil, Heco, JAB Anstoetz.
