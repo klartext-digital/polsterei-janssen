@@ -1596,12 +1596,23 @@ body.wa-weg .wa{opacity:0;transform:translateY(14px) scale(.9);pointer-events:no
   transition:opacity .35s ease, color .35s ease;
 }
 .marke:hover{opacity:1;color:var(--gold-d)}
+/* Logodateien der Haeuser. Sie kommen in ganz unterschiedlichen Farben und
+   Proportionen - deshalb einheitliche Hoehe und als ruhige dunkle Silhouette,
+   sonst zerfaellt die Leiste in sechs Fremdmarken. Im Hover volle Farbe. */
+.marke-bild{
+  height:clamp(20px,2.1vw,28px);width:auto;
+  filter:grayscale(1) brightness(0);
+  opacity:.42;
+  transition:opacity .35s ease, filter .35s ease;
+}
+.marke-bild:hover{opacity:1;filter:none}
 @media (max-width:760px){
   .marken-reihe{
     display:grid;grid-template-columns:repeat(2,1fr);gap:18px 14px;
     justify-items:start;
   }
   .marke{white-space:normal}
+  .marke-bild{height:22px}
 }
 </style>
 </head>
@@ -1889,12 +1900,12 @@ body.wa-weg .wa{opacity:0;transform:translateY(14px) scale(.9);pointer-events:no
         <p data-rv>Wir beziehen unsere Stoffe und Leder direkt bei den H&auml;usern, die die Branche pr&auml;gen.</p>
       </div>
       <div class="marken-reihe">
-        <span class="marke" data-rv>ADO Goldkante</span>
-        <span class="marke" data-rv>Saum &amp; Viebahn</span>
-        <span class="marke" data-rv>Sonnhaus</span>
+        <img class="marke-bild" src="assets/marken/ado-goldkante.png" alt="ADO Goldkante" loading="lazy" data-rv>
+        <img class="marke-bild" src="assets/marken/saum-viebahn.svg" alt="Saum &amp; Viebahn" loading="lazy" data-rv>
+        <img class="marke-bild" src="assets/marken/sonnhaus.png" alt="Sonnhaus" loading="lazy" data-rv>
         <span class="marke" data-rv>Zellner Textil</span>
         <span class="marke" data-rv>Heco</span>
-        <span class="marke" data-rv>JAB Anstoetz</span>
+        <img class="marke-bild" src="assets/marken/jab-anstoetz.svg" alt="JAB Anstoetz" loading="lazy" data-rv>
       </div>
     </div>
   </section>
