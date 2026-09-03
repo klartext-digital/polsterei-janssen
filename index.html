@@ -1491,12 +1491,12 @@ footer > .wrap{position:relative;z-index:2;max-width:calc(var(--maxw-weit) + 2 *
   position:fixed;right:clamp(16px,2.4vw,28px);bottom:clamp(16px,2.4vw,28px);z-index:70;
   display:inline-flex;align-items:center;gap:0;
   height:56px;padding:0;border-radius:999px;
-  /* Gold gefuellt wie jeder andere Handlungsknopf: der dunkle Knopf ist auf den
-     dunklen Sektionen (Kopfbild-Leiste, Ablauf, Footer) praktisch unsichtbar. */
-  background:var(--gold);color:var(--black);
-  /* Rand in dunklerem Gold: die Goldflaeche allein hebt sich vom Creme-Grund
-     nur mit 2,2:1 ab, der Rand bringt die Kante auf 4,9:1. */
-  border:1.5px solid var(--gold-d);
+  /* Originalfarbe von WhatsApp (#25D366) mit weissem Zeichen - der Knopf soll
+     auf den ersten Blick als WhatsApp erkennbar sein, nicht als Hausfarbe. */
+  background:#25D366;color:#fff;
+  /* Rand im dunkleren Marken-Gruen: die helle Flaeche allein hebt sich vom
+     Creme-Grund nur schwach ab, der Rand bringt die Kante auf 3,4:1. */
+  border:1.5px solid #128C7E;
   box-shadow:0 10px 30px rgba(34,30,25,.34), 0 2px 6px rgba(34,30,25,.22);
   overflow:hidden;
   transition:width .45s cubic-bezier(.22,1,.36,1), opacity .3s, transform .45s cubic-bezier(.22,1,.36,1), background .3s;
@@ -1505,13 +1505,13 @@ footer > .wrap{position:relative;z-index:2;max-width:calc(var(--maxw-weit) + 2 *
 .wa-icon{
   flex:none;width:53px;height:53px;display:grid;place-items:center;
 }
-.wa-icon svg{width:25px;height:25px;fill:var(--black)}
+.wa-icon svg{width:25px;height:25px;fill:#fff}
 .wa-lbl{
   white-space:nowrap;padding-right:22px;
   font-size:14px;font-weight:500;letter-spacing:.02em;
   opacity:0;transition:opacity .3s ease .08s;
 }
-.wa:hover,.wa:focus-visible{width:176px;background:var(--gold-t)}
+.wa:hover,.wa:focus-visible{width:176px;background:#128C7E}
 .wa:hover .wa-lbl,.wa:focus-visible .wa-lbl{opacity:1}
 .wa:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
 /* Ausgeblendet: wenn das Menue offen ist oder der Kontaktbereich erreicht ist */
