@@ -1600,12 +1600,20 @@ body.wa-weg .wa{opacity:0;transform:translateY(14px) scale(.9);pointer-events:no
    Proportionen - deshalb einheitliche Hoehe und als ruhige dunkle Silhouette,
    sonst zerfaellt die Leiste in sechs Fremdmarken. Im Hover volle Farbe. */
 .marke-bild{
+  /* Grundhoehe fuer breite Wortmarken. Kompaktere Zeichen bekommen unten
+     mehr Hoehe - bei gleicher Pixelhoehe wirkt ein quadratisches Signet
+     sonst halb so gross wie eine breite Wortmarke. */
   height:clamp(20px,2.1vw,28px);width:auto;
   filter:grayscale(1) brightness(0);
   opacity:.42;
   transition:opacity .35s ease, filter .35s ease;
 }
 .marke-bild:hover{opacity:1;filter:none}
+/* Optischer Ausgleich statt gleicher Pixelhoehe: gemessen bei 28px Hoehe war
+   ADO 83px breit, Sonnhaus 64, JAB 50 und das SV-Signet nur 28. */
+.marke-bild[src*="sonnhaus"]{height:clamp(24px,2.5vw,34px)}
+.marke-bild[src*="jab"]{height:clamp(26px,2.7vw,37px)}
+.marke-bild[src*="saum"]{height:clamp(30px,3.2vw,44px)}
 @media (max-width:760px){
   .marken-reihe{
     display:grid;grid-template-columns:repeat(2,1fr);gap:18px 14px;
