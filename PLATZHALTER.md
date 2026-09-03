@@ -122,3 +122,30 @@ mit 26px Höhe, das Ruhe-Aussehen steuert die Deckkraft in `.marke`.
 - `assets/lst-auswahl.jpg`, `lst-gardinen.jpg`, `lst-boden.jpg` — KI-erzeugt im
   festgelegten Dokumentarstil (flaches Tageslicht, alles scharf, kein Bokeh).
   Platzhalter bis echte Fotos vom Betrieb kommen.
+
+### Stand der Logo-Beschaffung (03.09.2026)
+
+Drei von sechs Logos liegen lokal in `Logos/partner/` (nicht im Repo, Ordner ist ignoriert):
+
+| Haus | Datei | Qualität |
+|---|---|---|
+| ADO Goldkante | `ado-goldkante.png` | 220×74, transparent, sauber |
+| Saum & Viebahn | `saum-und-viebahn.svg` | echtes Vektor-SVG, beste Fassung |
+| Sonnhaus | `sonnhaus-negativ.jpg` | 600×400 JPG, weiss auf Schwarz, nur Notbehelf |
+
+**Die anderen drei fehlen, weil unklar ist, welche Firma gemeint ist:**
+
+- **Heco** — `heco.de` ist ein Edelstahl-Betrieb, `heco-stoffe.de` existiert nicht.
+  In der Stoffbranche gibt es mehrere Firmen mit diesem Namen.
+- **Zellner Textil** — `zellner-textil.de` führt auf **„AURELIO HAUS® — Your House of
+  Fabrics"**. Sieht danach aus, als sei Zellner Textil in Aurelio Haus aufgegangen
+  oder als vertreibe Aurelio unter dem Namen. Beim Kunden nachfragen, welcher Name
+  auf die Seite soll. `zellner.de` ist ein Malerbetrieb in Nürnberg, also falsch.
+- **JAB Anstoetz** — `jab.de` liefert erst nach Zustimmung zum Cookie-Banner Inhalte
+  aus. Logo dort nicht ohne Einwilligung erreichbar; sauberer Weg wäre der
+  Presse-/Händlerbereich, dafür braucht es meist einen Händlerzugang des Kunden.
+
+**Deshalb steht auf der Seite weiterhin die Schriftzug-Fassung.** Drei echte Logos
+neben drei gesetzten Schriftzügen würden kaputt aussehen — der Austausch lohnt erst,
+wenn alle sechs in vergleichbarer Qualität vorliegen (am besten Vektor oder
+transparentes PNG, einfarbig dunkel für den Creme-Grund).
