@@ -1384,10 +1384,12 @@ footer > .wrap{position:relative;z-index:2;max-width:calc(var(--maxw-weit) + 2 *
 }
 /* Unterstreichung entfaellt - die Pille traegt den Hover jetzt selbst. */
 
-.foot-chat{display:flex;flex-direction:column}
+/* Ueberschrift und Satz zentriert - die Knopf-Beschriftungen darunter sind es
+   schon, linksbuendiger Text darueber wirkte daneben verrutscht. */
+.foot-chat{display:flex;flex-direction:column;align-items:center;text-align:center}
 .foot-chat h2{font-size:clamp(28px,2.9vw,42px);font-weight:700;letter-spacing:-.03em;color:#F4EFE7}
 .foot-chat p{margin-top:10px;font-size:15.5px;font-weight:300;color:rgba(246,241,233,.62)}
-.foot-pills{display:flex;flex-direction:column;gap:12px;margin-top:clamp(20px,2.4vw,30px);align-items:stretch}
+.foot-pills{display:flex;flex-direction:column;gap:12px;margin-top:clamp(20px,2.4vw,30px);align-items:stretch;width:100%}
 .foot-pills a{
   display:flex;align-items:center;justify-content:center;gap:12px;
   min-height:60px;padding:0 26px;border-radius:999px;
