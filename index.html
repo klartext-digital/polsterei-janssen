@@ -1348,8 +1348,13 @@ footer > .wrap{position:relative;z-index:2;max-width:calc(var(--maxw-weit) + 2 *
     radial-gradient(130% 95% at 50% 42%, transparent 18%, rgba(34,31,27,.86) 100%);
 }
 .foot-top{
-  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1.25fr);
-  gap:clamp(34px,5vw,80px);align-items:start;
+  /* Nur noch zwei Spalten: die Direkt-Liste ist entfallen, weil die Knoepfe
+     rechts (Anrufen, E-Mail, WhatsApp) dieselben Wege schon abdecken.
+     justify-content:start packt beide Spalten nach LINKS - sonst haenge die
+     "Sprechen wir."-Spalte weiter am rechten Rand. Die freie Flaeche rechts
+     traegt der grosse Schriftzug darunter. */
+  display:grid;grid-template-columns:minmax(0,auto) minmax(300px,500px);
+  gap:clamp(34px,6vw,96px);align-items:start;justify-content:start;
 }
 .foot-nav{display:flex;flex-direction:column;align-items:flex-start}
 .foot-nav small{
@@ -1581,27 +1586,33 @@ body.wa-weg .wa{opacity:0;transform:translateY(14px) scale(.9);pointer-events:no
    ZWISCHENLOESUNG: gesetzte Wortmarken in der Seitenschrift. Sobald die
    offiziellen Logodateien vorliegen, wird je <span> durch ein <img> ersetzt
    (Hoehe 26px, --marke-op steuert dann die Ruhe-Deckkraft). */
-.marken{padding-block:clamp(44px,5vw,72px)}
+.marken{padding-block:clamp(70px,7.4vw,124px)}
 .marken-in{
   max-width:calc(var(--maxw) + 2 * var(--pad));margin-inline:auto;padding-inline:var(--pad);
 }
 .marken-kopf{
-  display:flex;align-items:baseline;gap:clamp(12px,2vw,26px);flex-wrap:wrap;
-  margin-bottom:clamp(24px,2.6vw,36px);
+  display:flex;align-items:baseline;gap:clamp(12px,2vw,32px);flex-wrap:wrap;
+  margin-bottom:clamp(34px,3.8vw,56px);
 }
 .marken-kopf .slabel{margin:0}
 .marken-kopf p{
-  font-size:clamp(14px,1.15vw,16.5px);color:var(--muted);margin:0;max-width:52ch;
+  /* War Kleingedrucktes in Grau. Als getragene Aussage in Textfarbe traegt
+     der Bereich mehr Gewicht, ohne dass eine neue Ueberschrift noetig wird. */
+  font-size:clamp(18px,1.9vw,27px);font-weight:300;line-height:1.32;
+  letter-spacing:-.015em;color:var(--ink);margin:0;max-width:30ch;
 }
 .marken-reihe{
   display:flex;align-items:center;justify-content:space-between;
-  gap:clamp(18px,3.4vw,54px);flex-wrap:wrap;
-  padding-top:clamp(20px,2.4vw,30px);border-top:1px solid var(--line);
+  gap:clamp(22px,3.2vw,56px);flex-wrap:wrap;
+  /* Linie oben und unten: die Reihe liest sich als eigenes Band, nicht als
+     Anhaengsel unter dem Text. */
+  padding-block:clamp(34px,3.8vw,54px);
+  border-top:1px solid var(--line2);border-bottom:1px solid var(--line2);
 }
 .marke{
-  font-size:clamp(13px,1.32vw,17px);font-weight:500;
-  letter-spacing:.13em;text-transform:uppercase;
-  color:var(--ink);opacity:.42;white-space:nowrap;
+  font-size:clamp(17px,1.9vw,25px);font-weight:500;
+  letter-spacing:.11em;text-transform:uppercase;
+  color:var(--ink);opacity:.62;white-space:nowrap;
   transition:opacity .35s ease, color .35s ease;
 }
 .marke:hover{opacity:1;color:var(--gold-d)}
@@ -1612,24 +1623,30 @@ body.wa-weg .wa{opacity:0;transform:translateY(14px) scale(.9);pointer-events:no
   /* Grundhoehe fuer breite Wortmarken. Kompaktere Zeichen bekommen unten
      mehr Hoehe - bei gleicher Pixelhoehe wirkt ein quadratisches Signet
      sonst halb so gross wie eine breite Wortmarke. */
-  height:clamp(20px,2.1vw,28px);width:auto;
+  height:clamp(34px,3.9vw,54px);width:auto;
   filter:grayscale(1) brightness(0);
-  opacity:.42;
+  opacity:.62;
   transition:opacity .35s ease, filter .35s ease;
 }
 .marke-bild:hover{opacity:1;filter:none}
 /* Optischer Ausgleich statt gleicher Pixelhoehe: gemessen bei 28px Hoehe war
    ADO 83px breit, Sonnhaus 64, JAB 50 und das SV-Signet nur 28. */
-.marke-bild[src*="sonnhaus"]{height:clamp(24px,2.5vw,34px)}
-.marke-bild[src*="jab"]{height:clamp(26px,2.7vw,37px)}
-.marke-bild[src*="saum"]{height:clamp(30px,3.2vw,44px)}
+.marke-bild[src*="sonnhaus"]{height:clamp(41px,4.7vw,66px)}
+.marke-bild[src*="jab"]{height:clamp(44px,5.0vw,71px)}
+.marke-bild[src*="saum"]{height:clamp(51px,5.9vw,85px)}
 @media (max-width:760px){
   .marken-reihe{
-    display:grid;grid-template-columns:repeat(2,1fr);gap:18px 14px;
-    justify-items:start;
+    /* Auf dem Handy ein ruhiges Zweier-Raster: mittig gesetzt und mit fester
+       Zeilenhoehe, sonst haengen die unterschiedlich hohen Zeichen versetzt. */
+    display:grid;grid-template-columns:repeat(2,1fr);gap:26px 14px;
+    justify-items:center;align-items:center;
   }
-  .marke{white-space:normal}
-  .marke-bild{height:22px}
+  .marken-reihe > *{min-height:56px;display:flex;align-items:center}
+  .marke{white-space:normal;font-size:16px}
+  .marke-bild{height:34px}
+  .marke-bild[src*="sonnhaus"]{height:41px}
+  .marke-bild[src*="jab"]{height:44px}
+  .marke-bild[src*="saum"]{height:51px}
 }
 </style>
 </head>
@@ -2311,13 +2328,6 @@ body.wa-weg .wa{opacity:0;transform:translateY(14px) scale(.9);pointer-events:no
         <a href="#werkstatt">Werkstatt</a>
         <a href="#ablauf">Ablauf</a>
         <a href="#kontakt">Anfrage</a>
-      </nav>
-      <nav class="foot-nav" aria-label="Direkter Kontakt">
-        <small>Direkt</small>
-        <a href="tel:+4921513512055"><svg viewBox="0 0 24 24"><path d="M6.5 3.5h3l1.5 4-2 1.4a12 12 0 0 0 6.1 6.1l1.4-2 4 1.5v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.5 5.7a2 2 0 0 1 2-2.2z"/></svg>02151 351 20 55</a>
-        <a href="tel:+491772006594"><svg viewBox="0 0 24 24"><path d="M6.5 3.5h3l1.5 4-2 1.4a12 12 0 0 0 6.1 6.1l1.4-2 4 1.5v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.5 5.7a2 2 0 0 1 2-2.2z"/></svg>0177 200 65 94</a>
-        <a href="https://wa.me/491772006594" target="_blank" rel="noopener"><svg class="wa-glyph" viewBox="0 0 32 32"><path d="M16.04 3.2c-7.1 0-12.87 5.77-12.87 12.87 0 2.27.6 4.49 1.73 6.44L3.2 28.8l6.45-1.68a12.8 12.8 0 0 0 6.39 1.71h.01c7.09 0 12.86-5.77 12.86-12.87 0-3.44-1.34-6.67-3.77-9.1a12.78 12.78 0 0 0-9.1-3.76zm0 23.2h-.01c-1.9 0-3.77-.51-5.4-1.48l-.39-.23-4.02 1.05 1.07-3.92-.25-.4a10.66 10.66 0 0 1-1.64-5.7c0-5.9 4.8-10.7 10.7-10.7 2.86 0 5.55 1.12 7.57 3.14a10.63 10.63 0 0 1 3.13 7.57c0 5.9-4.8 10.67-10.76 10.67zm5.87-7.99c-.32-.16-1.9-.94-2.2-1.05-.29-.1-.5-.16-.72.17-.21.32-.82 1.04-1.01 1.25-.19.21-.37.24-.69.08-.32-.16-1.36-.5-2.59-1.6-.96-.85-1.6-1.91-1.79-2.23-.19-.32-.02-.5.14-.66.15-.14.32-.37.48-.56.16-.19.21-.32.32-.53.11-.21.05-.4-.03-.56-.08-.16-.72-1.74-.99-2.38-.26-.62-.52-.54-.72-.55l-.61-.01c-.21 0-.56.08-.85.4-.29.32-1.11 1.09-1.11 2.65s1.14 3.08 1.3 3.29c.16.21 2.24 3.42 5.43 4.8.76.32 1.35.52 1.81.67.76.24 1.45.21 2 .13.61-.09 1.9-.78 2.17-1.53.27-.75.27-1.39.19-1.53-.08-.13-.29-.21-.61-.37z"/></svg>WhatsApp</a>
-        <a href="mailto:polstereijanssen@gmail.com"><svg viewBox="0 0 24 24"><path d="M3.5 6.5h17v11h-17zM3.5 7l8.5 6 8.5-6"/></svg>E-Mail</a>
       </nav>
       <div class="foot-chat">
         <h2>Sprechen wir.</h2>
