@@ -217,6 +217,19 @@ section[id]{scroll-margin-top:clamp(86px,9vw,104px)}
 }
 .nav.is-scrolled .brand{padding-left:14px}
 .nav.is-scrolled .nav-links{gap:26px}
+/* Geschrumpfte Kopfzeile: die Pille geht nur so breit wie ihr Inhalt.
+   Vorher war sie fast fensterbreit, das Logo sass links und rechts blieb eine
+   grosse Leerflaeche - die Links standen zwar rechnerisch mittig, wirkten aber
+   nach links gerutscht. Als kompakte Pille sitzt das Ganze sichtbar mittig.
+   Nur ab 861px: darunter uebernimmt das Burger-Menue. */
+@media (min-width:861px){
+  .nav.is-scrolled .nav-in{
+    width:fit-content;
+    grid-template-columns:auto auto;
+    padding-inline:8px 30px;
+  }
+  .nav.is-scrolled .nav-rechts{display:none}
+}
 /* Ohne Transparenz-Unterstuetzung: satte Flaeche statt Milchglas */
 @media (prefers-reduced-transparency: reduce){
   .nav.is-scrolled .nav-in{background:var(--bg);backdrop-filter:none;-webkit-backdrop-filter:none}
@@ -1697,7 +1710,7 @@ body.wa-weg .wa{opacity:0;transform:translateY(14px) scale(.9);pointer-events:no
       <div class="hero-text">
         <span class="hero-augen" data-hero>Polsterei &amp; Raumdesign in Krefeld</span>
         <h1 class="hero-word"><span class="mask"><span class="hline">Wir polstern Ihr</span></span><span class="mask"><span class="hline">Lieblingsst&uuml;ck neu</span></span></h1>
-        <p class="hero-lead" data-hero>Neubezug, Aufpolsterung und Reparatur aus eigener Werkstatt. Wir holen ab, beziehen neu und bringen zur&uuml;ck &mdash; in ganz NRW kostenlos.</p>
+        <p class="hero-lead" data-hero>Neubezug, Aufpolsterung und Reparatur aus eigener Werkstatt. Wir holen ab, beziehen neu und bringen zur&uuml;ck. In ganz NRW kostenlos.</p>
         <div class="hero-tun" data-hero>
           <a class="btnN" href="#kontakt"><span class="btnN-fill"></span><span class="btnN-icon"><span class="btnN-pfeile"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span><span class="btnN-lbl"><span>Angebot anfragen</span><span aria-hidden="true">Angebot anfragen</span></span></a>
           <div class="hero-vertrauen">
@@ -1768,7 +1781,7 @@ body.wa-weg .wa{opacity:0;transform:translateY(14px) scale(.9);pointer-events:no
     <div class="shead">
       <span class="slabel" data-rv>Vorher / Nachher</span>
       <h2 class="stitle" data-rv>Aus alt wird neu</h2>
-      <p class="sdesc" data-rv>Polsterm&ouml;bel neu beziehen statt neu kaufen. Ziehen Sie den Regler und vergleichen Sie selbst &ndash; Stoff und Farbe bestimmen Sie.</p>
+      <p class="sdesc" data-rv>Polsterm&ouml;bel neu beziehen statt neu kaufen. Ziehen Sie den Regler und vergleichen Sie selbst. Stoff und Farbe bestimmen Sie.</p>
     </div>
     <div class="ba-grid">
 
@@ -1818,7 +1831,7 @@ body.wa-weg .wa{opacity:0;transform:translateY(14px) scale(.9);pointer-events:no
     <p class="ba-hint">Regler mit Maus, Finger oder Pfeiltasten bewegen</p>
     <div class="ba-say">
       <span class="mlabel" data-rv>Was wir erneuern</span>
-      <p class="ba-say-t" data-worte>Polsterung, Schaumstoff und Federkern erneuern, Holzgestelle aufarbeiten, mit <b>Stoff oder Leder nach Ma&szlig;</b> neu beziehen &ndash; in der eigenen <b>Polsterei in Krefeld</b>, auch f&uuml;r Antikm&ouml;bel und Wohnmobil-Polster.</p>
+      <p class="ba-say-t" data-worte>Polsterung, Schaumstoff und Federkern erneuern, Holzgestelle aufarbeiten, mit <b>Stoff oder Leder nach Ma&szlig;</b> neu beziehen, in der eigenen <b>Polsterei in Krefeld</b>, auch f&uuml;r Antikm&ouml;bel und Wohnmobil-Polster.</p>
     </div>
     <div class="ba-cta" data-rv>
       <a class="btnN" href="#kontakt"><span class="btnN-fill"></span><span class="btnN-icon"><span class="btnN-pfeile"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span><span class="btnN-lbl"><span>Angebot anfragen</span><span aria-hidden="true">Angebot anfragen</span></span></a>
@@ -1832,7 +1845,7 @@ body.wa-weg .wa{opacity:0;transform:translateY(14px) scale(.9);pointer-events:no
     <div class="shead">
       <span class="slabel" data-rv>Was wir k&ouml;nnen</span>
       <h2 class="stitle" data-rv>Leistungen</h2>
-      <p class="sdesc" data-rv>Vom K&uuml;chenstuhl bis zur Wohnlandschaft: Wir fertigen Polster in jeder Gr&ouml;&szlig;e, jedem Stil und jeder St&uuml;ckzahl &mdash; und statten den Raum drumherum gleich mit aus. Ein Klick auf eine Leistung startet Ihre Anfrage.</p>
+      <p class="sdesc" data-rv>Vom K&uuml;chenstuhl bis zur Wohnlandschaft: Wir fertigen Polster in jeder Gr&ouml;&szlig;e, jedem Stil und jeder St&uuml;ckzahl und statten den Raum drumherum gleich mit aus. Ein Klick auf eine Leistung startet Ihre Anfrage.</p>
     </div>
     </div>
     <div class="svc-wide">
@@ -1883,7 +1896,7 @@ body.wa-weg .wa{opacity:0;transform:translateY(14px) scale(.9);pointer-events:no
         <span class="svc-vert"><span>Stoff- &amp; Lederauswahl</span></span>
         <div class="svc-body">
           <h3 class="svc-title">Stoff- &amp; Lederauswahl</h3>
-          <p class="svc-desc">&Uuml;ber 10.000 Stoffe und Leder zur Auswahl &mdash; in Ruhe bei uns im Haus oder mit Musterkarten zu Hause.</p>
+          <p class="svc-desc">&Uuml;ber 10.000 Stoffe und Leder zur Auswahl, in Ruhe bei uns im Haus oder mit Musterkarten zu Hause.</p>
           <div class="svc-tags"><span class="svc-tag">&Uuml;ber 10.000 Stoffe</span><span class="svc-tag">Echtleder</span><span class="svc-tag">Musterkarten nach Hause</span></div>
         </div>
       </a>
@@ -1903,14 +1916,14 @@ body.wa-weg .wa{opacity:0;transform:translateY(14px) scale(.9);pointer-events:no
         <span class="svc-vert"><span>Bodenverlegung</span></span>
         <div class="svc-body">
           <h3 class="svc-title">Bodenverlegung</h3>
-          <p class="svc-desc">Vinyl, Laminat und Teppichboden &mdash; aufgemessen, zugeschnitten und sauber verlegt.</p>
+          <p class="svc-desc">Vinyl, Laminat und Teppichboden: aufgemessen, zugeschnitten und sauber verlegt.</p>
           <div class="svc-tags"><span class="svc-tag">Vinyl &amp; Designbelag</span><span class="svc-tag">Laminat</span><span class="svc-tag">Teppichboden</span></div>
         </div>
       </a>
     </div>
     </div>
     <div class="wrap">
-    <p class="svc-hint">Leistung ausw&auml;hlen, um mehr zu sehen &ndash; ein Klick startet Ihre Anfrage</p>
+    <p class="svc-hint">Leistung ausw&auml;hlen, um mehr zu sehen. Ein Klick startet Ihre Anfrage</p>
     </div>
   </section>
 
@@ -1923,7 +1936,7 @@ body.wa-weg .wa{opacity:0;transform:translateY(14px) scale(.9);pointer-events:no
     <div class="werk-state">
       <span class="slabel" data-rv>Die Werkstatt</span>
       <h2 class="stitle" data-rv>Alles unter einem Dach</h2>
-      <p class="statement" data-worte><b>Eigene Werkstatt, keine Subunternehmer.</b> Zuschnitt, N&auml;herei, Polsterung und Montage laufen bei uns im Haus &mdash; darum liefern wir Handwerksqualit&auml;t zum besten Preis der Region.</p>
+      <p class="statement" data-worte><b>Eigene Werkstatt, keine Subunternehmer.</b> Zuschnitt, N&auml;herei, Polsterung und Montage laufen bei uns im Haus. Darum liefern wir Handwerksqualit&auml;t zum besten Preis der Region.</p>
     </div>
     <div class="werk-photos">
       <figure class="werk-ph" data-rv><img src="assets/werk-video.jpg" alt="Blick in die Werkstatt: Sessel auf der Werkbank, Stoffrollen und Nähplätze unter grossen Fenstern" loading="lazy" width="1400" height="788"></figure>
@@ -2031,7 +2044,7 @@ body.wa-weg .wa{opacity:0;transform:translateY(14px) scale(.9);pointer-events:no
         <div class="tst-zitat">
           <svg class="tst-q" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 6.5C7 8 5.5 10.4 5.5 13.2c0 2.5 1.5 4.3 3.6 4.3 1.9 0 3.3-1.4 3.3-3.2 0-1.8-1.3-3.1-3-3.1-.3 0-.7 0-1 .2.4-1.6 1.6-3 3.2-4.1zM19 6.5c-2.5 1.5-4 3.9-4 6.7 0 2.5 1.5 4.3 3.6 4.3 1.9 0 3.3-1.4 3.3-3.2 0-1.8-1.3-3.1-3-3.1-.3 0-.7 0-1 .2.4-1.6 1.6-3 3.2-4.1z"/></svg>
           <!-- PLATZHALTER: erfundene Kundenstimme, vor der Veroeffentlichung ersetzen -->
-          <blockquote>&bdquo;Unsere Eckbank stand jahrelang mit rissigem Bezug in der K&uuml;che. Abgeholt, den Stoff bei uns zu Hause ausgesucht, nach zwei Wochen zur&uuml;ck &mdash; besser als neu.&ldquo;</blockquote>
+          <blockquote>&bdquo;Unsere Eckbank stand jahrelang mit rissigem Bezug in der K&uuml;che. Abgeholt, den Stoff bei uns zu Hause ausgesucht, nach zwei Wochen zur&uuml;ck. Besser als neu.&ldquo;</blockquote>
           <div class="tst-wer">
             <img src="assets/kunde-2.jpg" alt="Frank B., Kunde aus Krefeld" loading="lazy">
             <div>
@@ -2059,7 +2072,7 @@ body.wa-weg .wa{opacity:0;transform:translateY(14px) scale(.9);pointer-events:no
           <div class="tst-chip"><img src="assets/kunde-5.jpg" alt="" loading="lazy"><span>Krefeld</span></div>
           <svg class="tst-q" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 6.5C7 8 5.5 10.4 5.5 13.2c0 2.5 1.5 4.3 3.6 4.3 1.9 0 3.3-1.4 3.3-3.2 0-1.8-1.3-3.1-3-3.1-.3 0-.7 0-1 .2.4-1.6 1.6-3 3.2-4.1zM19 6.5c-2.5 1.5-4 3.9-4 6.7 0 2.5 1.5 4.3 3.6 4.3 1.9 0 3.3-1.4 3.3-3.2 0-1.8-1.3-3.1-3-3.1-.3 0-.7 0-1 .2.4-1.6 1.6-3 3.2-4.1z"/></svg>
           <span class="stars hell" aria-label="5 von 5 Sternen"></span>
-          <blockquote>&bdquo;Unser Sofa sah aus wie neu gekauft. Abholung am Montag, R&uuml;ckgabe zwei Wochen sp&auml;ter &ndash; alles genau wie besprochen.&ldquo;</blockquote>
+          <blockquote>&bdquo;Unser Sofa sah aus wie neu gekauft. Abholung am Montag, R&uuml;ckgabe zwei Wochen sp&auml;ter. Alles genau wie besprochen.&ldquo;</blockquote>
           <figcaption><b>M. Sanders</b><span>Kunde, Krefeld</span></figcaption>
         </figure>
         <!-- PLATZHALTER: erfundene Kundenstimme, vor der Veroeffentlichung ersetzen -->
@@ -2112,11 +2125,11 @@ body.wa-weg .wa{opacity:0;transform:translateY(14px) scale(.9);pointer-events:no
         <div class="shead">
           <span class="slabel" data-rv>H&auml;ufige Fragen</span>
           <h2 class="stitle" data-rv>Gut zu wissen</h2>
-          <p class="sdesc" data-rv>Die sechs Fragen, die uns am h&auml;ufigsten gestellt werden &mdash; kurz und ohne Umschweife beantwortet.</p>
+          <p class="sdesc" data-rv>Die sechs Fragen, die uns am h&auml;ufigsten gestellt werden, kurz und ohne Umschweife beantwortet.</p>
         </div>
         <div class="faq-hilfe" data-rv>
           <h4>Ihre Frage ist nicht dabei?</h4>
-          <p>Rufen Sie durch oder schreiben Sie kurz &uuml;ber WhatsApp &mdash; wir antworten meist noch am selben Tag.</p>
+          <p>Rufen Sie durch oder schreiben Sie kurz &uuml;ber WhatsApp. Wir antworten meist noch am selben Tag.</p>
           <div class="faq-wege">
             <a href="tel:+4921513512055"><svg viewBox="0 0 24 24"><path d="M6.5 3.5h3l1.5 4-2 1.4a12 12 0 0 0 6.1 6.1l1.4-2 4 1.5v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.5 5.7a2 2 0 0 1 2-2.2z"/></svg>02151 351 20 55</a>
             <a href="https://wa.me/491772006594" target="_blank" rel="noopener"><svg class="wa-glyph" viewBox="0 0 32 32"><path d="M16.04 3.2c-7.1 0-12.87 5.77-12.87 12.87 0 2.27.6 4.49 1.73 6.44L3.2 28.8l6.45-1.68a12.8 12.8 0 0 0 6.39 1.71h.01c7.09 0 12.86-5.77 12.86-12.87 0-3.44-1.34-6.67-3.77-9.1a12.78 12.78 0 0 0-9.1-3.76zm0 23.2h-.01c-1.9 0-3.77-.51-5.4-1.48l-.39-.23-4.02 1.05 1.07-3.92-.25-.4a10.66 10.66 0 0 1-1.64-5.7c0-5.9 4.8-10.7 10.7-10.7 2.86 0 5.55 1.12 7.57 3.14a10.63 10.63 0 0 1 3.13 7.57c0 5.9-4.8 10.67-10.76 10.67zm5.87-7.99c-.32-.16-1.9-.94-2.2-1.05-.29-.1-.5-.16-.72.17-.21.32-.82 1.04-1.01 1.25-.19.21-.37.24-.69.08-.32-.16-1.36-.5-2.59-1.6-.96-.85-1.6-1.91-1.79-2.23-.19-.32-.02-.5.14-.66.15-.14.32-.37.48-.56.16-.19.21-.32.32-.53.11-.21.05-.4-.03-.56-.08-.16-.72-1.74-.99-2.38-.26-.62-.52-.54-.72-.55l-.61-.01c-.21 0-.56.08-.85.4-.29.32-1.11 1.09-1.11 2.65s1.14 3.08 1.3 3.29c.16.21 2.24 3.42 5.43 4.8.76.32 1.35.52 1.81.67.76.24 1.45.21 2 .13.61-.09 1.9-.78 2.17-1.53.27-.75.27-1.39.19-1.53-.08-.13-.29-.21-.61-.37z"/></svg>WhatsApp</a>
@@ -2130,7 +2143,7 @@ body.wa-weg .wa{opacity:0;transform:translateY(14px) scale(.9);pointer-events:no
             <span class="faq-frage">Was kostet ein Neubezug?</span>
             <span class="faq-zeichen" aria-hidden="true"></span>
           </summary>
-          <div class="faq-antwort"><p>Das h&auml;ngt vom M&ouml;belst&uuml;ck, vom Zustand und vom gew&auml;hlten Stoff ab. Sie bekommen von uns ein festes Angebot, bevor irgendetwas passiert &mdash; erst wenn es Ihnen passt, geben Sie den Auftrag frei.</p></div>
+          <div class="faq-antwort"><p>Das h&auml;ngt vom M&ouml;belst&uuml;ck, vom Zustand und vom gew&auml;hlten Stoff ab. Sie bekommen von uns ein festes Angebot, bevor irgendetwas passiert. Erst wenn es Ihnen passt, geben Sie den Auftrag frei.</p></div>
         </details>
         <details class="faq-punkt">
           <summary>
@@ -2146,7 +2159,7 @@ body.wa-weg .wa{opacity:0;transform:translateY(14px) scale(.9);pointer-events:no
             <span class="faq-frage">Holen Sie meine M&ouml;bel ab?</span>
             <span class="faq-zeichen" aria-hidden="true"></span>
           </summary>
-          <div class="faq-antwort"><p>Ja. In ganz Nordrhein-Westfalen holen wir kostenlos ab und liefern zur&uuml;ck &mdash; inklusive Montage vor Ort. Sie m&uuml;ssen nichts transportieren.</p></div>
+          <div class="faq-antwort"><p>Ja. In ganz Nordrhein-Westfalen holen wir kostenlos ab und liefern zur&uuml;ck, inklusive Montage vor Ort. Sie m&uuml;ssen nichts transportieren.</p></div>
         </details>
         <details class="faq-punkt">
           <summary>
@@ -2154,7 +2167,7 @@ body.wa-weg .wa{opacity:0;transform:translateY(14px) scale(.9);pointer-events:no
             <span class="faq-frage">Kann ich Stoffe in Ruhe aussuchen?</span>
             <span class="faq-zeichen" aria-hidden="true"></span>
           </summary>
-          <div class="faq-antwort"><p>Wir bringen Ihnen die Muster nach Hause. Dort sehen Sie Farbe und Struktur bei Ihrem Licht, neben Ihren M&ouml;beln &mdash; das ist etwas anderes als ein Musterbuch im Laden.</p></div>
+          <div class="faq-antwort"><p>Wir bringen Ihnen die Muster nach Hause. Dort sehen Sie Farbe und Struktur bei Ihrem Licht, neben Ihren M&ouml;beln. Das ist etwas anderes als ein Musterbuch im Laden.</p></div>
         </details>
         <details class="faq-punkt">
           <summary>
@@ -2170,7 +2183,7 @@ body.wa-weg .wa{opacity:0;transform:translateY(14px) scale(.9);pointer-events:no
             <span class="faq-frage">Wie komme ich zu einem Angebot?</span>
             <span class="faq-zeichen" aria-hidden="true"></span>
           </summary>
-          <div class="faq-antwort"><p>Am schnellsten &uuml;ber das Formular auf dieser Seite &mdash; vier kurze Fragen. Genauso gern per Telefon oder WhatsApp. Wir melden uns in der Regel innerhalb von 24&nbsp;Stunden.</p></div>
+          <div class="faq-antwort"><p>Am schnellsten &uuml;ber das Formular auf dieser Seite: vier kurze Fragen. Genauso gern per Telefon oder WhatsApp. Wir melden uns in der Regel innerhalb von 24&nbsp;Stunden.</p></div>
         </details>
       </div>
       </div>
@@ -2184,7 +2197,7 @@ body.wa-weg .wa{opacity:0;transform:translateY(14px) scale(.9);pointer-events:no
 
       <div class="kt-side">
         <h2 class="kt-big" data-rv>Sprechen wir<br>dar&uuml;ber.</h2>
-        <p class="kt-lead" data-rv>Erz&auml;hlen Sie uns von Ihrem M&ouml;belst&uuml;ck &mdash; <i>ob Sofa, Sessel, Eckbank oder Wohnmobil.</i></p>
+        <p class="kt-lead" data-rv>Erz&auml;hlen Sie uns von Ihrem M&ouml;belst&uuml;ck, <i>ob Sofa, Sessel, Eckbank oder Wohnmobil.</i></p>
         <div class="kt-rule"></div>
 
         <div class="kt-slot" id="ktSlot">
@@ -2294,7 +2307,7 @@ body.wa-weg .wa{opacity:0;transform:translateY(14px) scale(.9);pointer-events:no
                   </label>
                   <input id="fFotos" type="file" accept="image/*" multiple hidden>
                   <div class="foto-liste" id="fotos"></div>
-                  <p class="form-note">Bilder gehen aktuell noch nicht per E-Mail mit &ndash; nach dem Absenden zeigen wir Ihnen den WhatsApp-Weg.</p>
+                  <p class="form-note">Bilder gehen aktuell noch nicht per E-Mail mit. Nach dem Absenden zeigen wir Ihnen den WhatsApp-Weg.</p>
                 </div>
               </div>
               <div class="fnav">
@@ -2337,7 +2350,7 @@ body.wa-weg .wa{opacity:0;transform:translateY(14px) scale(.9);pointer-events:no
       </nav>
       <div class="foot-chat">
         <h2>Sprechen wir.</h2>
-        <p>Kein Formular n&ouml;tig &ndash; rufen Sie einfach an.</p>
+        <p>Kein Formular n&ouml;tig, rufen Sie einfach an.</p>
         <div class="foot-pills">
           <a class="pill-a" href="tel:+4921513512055">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3.5h3l1.5 4-2 1.4a12 12 0 0 0 6.1 6.1l1.4-2 4 1.5v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.5 5.7a2 2 0 0 1 2-2.2z"/></svg>
