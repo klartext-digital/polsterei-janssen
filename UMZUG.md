@@ -43,41 +43,44 @@ mit hochgeladen.
 
 ---
 
+## Stand: was schon erledigt ist
+
+**Auf Hostinger eingerichtet (11.09.2026):**
+
+- Website unter **polstereijanssen.de** angelegt, Serverstandort **Frankfurt**
+  (13 ms, Sicherungen innerhalb der EU)
+- Alle 57 Dateien liegen in `public_html` und laufen
+- **PHP ist aktiv** und das Anfrageformular verschickt jetzt selbst E-Mails
+- Hostingers Platzhalterseite und die Upload-Pakete wieder entfernt
+- Vorschau-Adresse: **https://mediumblue-rhinoceros-245596.hostingersite.com**
+
+**Geprüft, alles in Ordnung:**
+
+| Prüfung | Ergebnis |
+|---|---|
+| Alle Seiten, Bilder, Videos | 200 |
+| Weiterleitungen der alten Wix-Adressen | greifen, auch `/über-uns` in beiden Schreibweisen |
+| Eigene Fehlerseite statt Hostinger-Standard | greift |
+| Formular: ungültige E-Mail / fehlender Name | wird abgewiesen |
+| Formular: Spamschutz (Honigtopf, Zeitprüfung) | greift, ohne Mail auszulösen |
+
+**Das Formular verschickt jetzt echte E-Mails:**
+
+- Empfänger: `polstereijanssen@gmail.com`
+- Absender: `anfrage@polstereijanssen.de` — **nicht** die Gmail-Adresse. Würde der
+  Server behaupten, die Mail käme von @gmail.com, würfe Google sie als Fälschung
+  weg oder steckte sie in den Spam.
+- Antwort-an: die Adresse des Kunden. Gigi drückt einfach auf „Antworten".
+- **Fotos reisen jetzt mit** (bis 6 Stück, 5 MB je Bild, 15 MB gesamt).
+  Vorher hiess es auf der Seite, Bilder müssten per WhatsApp nachgereicht werden.
+- Klappt der Versand einmal nicht, fällt das Formular automatisch auf den alten
+  Weg über das Mailprogramm zurück. Es geht also nie eine Anfrage verloren.
+
+---
+
 ## Was du tun musst
 
-### Schritt 1 — Hostinger: Website anlegen
-Im hPanel unter **Websites → Website erstellen oder übertragen** die Variante
-für eine **eigene, bereits fertige Website** wählen (nicht den KI-Builder,
-nicht WordPress). Als Domain `polstereijanssen.de` eintragen.
-
-### Schritt 2 — Dateien hochladen
-**Dateimanager** öffnen, in den Ordner **`public_html`** wechseln.
-Falls dort eine Beispieldatei liegt (`default.php` oder ähnlich): löschen.
-
-Dann `polsterei-janssen-upload.zip` hochladen und **an Ort und Stelle
-entpacken**. Die Dateien liegen direkt im ZIP, ohne Unterordner — nach dem
-Entpacken muss also nichts verschoben werden.
-
-Danach muss `public_html` so aussehen:
-```
-index.html   impressum.html   datenschutz.html   404.html
-.htaccess    robots.txt       sitemap.xml        favicon.ico
-assets/      (48 Bilder, Videos und Logos)
-```
-> `.htaccess` beginnt mit einem Punkt und ist deshalb oft unsichtbar.
-> Im Hostinger-Dateimanager gibt es dafür einen Schalter „versteckte Dateien
-> anzeigen". Prüfe, dass sie wirklich da ist — ohne sie greifen weder die
-> Weiterleitungen noch https.
-
-### Schritt 3 — Erst testen, dann umschalten
-Hostinger gibt dir eine Vorschau-Adresse (endet auf `.hostingersite.com`).
-**Ruf die auf und schau dir die Seite an, bevor irgendein DNS angefasst wird.**
-Solange läuft die alte Wix-Seite ungestört weiter.
-
-Sag mir Bescheid, wenn die Vorschau-Adresse steht — dann prüfe ich sie durch
-(Statuscodes, Konsole, Desktop und Handy) und melde, ob alles sitzt.
-
-### Schritt 4 — DNS umstellen (der eigentliche Umzug)
+### Der einzige verbleibende Schritt: DNS umstellen
 Die Domain wird aktuell von **Wix** verwaltet — die Nameserver sind
 `ns12.wixdns.net` und `ns13.wixdns.net`.
 

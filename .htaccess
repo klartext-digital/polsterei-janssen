@@ -9,12 +9,19 @@
 # statt jede bekannte Adresse zusätzlich umzubiegen.
 RewriteEngine On
 
+# AUSNAHME: Hostingers Vorschau-Adressen (…​.hostingersite.com) bleiben
+# unangetastet. Ohne diese Zeile wuerde die Vorschau auf die echte Domain
+# umleiten - und damit auf die alte Wix-Seite, solange das DNS noch dort zeigt.
+# Testen waere dann unmoeglich.
+
 # http -> https, dabei gleich auf www (nur EIN Sprung statt zwei)
+RewriteCond %{HTTP_HOST} !\.hostingersite\.com$ [NC]
 RewriteCond %{HTTPS} !=on
 RewriteCond %{HTTP:X-Forwarded-Proto} !=https
 RewriteRule ^ https://www.polstereijanssen.de%{REQUEST_URI} [R=301,L]
 
 # ohne www -> mit www
+RewriteCond %{HTTP_HOST} !\.hostingersite\.com$ [NC]
 RewriteCond %{HTTP_HOST} !^www\.polstereijanssen\.de$ [NC]
 RewriteRule ^ https://www.polstereijanssen.de%{REQUEST_URI} [R=301,L]
 
