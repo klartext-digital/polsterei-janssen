@@ -1,0 +1,74 @@
+# ============================================================
+#  Polsterei Janssen — Serverregeln für Hostinger (Apache/LiteSpeed)
+#  Angelegt beim Umzug von Wix, 11.09.2026
+# ============================================================
+
+# ---------- 1. Eine einzige richtige Adresse ----------
+# Google hat bisher https://www.polstereijanssen.de/... im Index.
+# Deshalb bleibt "www" die Hauptadresse - so bleibt der Aufbau erhalten,
+# statt jede bekannte Adresse zusätzlich umzubiegen.
+RewriteEngine On
+
+# http -> https, dabei gleich auf www (nur EIN Sprung statt zwei)
+RewriteCond %{HTTPS} !=on
+RewriteCond %{HTTP:X-Forwarded-Proto} !=https
+RewriteRule ^ https://www.polstereijanssen.de%{REQUEST_URI} [R=301,L]
+
+# ohne www -> mit www
+RewriteCond %{HTTP_HOST} !^www\.polstereijanssen\.de$ [NC]
+RewriteRule ^ https://www.polstereijanssen.de%{REQUEST_URI} [R=301,L]
+
+# ---------- 2. Alte Wix-Adressen auffangen ----------
+# Ohne diese Zeilen landen alle bisherigen Google-Treffer auf einer
+# Fehlerseite. Das "NE" sorgt dafür, dass das # nicht verstümmelt wird.
+RewriteRule ^impressum/?$                 /impressum.html   [R=301,L]
+RewriteRule ^datenschutz/?$               /datenschutz.html [R=301,L]
+RewriteRule ^cookies/?$                   /datenschutz.html [R=301,L]
+RewriteRule ^kontakt/?$                   /#kontakt         [R=301,L,NE]
+RewriteRule ^projekte/?$                  /#wandel          [R=301,L,NE]
+RewriteRule ^inquiry-services-page/?$     /#kontakt         [R=301,L,NE]
+# "über-uns" steht im Index mal als Umlaut, mal als %C3%BCber-uns
+RewriteRule ber-uns/?$                    /#werkstatt       [R=301,L,NE,NC]
+
+# Der alte Wix-Shop enthielt nur unbenutzte Vorlagen-Produkte
+# ("Das ist ein Produkt 1-11"). Die sollen verschwinden, nicht bestehen bleiben.
+RewriteRule ^product-page/                /                 [R=301,L]
+RewriteRule ^category/                    /                 [R=301,L]
+
+# ---------- 3. Fehlerseite ----------
+ErrorDocument 404 /404.html
+
+# ---------- 4. Tempo ----------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml
+  AddOutputFilterByType DEFLATE application/javascript application/json
+  AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  # Bilder, Video und Schriften ändern sich praktisch nie
+  ExpiresByType image/jpeg               "access plus 1 year"
+  ExpiresByType image/png                "access plus 1 year"
+  ExpiresByType image/webp               "access plus 1 year"
+  ExpiresByType image/svg+xml            "access plus 1 year"
+  ExpiresByType video/mp4                "access plus 1 year"
+  ExpiresByType font/woff2               "access plus 1 year"
+  # Die HTML-Datei selbst kurz halten, sonst sehen Besucher nach einer
+  # Änderung tagelang den alten Stand.
+  ExpiresByType text/html                "access plus 10 minutes"
+  ExpiresByType application/xml          "access plus 1 hour"
+</IfModule>
+
+# ---------- 5. Grundschutz ----------
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set X-Frame-Options "SAMEORIGIN"
+</IfModule>
+
+# Projekt- und Notizdateien gehören nicht ins Netz
+<FilesMatch "\.(md|sh|py)$">
+  Require all denied
+</FilesMatch>
+Options -Indexes

@@ -7,7 +7,13 @@
 <meta name="description" content="Neubezug, Aufpolsterung und Reparatur aus eigener Werkstatt in Krefeld. Kostenloser Hol- und Bringservice in ganz NRW. Jetzt Angebot anfragen.">
 <meta property="og:title" content="Polsterei Janssen | Wir polstern Ihr Lieblingsstück neu">
 <meta property="og:description" content="Neubezug, Aufpolsterung und Reparatur aus eigener Werkstatt in Krefeld. Kostenloser Hol- und Bringservice in ganz NRW.">
-<meta property="og:image" content="assets/hero-a.jpg">
+<meta property="og:image" content="https://www.polstereijanssen.de/assets/hero-poster.jpg">
+<meta property="og:url" content="https://www.polstereijanssen.de/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="de_DE">
+<meta property="og:site_name" content="Polsterei Janssen">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://www.polstereijanssen.de/">
 <meta name="theme-color" content="#F4EFE7">
 <link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="preconnect" href="https://api.fontshare.com">
@@ -1668,6 +1674,79 @@ body.wa-weg .wa{opacity:0;transform:translateY(14px) scale(.9);pointer-events:no
   .marke-bild[src*="saum"]{height:51px}
 }
 </style>
+
+<!-- Strukturierte Daten: damit Google Betrieb, Standorte und Leistungen versteht.
+     Bewusst OHNE Bewertungssterne - die 4,8 ist bisher ein Platzhalter, und
+     erfundene Bewertungsdaten sind ein Verstoss gegen Googles Richtlinien. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "HomeAndConstructionBusiness",
+      "@id": "https://www.polstereijanssen.de/#betrieb",
+      "name": "Polsterei Janssen",
+      "alternateName": "Polsterei Janssen Raumdesign",
+      "url": "https://www.polstereijanssen.de/",
+      "image": "https://www.polstereijanssen.de/assets/hero-poster.jpg",
+      "logo": "https://www.polstereijanssen.de/assets/logo-quer-gold.png",
+      "description": "Neubezug, Aufpolsterung und Reparatur von Polstermoebeln aus eigener Werkstatt in Krefeld. Dazu Gardinen, Sonnenschutz und Bodenverlegung. Kostenloser Hol- und Bringservice in ganz Nordrhein-Westfalen.",
+      "telephone": "+49 2151 3512055",
+      "email": "polstereijanssen@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Buschstrasse 244",
+        "postalCode": "47800",
+        "addressLocality": "Krefeld",
+        "addressRegion": "Nordrhein-Westfalen",
+        "addressCountry": "DE"
+      },
+      "areaServed": {
+        "@type": "State",
+        "name": "Nordrhein-Westfalen"
+      },
+      "knowsLanguage": "de",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Leistungen",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Polster-Neubezug" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Aufpolsterung und Federkern" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Holz- und Antikrestaurierung" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Wohnmobil- und Sonderanfertigung" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Stoff- und Lederauswahl" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Gardinen und Sonnenschutz" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Bodenverlegung" } }
+        ]
+      }
+    },
+    {
+      "@type": "HomeAndConstructionBusiness",
+      "@id": "https://www.polstereijanssen.de/#zweigstelle",
+      "name": "Polsterei Janssen, Zweigstelle Ennigerloh",
+      "parentOrganization": { "@id": "https://www.polstereijanssen.de/#betrieb" },
+      "url": "https://www.polstereijanssen.de/",
+      "telephone": "+49 2151 3512055",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Ewaldstrasse 3",
+        "postalCode": "59320",
+        "addressLocality": "Ennigerloh",
+        "addressRegion": "Nordrhein-Westfalen",
+        "addressCountry": "DE"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.polstereijanssen.de/#website",
+      "url": "https://www.polstereijanssen.de/",
+      "name": "Polsterei Janssen",
+      "inLanguage": "de-DE",
+      "publisher": { "@id": "https://www.polstereijanssen.de/#betrieb" }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
