@@ -1,0 +1,15 @@
+# Polsterei Janssen
+User-agent: *
+Allow: /
+
+# KI-Suchdienste ausdrücklich erlaubt - sie schicken zunehmend Kundschaft
+User-agent: GPTBot
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://www.polstereijanssen.de/sitemap.xml
