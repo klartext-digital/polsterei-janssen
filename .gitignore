@@ -21,3 +21,6 @@ hero-clips/
 
 # Rohmaterial Video-Storyboard (nur lokal)
 video_skript/
+
+# Ausgaben fuer Anzeigen (nur lokal)
+export/
