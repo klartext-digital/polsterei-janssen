@@ -2369,6 +2369,13 @@ body.wa-weg .wa{opacity:0;transform:translateY(14px) scale(.9);pointer-events:no
             <p class="fh">Wohin d&uuml;rfen wir das Angebot schicken?</p>
             <div class="sum" id="sumChips"></div>
             <form id="kForm" novalidate>
+              <!-- Spamschutz: Das Feld ist fuer Menschen unsichtbar. Automatische
+                   Skripte fuellen trotzdem jedes Feld aus und verraten sich damit.
+                   "gestartet" haelt fest, wann die Seite geladen wurde. -->
+              <div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden">
+                <label>Webseite<input type="text" name="webseite" tabindex="-1" autocomplete="off"></label>
+              </div>
+              <input type="hidden" name="gestartet" id="fGestartet" value="">
               <div class="form-grid">
                 <div class="field"><label for="fName">Name</label><input id="fName" name="name" autocomplete="name" spellcheck="false"><span class="ferr">Bitte geben Sie Ihren Namen an.</span></div>
                 <div class="field"><label for="fTel">Telefon</label><input id="fTel" type="tel" inputmode="tel" name="telefon" autocomplete="tel" placeholder="F&uuml;r schnelle R&uuml;ckfragen"></div>
@@ -2386,11 +2393,11 @@ body.wa-weg .wa{opacity:0;transform:translateY(14px) scale(.9);pointer-events:no
                   </label>
                   <input id="fFotos" type="file" accept="image/*" multiple hidden>
                   <div class="foto-liste" id="fotos"></div>
-                  <p class="form-note">Bilder gehen aktuell noch nicht per E-Mail mit. Nach dem Absenden zeigen wir Ihnen den WhatsApp-Weg.</p>
+                  <p class="form-note">Bilder helfen uns beim Angebot &ndash; sie gehen direkt mit Ihrer Anfrage an uns.</p>
                 </div>
               </div>
               <div class="fnav">
-                <button class="btnN" type="submit"><span class="btnN-fill"></span><span class="btnN-icon"><span class="btnN-pfeile"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span><span class="btnN-lbl"><span>Anfrage senden</span><span aria-hidden="true">Anfrage senden</span></span></button>
+                <button class="btnN" id="fSend" type="submit"><span class="btnN-fill"></span><span class="btnN-icon"><span class="btnN-pfeile"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span><span class="btnN-lbl"><span>Anfrage senden</span><span aria-hidden="true">Anfrage senden</span></span></button>
               </div>
               <p class="form-note">Ihre Anfrage &ouml;ffnet sich fertig ausgef&uuml;llt in Ihrem E-Mail-Programm.</p>
             </form>
@@ -2764,23 +2771,62 @@ $('kForm').addEventListener('submit', e => {
     'Nachricht:\n' + (f.nachricht.value || '-');
 
   const fotoHinweis = $('doneFotos');
-  if (fotos.length){
-    fotoHinweis.hidden = false;
-    fotoHinweis.innerHTML = 'Ihre ' + fotos.length + (fotos.length > 1 ? ' Fotos können' : ' Foto kann')
-      + ' per E-Mail noch nicht mitreisen. Schicken Sie die Bilder am schnellsten über '
-      + '<a href="https://wa.me/491772006594" target="_blank" rel="noopener">WhatsApp</a> an uns.';
-  } else {
-    fotoHinweis.hidden = true;
-  }
 
-  showStep(5);
-  steps[4].classList.add('on');
-  setTimeout(() => {
-    location.href = 'mailto:polstereijanssen@gmail.com'
-      + '?subject=' + encodeURIComponent('Polster-Anfrage über die Website')
-      + '&body=' + encodeURIComponent(body);
-  }, reduced ? 0 : 450);
+  /* Der Server verschickt die Anfrage selbst - die Fotos reisen jetzt mit.
+     Klappt das nicht (kein PHP, Server stumm, Funkloch), faellt es auf den
+     alten Weg ueber das Mailprogramm zurueck. So geht nie eine Anfrage
+     verloren, nur die Fotos muessen dann per WhatsApp nachkommen. */
+  const zeigeErfolg = (mitFotos) => {
+    if (mitFotos && fotos.length){
+      fotoHinweis.hidden = false;
+      fotoHinweis.textContent = 'Ihre ' + fotos.length
+        + (fotos.length > 1 ? ' Fotos sind mitgegangen.' : ' Foto ist mitgegangen.');
+    } else if (fotos.length){
+      fotoHinweis.hidden = false;
+      fotoHinweis.innerHTML = 'Ihre ' + fotos.length + (fotos.length > 1 ? ' Fotos konnten' : ' Foto konnte')
+        + ' nicht mitreisen. Schicken Sie die Bilder am schnellsten über '
+        + '<a href="https://wa.me/491772006594" target="_blank" rel="noopener">WhatsApp</a> an uns.';
+    } else {
+      fotoHinweis.hidden = true;
+    }
+    showStep(5);
+    steps[4].classList.add('on');
+  };
+
+  const perMailprogramm = () => {
+    zeigeErfolg(false);
+    setTimeout(() => {
+      location.href = 'mailto:polstereijanssen@gmail.com'
+        + '?subject=' + encodeURIComponent('Polster-Anfrage über die Website')
+        + '&body=' + encodeURIComponent(body);
+    }, reduced ? 0 : 450);
+  };
+
+  const daten = new FormData();
+  daten.append('name', f.name.value);
+  daten.append('email', f.email.value);
+  daten.append('telefon', f.telefon.value || '');
+  daten.append('ort', f.ort.value || '');
+  daten.append('nachricht', f.nachricht.value || '');
+  daten.append('moebel', answers.moebel || '');
+  daten.append('leistung', answers.leistung.join(', '));
+  daten.append('zeit', answers.zeit || '');
+  daten.append('webseite', f.webseite ? f.webseite.value : '');
+  daten.append('gestartet', $('fGestartet').value || '');
+  fotos.forEach(datei => daten.append('fotos[]', datei, datei.name));
+
+  const senden = $('fSend');
+  if (senden) senden.setAttribute('aria-busy', 'true');
+
+  fetch('anfrage.php', { method: 'POST', body: daten })
+    .then(a => a.ok ? a.json() : Promise.reject(new Error('Antwort ' + a.status)))
+    .then(a => { if (a && a.ok) zeigeErfolg(true); else throw new Error('abgelehnt'); })
+    .catch(() => perMailprogramm())
+    .finally(() => { if (senden) senden.removeAttribute('aria-busy'); });
 });
+
+/* Startzeit setzen, sobald die Seite steht */
+(() => { const g = $('fGestartet'); if (g) g.value = String(Date.now()); })();
 
 $('fAgain').addEventListener('click', () => {
   answers.moebel = null; answers.zeit = null; answers.leistung.length = 0;
