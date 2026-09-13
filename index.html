@@ -1052,11 +1052,14 @@ html.js:not(.reduced) .stat.an h3::before{transform:scaleX(1)}
 /* Gestaltetes Hintergrundbild statt eines Musters: weiche Stofffalten,
    nach links hin leer, damit Titel und Text ruhig darauf stehen. */
 .faq::before{
-  content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+  /* Feste Hoehe statt inset:0, sonst skaliert und rutscht das Bild beim Aufklappen der Fragen mit */
+  content:"";position:absolute;top:0;left:0;right:0;height:max(56.25vw, 1100px);z-index:0;pointer-events:none;
   background:url("assets/hg-faq.jpg") center right/cover no-repeat;
   opacity:.55;
-  -webkit-mask:linear-gradient(to right, transparent 0%, rgba(0,0,0,.35) 34%, #000 72%);
-  mask:linear-gradient(to right, transparent 0%, rgba(0,0,0,.35) 34%, #000 72%);
+  -webkit-mask:linear-gradient(to right, transparent 0%, rgba(0,0,0,.35) 34%, #000 72%), linear-gradient(to bottom, #000 78%, transparent 100%);
+  -webkit-mask-composite:source-in;
+  mask:linear-gradient(to right, transparent 0%, rgba(0,0,0,.35) 34%, #000 72%), linear-gradient(to bottom, #000 78%, transparent 100%);
+  mask-composite:intersect;
 }
 .faq-in{
   display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);
@@ -1894,21 +1897,8 @@ body.wa-weg .wa{opacity:0;transform:translateY(14px) scale(.9);pointer-events:no
 
       <figure class="ba-card" data-rv>
         <div class="ba-frame">
-          <img class="ba-vor" src="assets/ba-eckbank-vor.jpg" alt="Alte Eckbank mit rissigem braunem Kunstlederbezug" loading="lazy">
-          <img class="ba-nach" src="assets/ba-eckbank-nach.jpg" alt="Dieselbe Eckbank mit neuem Cordbezug in Senfgelb" loading="lazy">
-          <span class="ba-line" aria-hidden="true"></span>
-          <span class="ba-knob" aria-hidden="true"></span>
-          <span class="ba-tag nach">Nachher</span>
-          <span class="ba-tag vor">Vorher</span>
-          <input class="ba-range" type="range" min="0" max="100" value="50" step="0.5" aria-label="Vorher-Nachher-Vergleich Eckbank: Regler ziehen">
-        </div>
-        <figcaption class="ba-cap"><b>Eckbank neu beziehen</b><span class="fab">K&uuml;chen-Eckbank, Cord in Senfgelb</span></figcaption>
-      </figure>
-
-      <figure class="ba-card" data-rv>
-        <div class="ba-frame">
-          <img class="ba-vor" src="assets/ba-antik-stuhl-vor.jpg" alt="Antiker Louis-Philippe-Stuhl mit verschlissenem grauem Sitzbezug" loading="lazy">
-          <img class="ba-nach" src="assets/ba-antik-stuhl-nach.jpg" alt="Derselbe antike Stuhl mit neuem Damastbezug in Gold und Ziernägeln" loading="lazy">
+          <img class="ba-vor" src="assets/ba-antikstuhl-vor.jpg" alt="Antiker Louis-Philippe-Stuhl mit verschlissenem Sitzbezug" loading="lazy">
+          <img class="ba-nach" src="assets/ba-antikstuhl-nach.jpg" alt="Derselbe antike Stuhl mit neuem Damastbezug in Gold und Ziern&auml;geln" loading="lazy">
           <span class="ba-line" aria-hidden="true"></span>
           <span class="ba-knob" aria-hidden="true"></span>
           <span class="ba-tag nach">Nachher</span>
@@ -1916,6 +1906,19 @@ body.wa-weg .wa{opacity:0;transform:translateY(14px) scale(.9);pointer-events:no
           <input class="ba-range" type="range" min="0" max="100" value="50" step="0.5" aria-label="Vorher-Nachher-Vergleich antiker Stuhl: Regler ziehen">
         </div>
         <figcaption class="ba-cap"><b>Antiken Stuhl aufarbeiten</b><span class="fab">Louis-Philippe-Stuhl, Damast in Gold</span></figcaption>
+      </figure>
+
+      <figure class="ba-card" data-rv>
+        <div class="ba-frame">
+          <img class="ba-vor" src="assets/ba-antiksessel-vor.jpg" alt="Antiker Louis-XV-Sessel mit zerrissenem, fleckigem Bezug" loading="lazy">
+          <img class="ba-nach" src="assets/ba-antiksessel-nach.jpg" alt="Derselbe antike Sessel mit neuem Samtbezug in Nachtblau und aufgearbeitetem Holz" loading="lazy">
+          <span class="ba-line" aria-hidden="true"></span>
+          <span class="ba-knob" aria-hidden="true"></span>
+          <span class="ba-tag nach">Nachher</span>
+          <span class="ba-tag vor">Vorher</span>
+          <input class="ba-range" type="range" min="0" max="100" value="50" step="0.5" aria-label="Vorher-Nachher-Vergleich antiker Sessel: Regler ziehen">
+        </div>
+        <figcaption class="ba-cap"><b>Antiken Sessel neu polstern</b><span class="fab">Louis-XV-Sessel, Samt in Nachtblau</span></figcaption>
       </figure>
 
 
