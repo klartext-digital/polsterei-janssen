@@ -4,6 +4,26 @@ Stand 11.09.2026. Domain: **polstereijanssen.de**
 
 ---
 
+## LIVEGANG 13.09.2026
+
+Umgestellt am 13.09.2026 gegen 14:00 Uhr.
+
+- **Die Domain ist bei Wix gekauft** (Verlängerung 26.01.2027). Wix erlaubt bei dort
+  gekauften Domains keine eigenen Nameserver, deshalb Umstellung über DNS-Einträge:
+  - A `polstereijanssen.de` → `46.202.156.81` (die drei alten Wix-Adressen
+    185.230.63.171 / .186 / .107 gelöscht)
+  - CNAME `www` → `polstereijanssen.de` (vorher cdn3.wixdns.net)
+- Hostinger meldet „Domain ist jetzt verbunden", Google- und Cloudflare-Resolver
+  zeigen bereits auf Hostinger.
+- Lifetime-SSL wird von Hostinger automatisch ausgestellt.
+- **Wix-Domain NIE kündigen**, sonst ist polstereijanssen.de weg. Das Wix-Website-Abo
+  („My Site 3", Premium) kann später weg, die Domain-Verlängerung muss bleiben.
+- Keine E-Mail an der Domain (keine MX-Einträge) – beim Umstellen ging nichts verloren.
+- Rechtsseiten: Impressum und Datenschutz 1:1 von der alten Wix-Seite, Hauptsitz
+  überall Buschstraße 244, 47800 Krefeld; Tippfehler der Wix-Seite korrigiert.
+
+---
+
 ## Was ich vorher geprüft habe
 
 **Zwei Befunde, die den Umzug deutlich entspannen:**
