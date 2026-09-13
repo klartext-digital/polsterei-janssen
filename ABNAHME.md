@@ -75,7 +75,7 @@ gegen **Elwaldstraße** bei der Zweigstelle.
 
 Aktuell steht überall die erste Fassung — im Impressum, im Footer und in den
 strukturierten Daten für Google. Eine falsche Impressumsadresse ist für sich
-genommen schon ein Risiko. Muss Gigi bestätigen.
+genommen schon ein Risiko. GEKLÄRT 13.09.2026: Hauptsitz ist Buschstraße 244, 47800 Krefeld (so auch im Kontaktblock der alten Seite). Die Bruchstraße 14 war veraltet und ist überall raus.
 
 ### 4. Impressum ist unvollständig
 
