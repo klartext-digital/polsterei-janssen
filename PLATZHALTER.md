@@ -170,3 +170,6 @@ Drei von sechs Logos liegen lokal in `Logos/partner/` (nicht im Repo, Ordner ist
 neben drei gesetzten Schriftzügen würden kaputt aussehen — der Austausch lohnt erst,
 wenn alle sechs in vergleichbarer Qualität vorliegen (am besten Vektor oder
 transparentes PNG, einfarbig dunkel für den Creme-Grund).
+
+## Vorher/Nachher: Antiker Stuhl (13.09.2026)
+- assets/ba-antik-stuhl-vor.jpg / -nach.jpg: Louis-Philippe-Stuhl aus dem Fabio-Soltani-Projekt übernommen (KI-Bild), Wasserzeichen entfernt, Stuhl auf neutralen dunklen Hintergrund gesetzt. Kein echtes Janssen-Projekt.
