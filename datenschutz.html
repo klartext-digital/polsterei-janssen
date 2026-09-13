@@ -39,6 +39,18 @@ a.mail{color:var(--acc)}
 footer{border-top:1px solid var(--line);padding:24px 0;color:var(--ink2);font-size:.9rem}
 footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 footer a:hover{color:var(--acc)}
+footer a{display:inline-block;padding-block:10px;margin-block:-10px}
+header .wrap{gap:14px}
+.back{white-space:nowrap;flex:none}
+/* Schmale Handys: Logo und Knopf passen nebeneinander, ohne seitlich ueberzulaufen */
+@media (max-width:420px){
+  .brand-logo{height:32px}
+  .back{padding:9px 15px;font-size:.84rem}
+}
+@media (max-width:340px){
+  .brand-logo{height:28px}
+  .back{padding:8px 12px}
+}
 </style>
 </head>
 <body>
