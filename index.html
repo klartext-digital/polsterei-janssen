@@ -246,7 +246,7 @@ section[id]{scroll-margin-top:clamp(86px,9vw,104px)}
 .brand{display:flex;align-items:center;flex:none}
 /* ZWISCHENLOESUNG: Schriftzug im Stil des echten Logos (Marine + Gold).
    Wird ersetzt, sobald die Original-Logodatei vorliegt. */
-.brand-logo{height:clamp(38px,3.2vw,50px);width:auto;transition:height .6s cubic-bezier(.22,1,.36,1)}
+.brand-logo{height:clamp(38px,3.2vw,50px);width:auto;max-width:none;transition:height .6s cubic-bezier(.22,1,.36,1)}
 .nav.is-scrolled .brand-logo{height:clamp(34px,2.6vw,42px)}
 .brand{transition:padding-left .6s cubic-bezier(.22,1,.36,1)}
 .nav-links{display:flex;gap:34px;justify-content:center}
@@ -272,8 +272,12 @@ section[id]{scroll-margin-top:clamp(86px,9vw,104px)}
   opacity:0;pointer-events:none;transition:opacity .35s;
 }
 body.menu-open .menu{opacity:1;pointer-events:auto}
+@media (max-height:520px){
+  .menu{justify-content:flex-start;overflow-y:auto;overscroll-behavior:contain;padding-top:76px;padding-bottom:24px}
+  .menu a{font-size:1.45rem;padding:10px 0}
+}
 .menu a{
-  font-size:clamp(1.9rem,8vw,2.8rem);font-weight:400;
+  font-size:clamp(1.55rem,8vw,2.8rem);font-weight:400;gap:16px;
   padding:16px 0;border-bottom:1px solid var(--line);
   display:flex;justify-content:space-between;align-items:center;
   transform:translateY(18px);opacity:0;transition:transform .5s cubic-bezier(.22,1,.36,1),opacity .5s;
@@ -585,7 +589,7 @@ html.js:not(.reduced) .stat.an h3::before{transform:scaleX(1)}
 .ba-tag{
   position:absolute;top:14px;z-index:3;pointer-events:none;
   padding:7px 13px;border-radius:999px;
-  font-size:10px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;
+  font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;
   background:rgba(246,241,233,.92);color:var(--ink);
 }
 .ba-tag.nach{left:14px;background:var(--orange-d);color:#FFF}
@@ -980,6 +984,10 @@ html.js:not(.reduced) .stat.an h3::before{transform:scaleX(1)}
 .tst-google b{font-size:19px;font-weight:600;letter-spacing:-.01em;color:var(--ink)}
 .tst-google .stars{--zelle:17px;--star:var(--gold);flex:none}
 .tst-google small{font-size:12.5px;font-weight:400;color:var(--muted);white-space:nowrap}
+@media (max-width:480px){
+  .tst-google{flex-wrap:wrap;row-gap:4px;column-gap:10px;max-width:100%;padding:10px 18px 10px 12px;border-radius:22px}
+  .tst-google small{white-space:normal}
+}
 .tst-k .stars{--zelle:16px;--fill:100%;--star:var(--gold);margin-top:18px}
 .tst-k:hover .stars{--star:var(--gold-h)}
 .tst-nav{display:flex;gap:10px}
@@ -1439,6 +1447,8 @@ footer > .wrap{position:relative;z-index:2;max-width:calc(var(--maxw-weit) + 2 *
 .foot-row{
   display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between;
   border-top:1px solid var(--orange);margin-top:clamp(38px,5vw,66px);padding-top:26px;
+  /* Abstand zur Unterkante, sonst klebt die Zeile am Seitenende (plus iPhone-Home-Balken) */
+  padding-bottom:calc(clamp(34px,4vw,56px) + env(safe-area-inset-bottom, 0px));
   font-size:13px;font-weight:300;color:rgba(246,241,233,.45);
 }
 .foot-row nav{display:flex;gap:26px}
@@ -1497,7 +1507,7 @@ footer > .wrap{position:relative;z-index:2;max-width:calc(var(--maxw-weit) + 2 *
   .hero{padding-top:0}
   /* Titel, Punkte und Karte stehen untereinander am unteren Rand,
      das Foto liegt als Flaeche darunter. */
-  .hero-frame{height:min(94svh,800px);padding:0}
+  .hero-frame{height:min(94svh,800px);min-height:660px;padding:0}
   .hero-frame > img,
   .hero-frame > video{position:absolute;inset:0}
   .hero-frame::after{background:linear-gradient(to top, rgba(34,30,25,.80) 0%, rgba(34,30,25,.36) 45%, rgba(34,30,25,.14) 62%, rgba(34,30,25,.34) 82%, rgba(34,30,25,.62) 100%)}
@@ -1506,7 +1516,8 @@ footer > .wrap{position:relative;z-index:2;max-width:calc(var(--maxw-weit) + 2 *
     padding-inline:clamp(20px,5vw,28px);
   }
   .hero-text > *{max-width:100%}
-  .hero-word{font-size:clamp(29px,7.6vw,42px);line-height:1.1}
+  .hero-word{font-size:clamp(23px,7.6vw,42px);line-height:1.1}
+  .hero-augen{font-size:11.5px;letter-spacing:.2em}
   .hero-lead{font-size:15px;max-width:34ch}
   .hero-tun{gap:15px;margin-top:20px}
   .hero-leiste-in{grid-template-columns:repeat(2,minmax(0,1fr));padding-inline:clamp(16px,4vw,22px)}
@@ -1596,6 +1607,25 @@ footer > .wrap{position:relative;z-index:2;max-width:calc(var(--maxw-weit) + 2 *
 /* Ausgeblendet: wenn das Menue offen ist oder der Kontaktbereich erreicht ist */
 body.menu-open .wa,
 body.wa-weg .wa{opacity:0;transform:translateY(14px) scale(.9);pointer-events:none}
+body.wa-hoch:not(.wa-weg) .wa{transform:translateY(calc(-1 * var(--wa-hub, 0px)))}
+@media (max-width:360px){
+  .hero-augen{font-size:11px;letter-spacing:.12em}
+  /* Knoepfe: auf 320px sonst wenige Pixel zu breit fuer die Beschriftung */
+  .btnN{letter-spacing:.09em;gap:12px;padding-right:22px}
+}
+@media (min-width:601px) and (max-width:860px){
+  .stats-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+  .ba-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .werk-photos{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .werk-ph{aspect-ratio:4/5}
+  .opts{grid-template-columns:1fr 1fr}
+}
+@media (pointer:coarse){
+  .foot-row nav a,.foot-row #toTop{display:inline-block;padding-block:12px}
+  .hero-beleg{padding-block:9px}
+  .fdone .again{display:inline-block;padding-block:12px}
+  .nav-links a{padding-block:6px}
+}
 @media (max-width:600px){
   .wa{height:52px;width:52px}
   .wa-icon{width:49px;height:49px}
@@ -1651,7 +1681,7 @@ body.wa-weg .wa{opacity:0;transform:translateY(14px) scale(.9);pointer-events:no
   /* Grundhoehe fuer breite Wortmarken. Kompaktere Zeichen bekommen unten
      mehr Hoehe - bei gleicher Pixelhoehe wirkt ein quadratisches Signet
      sonst halb so gross wie eine breite Wortmarke. */
-  height:clamp(34px,3.9vw,54px);width:auto;
+  height:clamp(34px,3.9vw,54px);width:auto;object-fit:contain;
   filter:grayscale(1) brightness(0);
   opacity:.62;
   transition:opacity .35s ease, filter .35s ease;
@@ -2554,7 +2584,9 @@ function sizeSteps(){
   /* Die ersten drei Schritte teilen sich eine Grundhoehe - so bleibt die Karte
      beim Durchklicken ruhig. Nur der vierte Schritt darf weiter wachsen. */
   const grund = Math.max(...steps.slice(0,3).map(el => el.offsetHeight));
-  stepsBox.style.height = Math.max(act.offsetHeight, curStep <= 3 ? grund : 0) + 'px';
+  /* Auf dem Handy sind die Schritte sehr unterschiedlich hoch - dort waechst die Karte je Schritt mit */
+  const gemeinsam = curStep <= 3 && grund <= act.offsetHeight * 1.3;
+  stepsBox.style.height = Math.max(act.offsetHeight, gemeinsam ? grund : 0) + 'px';
 }
 function sizeSlot(){
   const act = ktSlot.querySelector('.on');
@@ -3115,6 +3147,27 @@ if (reduced) {
   });
 
 }
+/* WhatsApp-Knopf: solange die Leistungs-Leiste unten im ersten Bildschirm steht,
+   sitzt der Knopf knapp darueber statt auf den Texten der Leiste. */
+/* Der Knopf steht im HTML erst nach diesem Skript - daher erst nach dem Einlesen starten. */
+const waHeben = () => {
+  const leiste = document.querySelector('.hero-leiste');
+  const wa = document.querySelector('.wa');
+  if (!leiste || !wa) return;
+  let offen = false;
+  const pruefe = () => {
+    const r = leiste.getBoundingClientRect();
+    const abstand = parseFloat(getComputedStyle(wa).bottom) || 0;
+    const hub = Math.round(innerHeight - abstand - r.top + 12);
+    const heben = scrollY < 80 && r.top < innerHeight && hub > 0;
+    if (heben) document.documentElement.style.setProperty('--wa-hub', hub + 'px');
+    if (heben !== offen) { document.body.classList.toggle('wa-hoch', heben); offen = heben; }
+  };
+  addEventListener('scroll', pruefe, { passive: true });
+  addEventListener('resize', pruefe);
+  pruefe();
+};
+document.readyState === 'loading' ? addEventListener('DOMContentLoaded', waHeben) : waHeben();
 /* WhatsApp-Knopf verschwindet, sobald der Kontaktbereich da ist.
    Dort steht der WhatsApp-Weg schon im Text, und der Knopf wuerde
    sonst ueber dem "Nach oben"-Link im Footer kleben. */
