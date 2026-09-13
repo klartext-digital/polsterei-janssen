@@ -171,5 +171,8 @@ neben drei gesetzten Schriftzügen würden kaputt aussehen — der Austausch loh
 wenn alle sechs in vergleichbarer Qualität vorliegen (am besten Vektor oder
 transparentes PNG, einfarbig dunkel für den Creme-Grund).
 
-## Vorher/Nachher: Antiker Stuhl (13.09.2026)
-- assets/ba-antik-stuhl-vor.jpg / -nach.jpg: Louis-Philippe-Stuhl aus dem Fabio-Soltani-Projekt übernommen (KI-Bild), Wasserzeichen entfernt, Stuhl auf neutralen dunklen Hintergrund gesetzt. Kein echtes Janssen-Projekt.
+## Vorher/Nachher: zwei Antikmöbel (13.09.2026)
+- Karten: Sofa, Sessel, Antiker Stuhl, Antiker Sessel. Die Eckbank-Karte ist raus (Bilder ba-eckbank-* liegen noch in assets).
+- assets/ba-antikstuhl-vor.jpg / -nach.jpg: Louis-Philippe-Stuhl, Damast in Gold. KI-Bild (Freepik, Seedream), im Stil der Halle vom Sessel.
+- assets/ba-antiksessel-vor.jpg / -nach.jpg: Louis-XV-Sessel, Samt in Nachtblau. KI-Bild (Freepik, Seedream), Halle vom Sofa.
+- Keine echten Janssen-Arbeiten, austauschen sobald Gigi eigene Fotos schickt.
