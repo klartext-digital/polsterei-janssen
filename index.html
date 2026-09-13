@@ -561,7 +561,7 @@ html.js:not(.reduced) .stat.an h3::before{transform:scaleX(1)}
 .ba-frame{
   position:relative;border-radius:14px;overflow:hidden;
   aspect-ratio:3/2;width:100%;
-  user-select:none;-webkit-user-select:none;touch-action:pan-y;
+  user-select:none;-webkit-user-select:none;touch-action:pan-y;cursor:ew-resize;
   background:#111;
 }
 .ba-frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
@@ -581,6 +581,8 @@ html.js:not(.reduced) .stat.an h3::before{transform:scaleX(1)}
 }
 .ba-range{
   position:absolute;inset:0;z-index:5;width:100%;height:100%;
+  /* Maus/Finger steuert der Rahmen per Script; der Regler bleibt fuer die Tastatur */
+  pointer-events:none;
   opacity:0;cursor:ew-resize;margin:0;
   -webkit-appearance:none;appearance:none;background:transparent;
 }
@@ -1502,7 +1504,11 @@ footer > .wrap{position:relative;z-index:2;max-width:calc(var(--maxw-weit) + 2 *
   /* Auf dem Handy waere der volle Knopf so breit, dass er das Logo erdrueckt.
      Der Weg zur Anfrage steht im Menue und im Kopfbild. */
   .nav .btnN{display:none}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .nav-rechts{margin-left:auto}
   .burger{display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;margin-left:auto;width:44px;height:44px;flex:none}
+  /* Die Striche (22px) sitzen mittig in der 44px-Flaeche - so enden sie buendig mit der Inhaltskante wie das Logo links */
+  .nav:not(.is-scrolled) .burger{margin-right:-11px}
   .burger i{display:block;width:22px;height:1.5px;background:var(--ink)}
   .hero{padding-top:0}
   /* Titel, Punkte und Karte stehen untereinander am unteren Rand,
@@ -1608,6 +1614,10 @@ footer > .wrap{position:relative;z-index:2;max-width:calc(var(--maxw-weit) + 2 *
 body.menu-open .wa,
 body.wa-weg .wa{opacity:0;transform:translateY(14px) scale(.9);pointer-events:none}
 body.wa-hoch:not(.wa-weg) .wa{transform:translateY(calc(-1 * var(--wa-hub, 0px)))}
+@media (max-width:340px){
+  /* 320px: Logo etwas kleiner, damit der Burger denselben Randabstand wie das Logo behaelt */
+  .brand img{height:36px}
+}
 @media (max-width:360px){
   .hero-augen{font-size:11px;letter-spacing:.12em}
   /* Knoepfe: auf 320px sonst wenige Pixel zu breit fuer die Beschriftung */
@@ -2545,6 +2555,30 @@ document.querySelectorAll('.ba-frame').forEach(frame => {
     knob.style.left = p + '%';
   };
   range.addEventListener('input', () => set(parseFloat(range.value)));
+  /* Ziehen auf dem ganzen Bild: der unsichtbare Schieberegler reagiert auf iPhones
+     nur auf seinen schmalen Griff. Waagerecht wischen schiebt, senkrecht scrollt. */
+  const ausZeiger = e => {
+    const b = frame.getBoundingClientRect();
+    const p = Math.max(0, Math.min(100, (e.clientX - b.left) / b.width * 100));
+    range.value = p; set(p);
+  };
+  let start = null, aktiv = false;
+  frame.addEventListener('pointerdown', e => {
+    if (e.button > 0) return;
+    start = { x: e.clientX, y: e.clientY };
+    if (e.pointerType === 'mouse') { aktiv = true; frame.setPointerCapture(e.pointerId); ausZeiger(e); }
+  });
+  frame.addEventListener('pointermove', e => {
+    if (!start) return;
+    if (!aktiv) {
+      const dx = Math.abs(e.clientX - start.x), dy = Math.abs(e.clientY - start.y);
+      if (dx > 6 && dx > dy) { aktiv = true; try { frame.setPointerCapture(e.pointerId); } catch (_) {} }
+      else return;
+    }
+    ausZeiger(e);
+  });
+  frame.addEventListener('pointerup', e => { if (start && !aktiv) ausZeiger(e); start = null; aktiv = false; });
+  frame.addEventListener('pointercancel', () => { start = null; aktiv = false; });
   set(50);
 });
 
@@ -3172,11 +3206,15 @@ document.readyState === 'loading' ? addEventListener('DOMContentLoaded', waHeben
    Dort steht der WhatsApp-Weg schon im Text, und der Knopf wuerde
    sonst ueber dem "Nach oben"-Link im Footer kleben. */
 (() => {
-  const kontakt = document.getElementById('kontakt');
-  if (!kontakt || !('IntersectionObserver' in window)) return;
-  new IntersectionObserver(eintraege => {
-    eintraege.forEach(e => document.body.classList.toggle('wa-weg', e.isIntersecting));
-  }, { rootMargin: '0px 0px -35% 0px' }).observe(kontakt);
+  const ziele = [document.getElementById('kontakt'), document.querySelector('footer')].filter(Boolean);
+  if (!ziele.length || !('IntersectionObserver' in window)) return;
+  /* Auch in der Fusszeile weg - dort laege er sonst auf "Nach oben" */
+  const sichtbar = new Set();
+  const io = new IntersectionObserver(eintraege => {
+    eintraege.forEach(e => e.isIntersecting ? sichtbar.add(e.target) : sichtbar.delete(e.target));
+    document.body.classList.toggle('wa-weg', sichtbar.size > 0);
+  }, { rootMargin: '0px 0px -35% 0px' });
+  ziele.forEach(z => io.observe(z));
 })();
 
 </script>
