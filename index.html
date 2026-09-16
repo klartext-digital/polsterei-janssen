@@ -1790,6 +1790,7 @@ body.wa-hoch:not(.wa-weg) .wa{transform:translateY(calc(-1 * var(--wa-hub, 0px))
   ]
 }
 </script>
+<script src="assets/einwilligung.js"></script>
 </head>
 <body>
 
@@ -2516,6 +2517,7 @@ body.wa-hoch:not(.wa-weg) .wa{transform:translateY(calc(-1 * var(--wa-hub, 0px))
       <nav aria-label="Rechtliches">
         <a href="impressum.html">Impressum</a>
         <a href="datenschutz.html">Datenschutz</a>
+        <a href="#" data-einwilligung-oeffnen hidden>Cookie-Einstellungen</a>
       </nav>
       <a href="#top" id="toTop">Nach oben</a>
     </div>
@@ -2875,7 +2877,28 @@ $('kForm').addEventListener('submit', e => {
     steps[4].classList.add('on');
   };
 
+  /* Conversion-Ereignis fuer den Tag Manager (siehe assets/einwilligung.js) */
+  const meldeAnfrage = (name) => {
+    const ew = window.pjEinwilligung;
+    if (!ew) return;
+    const d = {
+      moebel: answers.moebel || '',
+      leistung: answers.leistung.join(', '),
+      zeitrahmen: answers.zeit || '',
+      fotos_anzahl: fotos.length
+    };
+    if (name === 'anfrage_gesendet' && ew.stand().marketing) {
+      let tel = (f.telefon.value || '').replace(/[^\d+]/g, '');
+      if (tel.startsWith('00')) tel = '+' + tel.slice(2);
+      else if (tel.startsWith('0')) tel = '+49' + tel.slice(1);
+      d.user_data = { email: f.email.value.trim().toLowerCase() };
+      if (/^\+\d{8,15}$/.test(tel)) d.user_data.phone_number = tel;
+    }
+    ew.ereignis(name, d);
+  };
+
   const perMailprogramm = () => {
+    meldeAnfrage('anfrage_mailprogramm');
     zeigeErfolg(false);
     setTimeout(() => {
       location.href = 'mailto:polstereijanssen@gmail.com'
@@ -2902,7 +2925,7 @@ $('kForm').addEventListener('submit', e => {
 
   fetch('anfrage.php', { method: 'POST', body: daten })
     .then(a => a.ok ? a.json() : Promise.reject(new Error('Antwort ' + a.status)))
-    .then(a => { if (a && a.ok) zeigeErfolg(true); else throw new Error('abgelehnt'); })
+    .then(a => { if (a && a.ok) { meldeAnfrage('anfrage_gesendet'); zeigeErfolg(true); } else throw new Error('abgelehnt'); })
     .catch(() => perMailprogramm())
     .finally(() => { if (senden) senden.removeAttribute('aria-busy'); });
 });
