@@ -39,6 +39,7 @@ a.mail{color:var(--acc)}
 footer{border-top:1px solid var(--line);padding:24px 0;color:var(--ink2);font-size:.9rem}
 footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 footer a:hover{color:var(--acc)}
+.fusslinks{display:flex;gap:20px;flex-wrap:wrap}
 footer a{display:inline-block;padding-block:10px;margin-block:-10px}
 header .wrap{gap:14px}
 .back{white-space:nowrap;flex:none}
@@ -52,6 +53,7 @@ header .wrap{gap:14px}
   .back{padding:8px 12px}
 }
 </style>
+<script src="assets/einwilligung.js"></script>
 </head>
 <body>
 <header>
@@ -117,7 +119,11 @@ header .wrap{gap:14px}
     <p>Die Nutzung erfolgt im Interesse einer sicheren, schnellen und zuverlässigen Bereitstellung unseres Online-Angebots und stellt ein berechtigtes Interesse im Sinne von Art. 6 Abs. 1 lit. f DSGVO dar. Weitere Informationen: <a class="mail" href="https://www.hostinger.com/de/legal/datenschutz-bestimmungen" target="_blank" rel="noopener">hostinger.com/de/legal/datenschutz-bestimmungen</a>.</p>
 
     <h3>Cookies</h3>
-    <p>Diese Website setzt keine Cookies und verwendet keine Analyse- oder Tracking-Dienste.</p>
+    <p data-nur-ohne-tracking>Diese Website setzt keine Cookies und verwendet keine Analyse- oder Tracking-Dienste.</p>
+    <div data-nur-mit-tracking hidden>
+      <p>Cookies sind kleine Textdateien, die Ihr Browser auf Ihrem Endgerät speichert. Diese Website setzt Cookies und vergleichbare Technologien nur dann ein, wenn Sie über unser Einwilligungsfenster zugestimmt haben. Einzelheiten zu den eingesetzten Diensten finden Sie unten unter „Einwilligung, Analyse und Werbung".</p>
+      <p>Technisch notwendig speichern wir lediglich Ihre Auswahl im Einwilligungsfenster im lokalen Speicher Ihres Browsers, damit wir Sie nicht bei jedem Seitenaufruf erneut fragen müssen. Rechtsgrundlage ist § 25 Abs. 2 Nr. 2 TDDDG in Verbindung mit Art. 6 Abs. 1 lit. c und f DSGVO. Diese Angabe enthält keine personenbezogenen Daten und wird nach zwölf Monaten erneut abgefragt.</p>
+    </div>
 
     <h3>Server-Log-Dateien</h3>
     <p>Der Provider der Seiten erhebt und speichert automatisch Informationen in so genannten Server-Log-Dateien, die Ihr Browser automatisch an uns übermittelt. Dies sind:</p>
@@ -144,12 +150,32 @@ header .wrap{gap:14px}
 
     <h3>Links zu Google Maps und WhatsApp</h3>
     <p>Diese Website bindet weder Google Maps noch WhatsApp ein, sondern enthält lediglich Links zu diesen Diensten. Beim bloßen Besuch unserer Website werden dabei keine Daten an Google oder WhatsApp übertragen. Erst wenn Sie einen solchen Link anklicken, verlassen Sie unsere Website. Es gelten dann die Datenschutzbestimmungen des jeweiligen Anbieters: Google Ireland Limited (<a class="mail" href="https://policies.google.com/privacy?hl=de" target="_blank" rel="noopener">policies.google.com/privacy</a>) beziehungsweise WhatsApp Ireland Limited (<a class="mail" href="https://www.whatsapp.com/legal/privacy-policy-eea" target="_blank" rel="noopener">whatsapp.com/legal/privacy-policy-eea</a>).</p>
+
+    <section id="tracking" data-nur-mit-tracking hidden>
+    <h2>5. Einwilligung, Analyse und Werbung</h2>
+    <h3>Einwilligungsverwaltung</h3>
+    <p>Beim ersten Besuch fragen wir Sie in einem Einwilligungsfenster, ob Sie Statistik- und Marketingdiensten zustimmen. Ohne Ihre Zustimmung werden diese Dienste nicht geladen, und es werden keine Daten an Google übermittelt. Sie können Ihre Einwilligung jederzeit mit Wirkung für die Zukunft ändern oder widerrufen, über den Link <a class="mail" href="#" data-einwilligung-oeffnen>Cookie-Einstellungen</a>, der auch unten auf jeder Seite steht. Die Einwilligungsverwaltung ist Teil dieser Website, ein externer Anbieter ist dafür nicht eingebunden.</p>
+
+    <h3>Google Tag Manager</h3>
+    <p>Nach Ihrer Einwilligung nutzen wir den Google Tag Manager der Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland („Google"). Der Tag Manager ist ein Werkzeug, über das wir die unten genannten Dienste in unsere Website einbinden. Er selbst legt keine Nutzerprofile an, beim Laden wird jedoch Ihre IP-Adresse an Google übermittelt.</p>
+
+    <h3>Google Analytics 4</h3>
+    <p>Wenn Sie der Kategorie „Statistik" zustimmen, nutzen wir Google Analytics 4 von Google. Damit werten wir aus, wie Besucher unsere Website nutzen, zum Beispiel welche Seiten aufgerufen werden, wie lange Besucher bleiben, von welcher Quelle sie kommen und ob sie das Anfrageformular absenden oder einen Kontaktlink anklicken. Dazu werden Cookies gesetzt (zum Beispiel „_ga", Speicherdauer bis zu zwei Jahre) und Angaben zu Ihrem Gerät, Browser, ungefähren Standort und Ihrer Nutzung verarbeitet. Google Analytics 4 speichert nach Angaben von Google keine vollständigen IP-Adressen.</p>
+
+    <h3>Google Ads Conversion-Tracking und Remarketing</h3>
+    <p>Wenn Sie der Kategorie „Marketing" zustimmen, nutzen wir Google Ads von Google. Wir messen damit, ob ein Besucher über eine unserer Anzeigen zu uns kam und anschließend eine Anfrage gesendet oder einen Telefon-, WhatsApp- oder E-Mail-Link angeklickt hat („Conversion"). Dazu werden Cookies gesetzt (zum Beispiel „_gcl_au", Speicherdauer in der Regel 90 Tage). Außerdem können wir Besuchern unserer Website später erneut Anzeigen zeigen (Remarketing).</p>
+    <p>Beim Absenden des Anfrageformulars übermitteln wir bei erteilter Marketing-Einwilligung Ihre E-Mail-Adresse und gegebenenfalls Telefonnummer in verschlüsselter (gehashter) Form an Google, um die Anfrage einer Anzeige zuordnen zu können („erweiterte Conversions"). Google erhält dabei keine lesbaren Kontaktdaten.</p>
+
+    <h3>Rechtsgrundlage, Drittlandübermittlung und Speicherdauer</h3>
+    <p>Rechtsgrundlage für die genannten Google-Dienste ist Ihre Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO und § 25 Abs. 1 TDDDG. Google kann Daten auch an die Google LLC in den USA übermitteln. Google LLC ist nach dem EU-US Data Privacy Framework zertifiziert, für das ein Angemessenheitsbeschluss der EU-Kommission besteht. Die Daten werden gelöscht, sobald sie für den Zweck nicht mehr erforderlich sind, in Google Analytics spätestens nach 14 Monaten. Mit Google besteht ein Vertrag zur Auftragsverarbeitung beziehungsweise gelten die Datenverarbeitungsbedingungen von Google.</p>
+    <p>Weitere Informationen: <a class="mail" href="https://policies.google.com/privacy?hl=de" target="_blank" rel="noopener">policies.google.com/privacy</a> und <a class="mail" href="https://business.safety.google/privacy/" target="_blank" rel="noopener">business.safety.google/privacy</a>.</p>
+    </section>
   </div>
 </main>
 <footer>
   <div class="wrap">
     <span>&copy; 2026 Polsterei Janssen</span>
-    <a href="impressum.html">Impressum</a>
+    <span class="fusslinks"><a href="impressum.html">Impressum</a> <a href="#" data-einwilligung-oeffnen hidden>Cookie-Einstellungen</a></span>
   </div>
 </footer>
 </body>
