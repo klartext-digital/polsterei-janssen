@@ -19,7 +19,7 @@
 (function () {
   'use strict';
 
-  var GTM_ID = '';
+  var GTM_ID = 'GTM-TZCW5M4';
 
   var SCHLUESSEL = 'pj-einwilligung';
   var VERSION = 1;
